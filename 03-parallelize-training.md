@@ -650,8 +650,8 @@ tensorboard --logdir=[PATH_TO_TENSOR_BOARD]
 ---
 
 ## Llview
-- [llview](https://go.fzj.de/llview-juwelsbooster)
-- https://go.fzj.de/llview-juwelsbooster 
+- [llview](https://go.fzj.de/llview-jureca)
+- https://go.fzj.de/llview-jureca
 ![](images/llview.png)
 
 ---

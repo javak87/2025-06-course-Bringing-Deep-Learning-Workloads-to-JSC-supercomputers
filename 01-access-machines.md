@@ -1279,11 +1279,11 @@ Type on your machine "`code $HOME/.ssh/config`" and paste this at the end:
 ```ssh
 
 # -- Compute Nodes --
-Host *.booster
+Host *.jureca
         User [ADD YOUR USERNAME HERE]
         StrictHostKeyChecking no
         IdentityFile ~/.ssh/id_ed25519-JSC
-        ProxyJump booster
+        ProxyJump jureca
 ```        
 
 ---
@@ -1316,7 +1316,7 @@ bash-4.4$ tensorboard --logdir=runs  --port=9999 serve
 On your machine:
 
 - ```bash
-ssh -L :3334:localhost:9999 jwb002i.booster
+ssh -L :3334:localhost:9999 jrc002i.jureca
 ```
 
 - Mind the `i` letter I added at the end of the hostname

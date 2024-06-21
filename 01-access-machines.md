@@ -660,6 +660,7 @@ The following modules match your search criteria: "toml"
 
 - ```bash
 cd $HOME/course/
+
 pwd
 ```
 

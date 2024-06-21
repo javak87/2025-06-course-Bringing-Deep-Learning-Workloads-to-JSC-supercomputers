@@ -791,8 +791,7 @@ squeue --me
 ### Reservations
 
 - Some partitions have reservations, which means that only certain users can use them at certain times.
-- For this course, we have:
-- Jureca DC: `training2425` and `training2425`
+- For this course, it's called `training2425`
 
 --- 
 

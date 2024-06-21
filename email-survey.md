@@ -2,7 +2,7 @@
 author: Alexandre Strube // Sabrina Benassou
 title: Survey on the course "Bringing Deep Learning Workloads to JSC supercomputers"
 # subtitle: A primer in supercomputers`
-date: February 28, 2023
+date: June 25, 2024
 ---
 
 Hello everyone! 

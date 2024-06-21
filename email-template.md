@@ -1,11 +1,11 @@
 ---
 author: Alexandre Strube // Sabrina Benassou
-title: Bringing Deep Learning Workloads to JSC supercomputers
+title: Course: Bringing Deep Learning Workloads to JSC supercomputers
 # subtitle: A primer in supercomputers`
 date: June 25, 2024
 ---
 
-Dear colleagues,
+Dear students,
 
 the next "Bringing Deep Learning Workloads to JSC supercomputers" course is approaching! Thank you all very much for your participation.
 
@@ -14,7 +14,7 @@ https://go.fzj.de/bringing-dl-workloads-to-jsc-zoom
 
 
 *********
-IMPORTANT - Please check all steps!
+IMPORTANT - Please check all steps! Some things need to be done a day BEFORE the course!!!
 *********
 
 Checklist for BEFORE the course:

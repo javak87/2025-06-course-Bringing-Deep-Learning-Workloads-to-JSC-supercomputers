@@ -659,7 +659,7 @@ The following modules match your search criteria: "toml"
 - From the VSCode's terminal, navigate to your "course" folder and to the name you created earlier.
 
 - ```bash
-cd $HOME/course/$USER
+cd $HOME/course/
 pwd
 ```
 
@@ -824,7 +824,7 @@ Or simply open it on VSCode!
 [Venv/Kernel template](https://gitlab.jsc.fz-juelich.de/kesselheim1/sc_venv_template)
 
 ```bash
-cd $HOME/course/$USER
+cd $HOME/course/
 git clone https://gitlab.jsc.fz-juelich.de/kesselheim1/sc_venv_template.git
 ```
 
@@ -921,7 +921,7 @@ learn.fit_one_cycle(6, cbs=cbs)
 #SBATCH --partition=dc-gpu
 #SBATCH --reservation=training2425 # For today only
 
-cd $HOME/course/$USER
+cd $HOME/course/
 source sc_venv_template/activate.sh # Now we finally use the fastai module
 
 srun python cats.py
@@ -1134,7 +1134,7 @@ A tunnel which exposes the supercomputer's port 3000 as port 1234 locally](image
 
 - On VSCode's terminal:
 - ```bash
-cd $HOME/course/$USER
+cd $HOME/course/
 source sc_venv_template/activate.sh
 tensorboard --logdir=runs  --port=12345 serve
 ```
@@ -1304,7 +1304,7 @@ srun --time=00:05:00 \
 bash-4.4$ hostname # This is running on a compute node of the supercomputer
 jwb0002
 
-bash-4.4$ cd $HOME/course/$USER
+bash-4.4$ cd $HOME/course/
 bash-4.4$ source sc_venv_template/activate.sh
 bash-4.4$ tensorboard --logdir=runs  --port=9999 serve
 

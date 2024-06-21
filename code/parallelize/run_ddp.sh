@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=24             # Divide the number of cpus (96) by the number of GPUs (4)
 #SBATCH --time=00:30:00
 #SBATCH --partition=booster
-#SBATCH --account=training2402
+#SBATCH --account=training2425
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
 

@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=96
 #SBATCH --time=10:00:00
 #SBATCH --partition=booster
-#SBATCH --account=training2402
+#SBATCH --account=training2425
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
 
@@ -15,6 +15,6 @@
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"
 source $HOME/course/$USER/sc_venv_template/activate.sh
 
-mkdir -p "/p/scratch/training2402/$USER"
+mkdir -p "/p/scratch/training2425/$USER"
 
-time srun python save_imagenet_files.py  --dset_type "h5" --target_folder "/p/scratch/training2402/$USER"
+time srun python save_imagenet_files.py  --dset_type "h5" --target_folder "/p/scratch/training2425/$USER"

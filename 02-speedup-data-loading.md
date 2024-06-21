@@ -356,5 +356,5 @@ class ImageNetH5(Dataset):
 ## Exercise
 
 - Could you create an arrow file for the flickr dataset stored in 
-```/p/scratch/training2402/data/Flickr30K/```
+```/p/scratch/training2425/data/Flickr30K/```
 and read it using a dataloader ?

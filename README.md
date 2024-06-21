@@ -1,9 +1,9 @@
 ---
 author: Alexandre Strube // Sabrina Benassou
-title: Getting Started with AI on Supercomputers
+title: Bringing Deep Learning Workloads to JSC supercomputers
 ---
 
-This repo is specifically for the course described in [indico](https://indico3-jsc.fz-juelich.de/event/75)
+This repo is specifically for the course described in [indico](https://indico3-jsc.fz-juelich.de/event/181)
 
 ### It's a two-mornings course.
 
@@ -39,11 +39,11 @@ This course is given in English.
 
 ### Date:
 
-28 February - 1 March 2023, 09:00-13:00 each day
+Jun 25 – 26, 2024, 10:00 - 14:00 each day
 
 ### Further information:
 
-please visit the JSC webpage https://go.fzj.de/2023-ai-1
+please visit the JSC webpage https://www.fz-juelich.de/en/ias/jsc/news/events/training-courses/2024/ai-sc-2
 
 ### Instructors:
 

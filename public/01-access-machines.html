@@ -668,8 +668,8 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="
 <h3 id="ssh-3">SSH</h3>
 <h4 id="configure-ssh-session-1">Configure SSH session</h4>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Host</span> booster</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="ex">HostName</span> juwels-booster.fz-juelich.de</span>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Host</span> jureca</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="ex">HostName</span> jureca.fz-juelich.de</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="ex">User</span> <span class="pp">[</span><span class="ss">MY_USERNAME</span><span class="pp">]</span>   <span class="co"># Here goes your username, not the word MY_USERNAME.</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="ex">AddressFamily</span> inet</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="ex">IdentityFile</span> ~/.ssh/id_ed25519-JSC</span>
@@ -779,7 +779,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="
 <li class="fragment">Let’s add it on <a
 href="https://judoor.fz-juelich.de">Judoor</a></li>
 <li class="fragment"><img data-src="images/manage-ssh-keys.png" /></li>
-<li class="fragment">Do it for JUWELS and JUDAC with the same key</li>
+<li class="fragment">Do it for JURECA and JUDAC with the same key</li>
 </ul>
 </section>
 <section class="slide level2">
@@ -797,7 +797,7 @@ width="850" /></p>
 <p>That’s it! Give it a try (and answer yes)</p>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh booster</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> authenticity of host <span class="st">&#39;juwels22.fz-juelich.de (134.94.0.185)&#39;</span> cannot be established.</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> authenticity of host <span class="st">&#39;jrlogin03.fz-juelich.de (134.94.0.185)&#39;</span> cannot be established.</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ED25519</span> key fingerprint is SHA256:ASeu9MJbkFx3kL1FWrysz6+paaznGenChgEkUW8nRQU.</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> key is not known by any other names</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Are</span> you sure you want to continue connecting <span class="er">(</span><span class="ex">yes/no/[fingerprint]</span><span class="kw">)</span><span class="ex">?</span> Yes</span>
@@ -806,7 +806,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">**************************************************************************</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">strube1@juwels22~</span> $ </span></code></pre></div>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">strube1@jrlogin03~</span> $ </span></code></pre></div>
 </section>
 <section class="slide level2">
 
@@ -814,26 +814,26 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="
 <h4 id="make-sure-you-are-connected-to-the-supercomputer">Make sure you
 are connected to the supercomputer</h4>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a shortcut for the project on the home folder</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> <span class="va">$PROJECT_training2425</span> ~/course</span>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a folder for myself</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="va">$PROJECT_training2425</span>/<span class="va">$USER</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a folder for myself</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/course/<span class="va">$USER</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a shortcut for the project on the home folder</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> ~/course <span class="kw">;</span> <span class="fu">ln</span> <span class="at">-s</span> <span class="va">$PROJECT_training2425</span>/<span class="va">$USER</span> ~/course</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter course folder and</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/course/<span class="va">$USER</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/course</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Where am I?</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># We well need those later</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/course/<span class="va">$USER</span>/.cache</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/course/<span class="va">$USER</span>/.config</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/course/<span class="va">$USER</span>/.fastai</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/course/.cache</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/course/.config</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/course/.fastai</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ~/course/<span class="va">$USER</span>/.cache <span class="va">$HOME</span>/</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ~/course/<span class="va">$USER</span>/.config <span class="va">$HOME</span>/</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ~/course/<span class="va">$USER</span>/.fastai <span class="va">$HOME</span>/</span></code></pre></div>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> <span class="va">$HOME</span>/.cache <span class="kw">;</span> <span class="fu">ln</span> <span class="at">-s</span> ~/course/.cache <span class="va">$HOME</span>/</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> <span class="va">$HOME</span>/.config <span class="kw">;</span> <span class="fu">ln</span> <span class="at">-s</span> ~/course/.config <span class="va">$HOME</span>/</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> <span class="va">$HOME</span>/.fastai <span class="kw">;</span> <span class="fu">ln</span> <span class="at">-s</span> ~/course/.fastai <span class="va">$HOME</span>/</span></code></pre></div>
 </section>
 <section id="working-with-the-supercomputers-software"
 class="slide level2">
@@ -845,7 +845,7 @@ hand-compiled for the specifics of the supercomputer.</li>
 href="https://www.fz-juelich.de/en/ias/jsc/services/user-support/using-systems/software">Full
 list</a></li>
 <li class="fragment"><a
-href="https://apps.fz-juelich.de/jsc/hps/juwels/software-modules.html">Detailed
+href="https://apps.fz-juelich.de/jsc/hps/jureca/software-modules.html">Detailed
 documentation</a></li>
 </ul>
 </section>
@@ -927,10 +927,10 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href=
 <div class="sourceCode" id="cb12"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-bash:</span> python: command not found</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> module load Stages/2023</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> module load Stages/2024</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> module load GCC OpenMPI Python PyTorch</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python <span class="at">-c</span> <span class="st">&quot;import torch ; print(torch.__version__)&quot;</span> </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ex">1.12.0</span></span></code></pre></div>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ex">2.1.0</span></span></code></pre></div>
 </section>
 <section id="python-modules" class="slide level2">
 <h2>Python Modules</h2>
@@ -1043,7 +1043,7 @@ how much of it, for how long, and what to do with the results</li>
 
 <h3 id="slurm-submission-file-example">Slurm submission file
 example</h3>
-<p><code>code juwelsbooster-matrix.sbatch</code></p>
+<p><code>code jureca-matrix.sbatch</code></p>
 <div class="sourceCode" id="cb18"><pre
 class="sourceCode numberSource bash number-lines"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="co">#SBATCH --account=training2425           # Who pays?</span></span>
@@ -1066,7 +1066,7 @@ class="sourceCode numberSource bash number-lines"><code class="sourceCode bash">
 
 <h3 id="submitting-a-job-sbatch">Submitting a job: SBATCH</h3>
 <div class="sourceCode" id="cb19"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> juwelsbooster-matrix.sbatch</span>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> jureca-matrix.sbatch</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Submitted</span> batch job 412169</span></code></pre></div>
 </section>
@@ -1099,8 +1099,8 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href=
 <li class="fragment">Some partitions have reservations, which means that
 only certain users can use them at certain times.</li>
 <li class="fragment">For this course, we have:</li>
-<li class="fragment">Jureca DC: <code>training2425</code>
-and <code>training2425</code></li>
+<li class="fragment">Jureca DC: <code>training2425</code> and
+<code>training2425</code></li>
 </ul>
 </section>
 <section class="slide level2">
@@ -1224,7 +1224,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href=
 <span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition=booster</span></span>
 <span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --reservation=training2425 # For today only</span></span>
 <span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /p/home/jusers/<span class="va">$USER</span>/juwels/course/<span class="va">$USER</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$HOME</span>/course/<span class="va">$USER</span></span>
 <span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> sc_venv_template/activate.sh <span class="co"># Now we finally use the fastai module</span></span>
 <span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> python cats.py</span></code></pre></div>

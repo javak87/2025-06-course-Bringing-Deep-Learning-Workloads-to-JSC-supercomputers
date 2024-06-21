@@ -339,8 +339,8 @@ code $HOME/.ssh/config
 #### Configure SSH session
 
 ```bash
-Host booster
-        HostName juwels-booster.fz-juelich.de
+Host jureca
+        HostName jureca.fz-juelich.de
         User [MY_USERNAME]   # Here goes your username, not the word MY_USERNAME.
         AddressFamily inet
         IdentityFile ~/.ssh/id_ed25519-JSC
@@ -438,7 +438,7 @@ from="93.199.0.0/16,10.0.0.0/8" ssh-ed25519 AAAAC3NzaC1lZDE1NTA4AAAAIHaoOJF3gqXd
 
 - Let's add it on [Judoor](https://judoor.fz-juelich.de)
 - ![](images/manage-ssh-keys.png)
-- Do it for JUWELS and JUDAC with the same key
+- Do it for JURECA and JUDAC with the same key
 
 ---
 
@@ -458,7 +458,7 @@ That's it! Give it a try (and answer yes)
 
 ```bash
 $ ssh booster
-The authenticity of host 'juwels22.fz-juelich.de (134.94.0.185)' cannot be established.
+The authenticity of host 'jrlogin03.fz-juelich.de (134.94.0.185)' cannot be established.
 ED25519 key fingerprint is SHA256:ASeu9MJbkFx3kL1FWrysz6+paaznGenChgEkUW8nRQU.
 This key is not known by any other names
 Are you sure you want to continue connecting (yes/no/[fingerprint])? Yes
@@ -467,7 +467,7 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])? Yes
 **************************************************************************
 ...
 ...
-strube1@juwels22~ $ 
+strube1@jrlogin03~ $ 
 ```
 
 ---
@@ -476,26 +476,26 @@ strube1@juwels22~ $
 #### Make sure you are connected to the supercomputer
 
 ```bash
-# Create a shortcut for the project on the home folder
-ln -s $PROJECT_training2425 ~/course
-
 # Create a folder for myself
-mkdir ~/course/$USER
+mkdir $PROJECT_training2425/$USER
+
+# Create a shortcut for the project on the home folder
+rm -rf ~/course ; ln -s $PROJECT_training2425/$USER ~/course
 
 # Enter course folder and
-cd ~/course/$USER
+cd ~/course
 
 # Where am I?
 pwd
 
 # We well need those later
-mkdir ~/course/$USER/.cache
-mkdir ~/course/$USER/.config
-mkdir ~/course/$USER/.fastai
+mkdir ~/course/.cache
+mkdir ~/course/.config
+mkdir ~/course/.fastai
 
-ln -s ~/course/$USER/.cache $HOME/
-ln -s ~/course/$USER/.config $HOME/
-ln -s ~/course/$USER/.fastai $HOME/
+rm -rf $HOME/.cache ; ln -s ~/course/.cache $HOME/
+rm -rf $HOME/.config ; ln -s ~/course/.config $HOME/
+rm -rf $HOME/.fastai ; ln -s ~/course/.fastai $HOME/
 ```
 
 ---
@@ -504,7 +504,7 @@ ln -s ~/course/$USER/.fastai $HOME/
 
 - We have literally thousands of software packages, hand-compiled for the specifics of the supercomputer.
 - [Full list](https://www.fz-juelich.de/en/ias/jsc/services/user-support/using-systems/software)
-- [Detailed documentation](https://apps.fz-juelich.de/jsc/hps/juwels/software-modules.html)
+- [Detailed documentation](https://apps.fz-juelich.de/jsc/hps/jureca/software-modules.html)
 
 ---
 
@@ -604,10 +604,10 @@ Should look like this:
 ```bash
 $ python
 -bash: python: command not found
-$ module load Stages/2023
+$ module load Stages/2024
 $ module load GCC OpenMPI Python PyTorch
 $ python -c "import torch ; print(torch.__version__)" 
-1.12.0
+2.1.0
 ```
 ---
 
@@ -728,7 +728,7 @@ Simple Linux Utility for Resource Management
 
 ### Slurm submission file example
 
-`code juwelsbooster-matrix.sbatch`
+`code jureca-matrix.sbatch`
 
 ``` {.bash .number-lines}
 #!/bin/bash
@@ -754,7 +754,7 @@ srun python matrix.py            # srun tells the supercomputer how to run it
 ### Submitting a job: SBATCH
 
 ```bash
-sbatch juwelsbooster-matrix.sbatch
+sbatch jureca-matrix.sbatch
 
 Submitted batch job 412169
 ```
@@ -921,7 +921,7 @@ learn.fit_one_cycle(6, cbs=cbs)
 #SBATCH --partition=booster
 #SBATCH --reservation=training2425 # For today only
 
-cd /p/home/jusers/$USER/juwels/course/$USER
+cd $HOME/course/$USER
 source sc_venv_template/activate.sh # Now we finally use the fastai module
 
 srun python cats.py

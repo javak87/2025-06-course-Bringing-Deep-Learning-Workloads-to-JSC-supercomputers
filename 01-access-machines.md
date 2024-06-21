@@ -105,7 +105,7 @@ Please open this document on your own browser! We will need it for the exercises
 
 ---
 
-### JURECA DC Booster Compute Nodes
+### JURECA DC Compute Nodes
 
 - 192 Accelerated Nodes (with GPUs)
 - 2x AMD EPYC Rome 7742 CPU 2.25 GHz (128 cores/node)
@@ -457,7 +457,7 @@ This might take some minutes
 That's it! Give it a try (and answer yes)
 
 ```bash
-$ ssh booster
+$ ssh jureca
 The authenticity of host 'jrlogin03.fz-juelich.de (134.94.0.185)' cannot be established.
 ED25519 key fingerprint is SHA256:ASeu9MJbkFx3kL1FWrysz6+paaznGenChgEkUW8nRQU.
 This key is not known by any other names
@@ -740,7 +740,7 @@ Simple Linux Utility for Resource Management
 #SBATCH --output=output.%j        # Where to write results
 #SBATCH --error=error.%j
 #SBATCH --time=00:01:00          # For how long can it run?
-#SBATCH --partition=booster         # Machine partition
+#SBATCH --partition=dc-gpu         # Machine partition
 #SBATCH --reservation=training2425 # For today only
 
 module load Stages/2024
@@ -918,7 +918,7 @@ learn.fit_one_cycle(6, cbs=cbs)
 #SBATCH --output=output.%j
 #SBATCH --error=error.%j
 #SBATCH --time=00:20:00
-#SBATCH --partition=booster
+#SBATCH --partition=dc-gpu
 #SBATCH --reservation=training2425 # For today only
 
 cd $HOME/course/$USER
@@ -1296,7 +1296,7 @@ On the supercomputer:
 ```bash
 srun --time=00:05:00 \
      --nodes=1 --ntasks=1 \
-     --partition=booster \
+     --partition=dc-gpu \
      --account training2425 \
      --cpu_bind=none \
      --pty /bin/bash -i

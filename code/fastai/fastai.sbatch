@@ -9,7 +9,7 @@
 #SBATCH --output=output.%j
 #SBATCH --error=err.%j
 #SBATCH --time=00:10:00
-#SBATCH --partition=booster
+#SBATCH --partition=dc-gpu
 ##SBATCH --reservation=training2425 # For today only
 
 cd /p/home/jusers/$USER/juwels/course/$USER

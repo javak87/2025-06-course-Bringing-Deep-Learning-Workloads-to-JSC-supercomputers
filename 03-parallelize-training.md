@@ -139,7 +139,7 @@ trainer.save_checkpoint("image_classification_model.pt")
 #SBATCH --ntasks-per-node=1  
 #SBATCH --cpus-per-task=96
 #SBATCH --time=06:00:00
-#SBATCH --partition=booster
+#SBATCH --partition=dc-gpu
 #SBATCH --account=training2425
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
@@ -198,7 +198,7 @@ real	342m11.864s
 #SBATCH --ntasks-per-node=4           # When using pl it should always be set to 4
 #SBATCH --cpus-per-task=24            # Divide the number of cpus (96) by the number of GPUs (4)
 #SBATCH --time=02:00:00
-#SBATCH --partition=booster
+#SBATCH --partition=dc-gpu
 #SBATCH --account=training2425
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
@@ -537,7 +537,7 @@ trainer.save_checkpoint("image_classification_model.pt")
 #SBATCH --ntasks-per-node=4            # When using pl it should always be set to 4
 #SBATCH --cpus-per-task=24             # Divide the number of cpus (96) by the number of GPUs (4)
 #SBATCH --time=00:15:00
-#SBATCH --partition=booster
+#SBATCH --partition=dc-gpu
 #SBATCH --account=training2425
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err

@@ -408,8 +408,7 @@ them:
 </section>
 <section class="slide level2">
 
-<h3 id="jureca-dc-booster-compute-nodes">JURECA DC Booster Compute
-Nodes</h3>
+<h3 id="jureca-dc-compute-nodes">JURECA DC Compute Nodes</h3>
 <ul>
 <li class="fragment">192 Accelerated Nodes (with GPUs)</li>
 <li class="fragment">2x AMD EPYC Rome 7742 CPU 2.25 GHz (128
@@ -1054,7 +1053,7 @@ class="sourceCode numberSource bash number-lines"><code class="sourceCode bash">
 <span id="cb18-7"><a href="#cb18-7"></a><span class="co">#SBATCH --output=output.%j        # Where to write results</span></span>
 <span id="cb18-8"><a href="#cb18-8"></a><span class="co">#SBATCH --error=error.%j</span></span>
 <span id="cb18-9"><a href="#cb18-9"></a><span class="co">#SBATCH --time=00:01:00          # For how long can it run?</span></span>
-<span id="cb18-10"><a href="#cb18-10"></a><span class="co">#SBATCH --partition=booster         # Machine partition</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a><span class="co">#SBATCH --partition=dc-gpu         # Machine partition</span></span>
 <span id="cb18-11"><a href="#cb18-11"></a><span class="co">#SBATCH --reservation=training2425 # For today only</span></span>
 <span id="cb18-12"><a href="#cb18-12"></a></span>
 <span id="cb18-13"><a href="#cb18-13"></a><span class="ex">module</span> load Stages/2024</span>
@@ -1221,7 +1220,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href=
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=output.%j</span></span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error=error.%j</span></span>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=00:20:00</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition=booster</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition=dc-gpu</span></span>
 <span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --reservation=training2425 # For today only</span></span>
 <span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$HOME</span>/course/<span class="va">$USER</span></span>

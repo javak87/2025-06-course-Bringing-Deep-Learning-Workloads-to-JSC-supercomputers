@@ -105,7 +105,19 @@ Please open this document on your own browser! We will need it for the exercises
 
 ---
 
-### JUWELS Booster Compute Nodes
+### JURECA DC Booster Compute Nodes
+
+- 192 Accelerated Nodes (with GPUs)
+- 2x AMD EPYC Rome 7742 CPU 2.25 GHz (128 cores/node)
+- 512 GiB memory
+- Network Mellanox HDR infiniband (FAST💨 and EXPENSIVE💸)
+- 4x NVIDIA A100 with 40gb 😻
+- TL;DR: 24576 cores, 768 GPUs 💪
+- Way deeper technical info at [Jureca DC Overview](https://apps.fz-juelich.de/jsc/hps/jureca/configuration.html)
+
+---
+
+<!-- ### JUWELS Booster Compute Nodes
 
 - 936 Nodes
 - 2x AMD EPYC Rome 7402 CPU 2.7 GHz (48 cores x 2 threads = 96 virtual cores/node)
@@ -115,7 +127,7 @@ Please open this document on your own browser! We will need it for the exercises
 - TL;DR: 89856 cores, 3744 GPUs, 468 TB RAM 💪
 - Way deeper technical info at [Juwels Booster Overview](https://apps.fz-juelich.de/jsc/hps/juwels/booster-overview.html)
 
----
+--- -->
 
 ## How do I use a Supercomputer?
 
@@ -213,15 +225,15 @@ Please open this document on your own browser! We will need it for the exercises
 
 ---
 
-### Connecting to JUWELS BOOSTER
+### Connecting to Jureca DC
 
 #### Getting compute time
 - Go to [https://go.fzj.de/bringing-dl-workloads-to-jsc-project-join](https://go.fzj.de/bringing-dl-workloads-to-jsc-project-join)
 - Join the course project `training2425`
 - Sign the Usage Agreements ([Video](https://drive.google.com/file/d/1mEN1GmWyGFp75uMIi4d6Tpek2NC_X8eY/view))
 - Compute time allocation is based on compute projects. For every compute job, a compute project pays.
-- Time is measured in core-hours. One hour of Juwels BOOSTER is 48 core-hours.
-- Example: Job runs for 8 hours on 64 nodes of Juwels BOOSTER: 8 * 64 * 48 = 24576 core-h!
+- Time is measured in core-hours. One hour of Jureca DC is 48 core-hours.
+- Example: Job runs for 8 hours on 64 nodes of Jureca DC: 8 * 64 * 48 = 24576 core-h!
 
 ---
 
@@ -244,7 +256,7 @@ Please open this document on your own browser! We will need it for the exercises
 
 ---
 
-## Connecting to JUWELS BOOSTER
+## Connecting to Jureca DC
 
 ---
 
@@ -451,7 +463,7 @@ ED25519 key fingerprint is SHA256:ASeu9MJbkFx3kL1FWrysz6+paaznGenChgEkUW8nRQU.
 This key is not known by any other names
 Are you sure you want to continue connecting (yes/no/[fingerprint])? Yes
 **************************************************************************
-*                            Welcome to JUWELS BOOSTER                   *
+*                            Welcome to Jureca DC                   *
 **************************************************************************
 ...
 ...
@@ -562,7 +574,7 @@ Search with the version - it will suggest the hierarchy
 
 ## Example: PyTorch
 
-(make sure you are still connected to Juwels BOOSTER)
+(make sure you are still connected to Jureca DC)
 
 ```bash
 $ python
@@ -656,7 +668,7 @@ pwd
 ---
 
 ### Demo code
-#### Create a new file "`matrix.py`" on VSCode on Juwels BOOSTER
+#### Create a new file "`matrix.py`" on VSCode on Jureca DC
 
 ```bash
 code matrix.py
@@ -729,7 +741,7 @@ Simple Linux Utility for Resource Management
 #SBATCH --error=error.%j
 #SBATCH --time=00:01:00          # For how long can it run?
 #SBATCH --partition=booster         # Machine partition
-#SBATCH --reservation=training-booster-2024-03-12 # For today only
+#SBATCH --reservation=training2425 # For today only
 
 module load Stages/2024
 module load GCC OpenMPI PyTorch  # Load the correct modules on the compute node(s)
@@ -779,7 +791,7 @@ squeue --me
 
 - Some partitions have reservations, which means that only certain users can use them at certain times.
 - For this course, we have:
-- Juwels Booster: `training-booster-2024-03-12` and `training-booster-2024-03-13`
+- Jureca DC: `training2425` and `training2425`
 
 --- 
 
@@ -907,7 +919,7 @@ learn.fit_one_cycle(6, cbs=cbs)
 #SBATCH --error=error.%j
 #SBATCH --time=00:20:00
 #SBATCH --partition=booster
-#SBATCH --reservation=training-booster-2024-03-12 # For today only
+#SBATCH --reservation=training2425 # For today only
 
 cd /p/home/jusers/$USER/juwels/course/$USER
 source sc_venv_template/activate.sh # Now we finally use the fastai module
@@ -1131,7 +1143,7 @@ tensorboard --logdir=runs  --port=12345 serve
 
 ---
 
-### Tensorboard on Juwels Booster
+### Tensorboard on Jureca DC
 
 ![](images/tensorboard-cats.png)
 

@@ -408,20 +408,35 @@ them:
 </section>
 <section class="slide level2">
 
-<h3 id="juwels-booster-compute-nodes">JUWELS Booster Compute Nodes</h3>
+<h3 id="jureca-dc-booster-compute-nodes">JURECA DC Booster Compute
+Nodes</h3>
 <ul>
-<li class="fragment">936 Nodes</li>
-<li class="fragment">2x AMD EPYC Rome 7402 CPU 2.7 GHz (48 cores x 2
-threads = 96 virtual cores/node)</li>
+<li class="fragment">192 Accelerated Nodes (with GPUs)</li>
+<li class="fragment">2x AMD EPYC Rome 7742 CPU 2.25 GHz (128
+cores/node)</li>
 <li class="fragment">512 GiB memory</li>
 <li class="fragment">Network Mellanox HDR infiniband (FAST💨 and
 EXPENSIVE💸)</li>
 <li class="fragment">4x NVIDIA A100 with 40gb 😻</li>
-<li class="fragment">TL;DR: 89856 cores, 3744 GPUs, 468 TB RAM 💪</li>
+<li class="fragment">TL;DR: 24576 cores, 768 GPUs 💪</li>
 <li class="fragment">Way deeper technical info at <a
-href="https://apps.fz-juelich.de/jsc/hps/juwels/booster-overview.html">Juwels
-Booster Overview</a></li>
+href="https://apps.fz-juelich.de/jsc/hps/jureca/configuration.html">Jureca
+DC Overview</a></li>
 </ul>
+</section>
+<section class="slide level2">
+
+<!-- ### JUWELS Booster Compute Nodes
+
+- 936 Nodes
+- 2x AMD EPYC Rome 7402 CPU 2.7 GHz (48 cores x 2 threads = 96 virtual cores/node)
+- 512 GiB memory
+- Network Mellanox HDR infiniband (FAST💨 and EXPENSIVE💸)
+- 4x NVIDIA A100 with 40gb 😻
+- TL;DR: 89856 cores, 3744 GPUs, 468 TB RAM 💪
+- Way deeper technical info at [Juwels Booster Overview](https://apps.fz-juelich.de/jsc/hps/juwels/booster-overview.html)
+
+--- -->
 </section>
 <section id="how-do-i-use-a-supercomputer" class="slide level2">
 <h2>How do I use a Supercomputer?</h2>
@@ -527,7 +542,7 @@ compile, etc</li>
 </section>
 <section class="slide level2">
 
-<h3 id="connecting-to-juwels-booster">Connecting to JUWELS BOOSTER</h3>
+<h3 id="connecting-to-jureca-dc">Connecting to Jureca DC</h3>
 <h4 id="getting-compute-time">Getting compute time</h4>
 <ul>
 <li class="fragment">Go to <a
@@ -538,10 +553,10 @@ href="https://go.fzj.de/bringing-dl-workloads-to-jsc-project-join">https://go.fz
 href="https://drive.google.com/file/d/1mEN1GmWyGFp75uMIi4d6Tpek2NC_X8eY/view">Video</a>)</li>
 <li class="fragment">Compute time allocation is based on compute
 projects. For every compute job, a compute project pays.</li>
-<li class="fragment">Time is measured in core-hours. One hour of Juwels
-BOOSTER is 48 core-hours.</li>
-<li class="fragment">Example: Job runs for 8 hours on 64 nodes of Juwels
-BOOSTER: 8 * 64 * 48 = 24576 core-h!</li>
+<li class="fragment">Time is measured in core-hours. One hour of Jureca
+DC is 48 core-hours.</li>
+<li class="fragment">Example: Job runs for 8 hours on 64 nodes of Jureca
+DC: 8 * 64 * 48 = 24576 core-h!</li>
 </ul>
 </section>
 <section id="jupyter" class="slide level2">
@@ -565,8 +580,8 @@ id="pay-attention-to-the-partition---dont-run-it-on-the-login-node">Pay
 attention to the partition - DON’T RUN IT ON THE LOGIN NODE!!!</h4>
 <p><img data-src="images/jupyter-partition.png" /></p>
 </section>
-<section id="connecting-to-juwels-booster-1" class="slide level2">
-<h2>Connecting to JUWELS BOOSTER</h2>
+<section id="connecting-to-jureca-dc-1" class="slide level2">
+<h2>Connecting to Jureca DC</h2>
 </section>
 <section id="vscode" class="slide level2">
 <h2>VSCode</h2>
@@ -787,7 +802,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> key is not known by any other names</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Are</span> you sure you want to continue connecting <span class="er">(</span><span class="ex">yes/no/[fingerprint]</span><span class="kw">)</span><span class="ex">?</span> Yes</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">**************************************************************************</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span>                            Welcome to JUWELS BOOSTER                   <span class="pp">*</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span>                            Welcome to Jureca DC                   <span class="pp">*</span></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">**************************************************************************</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
@@ -890,7 +905,7 @@ such software?</h4>
 </section>
 <section id="example-pytorch-2" class="slide level2">
 <h2>Example: PyTorch</h2>
-<p>(make sure you are still connected to Juwels BOOSTER)</p>
+<p>(make sure you are still connected to Jureca DC)</p>
 <div class="sourceCode" id="cb10"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-bash:</span> python: command not found</span></code></pre></div>
@@ -974,8 +989,8 @@ here.</p></li>
 <section class="slide level2">
 
 <h3 id="demo-code">Demo code</h3>
-<h4 id="create-a-new-file-matrix.py-on-vscode-on-juwels-booster">Create
-a new file “<code>matrix.py</code>” on VSCode on Juwels BOOSTER</h4>
+<h4 id="create-a-new-file-matrix.py-on-vscode-on-jureca-dc">Create a new
+file “<code>matrix.py</code>” on VSCode on Jureca DC</h4>
 <div class="sourceCode" id="cb15"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> matrix.py</span></code></pre></div>
 <p>Paste this into the file:</p>
@@ -1040,7 +1055,7 @@ class="sourceCode numberSource bash number-lines"><code class="sourceCode bash">
 <span id="cb18-8"><a href="#cb18-8"></a><span class="co">#SBATCH --error=error.%j</span></span>
 <span id="cb18-9"><a href="#cb18-9"></a><span class="co">#SBATCH --time=00:01:00          # For how long can it run?</span></span>
 <span id="cb18-10"><a href="#cb18-10"></a><span class="co">#SBATCH --partition=booster         # Machine partition</span></span>
-<span id="cb18-11"><a href="#cb18-11"></a><span class="co">#SBATCH --reservation=training-booster-2024-03-12 # For today only</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a><span class="co">#SBATCH --reservation=training2425 # For today only</span></span>
 <span id="cb18-12"><a href="#cb18-12"></a></span>
 <span id="cb18-13"><a href="#cb18-13"></a><span class="ex">module</span> load Stages/2024</span>
 <span id="cb18-14"><a href="#cb18-14"></a><span class="ex">module</span> load GCC OpenMPI PyTorch  <span class="co"># Load the correct modules on the compute node(s)</span></span>
@@ -1084,9 +1099,8 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href=
 <li class="fragment">Some partitions have reservations, which means that
 only certain users can use them at certain times.</li>
 <li class="fragment">For this course, we have:</li>
-<li class="fragment">Juwels Booster:
-<code>training-booster-2024-03-12</code> and
-<code>training-booster-2024-03-13</code></li>
+<li class="fragment">Jureca DC: <code>training2425</code>
+and <code>training2425</code></li>
 </ul>
 </section>
 <section class="slide level2">
@@ -1208,7 +1222,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href=
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error=error.%j</span></span>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=00:20:00</span></span>
 <span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition=booster</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --reservation=training-booster-2024-03-12 # For today only</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --reservation=training2425 # For today only</span></span>
 <span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /p/home/jusers/<span class="va">$USER</span>/juwels/course/<span class="va">$USER</span></span>
 <span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> sc_venv_template/activate.sh <span class="co"># Now we finally use the fastai module</span></span>
@@ -1421,8 +1435,7 @@ href="http://localhost:12345">http://localhost:12345</a></li>
 </section>
 <section class="slide level2">
 
-<h3 id="tensorboard-on-juwels-booster">Tensorboard on Juwels
-Booster</h3>
+<h3 id="tensorboard-on-jureca-dc">Tensorboard on Jureca DC</h3>
 <p><img data-src="images/tensorboard-cats.png" /></p>
 </section>
 <section id="day-1-recap" class="slide level2">

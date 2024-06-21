@@ -10,7 +10,7 @@
 #SBATCH --error=err.%j
 #SBATCH --time=00:10:00
 #SBATCH --partition=booster
-##SBATCH --reservation=training-booster-2024-03-12 # For today only
+##SBATCH --reservation=training2425 # For today only
 
 cd /p/home/jusers/$USER/juwels/course/$USER
 source sc_venv_template/activate.sh # Now we finally use the fastai module

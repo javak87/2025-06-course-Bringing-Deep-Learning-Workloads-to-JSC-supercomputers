@@ -12,7 +12,7 @@ This course will take place as an online event. The link to the online platform 
 ---
 
 ### Course description: 
-Fancy using High Performance Computing machines for AI? Fancy learning how to run your code one of Europe's fastest computers JUWELS Booster at FZJ?
+Fancy using High Performance Computing machines for AI? Fancy learning how to run your code one of Europe's fastest computers, like JUWELS Booster, at FZJ?
 
 In this workshop, we will guide you through the first steps of using the supercomputer machines for your own AI application. This workshop should be tailored to your needs - and our team will guide you through questions like:
 

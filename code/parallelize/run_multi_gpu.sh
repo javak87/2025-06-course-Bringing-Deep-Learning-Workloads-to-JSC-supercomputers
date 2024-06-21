@@ -10,7 +10,7 @@
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
 
-#SBATCH --reservation=training-booster-2024-03-13
+#SBATCH --reservation=training2425
 
 export CUDA_VISIBLE_DEVICES=0,1,2,3    # Very important to make the GPUs visible
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"

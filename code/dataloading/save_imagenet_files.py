@@ -7,40 +7,20 @@ import h5py
 import numpy as np
 
 def save_files(args):
-    syn_to_class = {}
-
-    with open(os.path.join(args.data_root, "imagenet_class_index.json"), "rb") as f:
-        json_file = json.load(f)
-        for class_id, v in json_file.items():
-            syn_to_class[v[0]] = int(class_id)
-
-    with open(os.path.join(args.data_root, "ILSVRC2012_val_labels.json"), "rb") as f:
-        val_to_syn = json.load(f)
-
 
     splits = ["train", "val"]
-    train_samples = []
-    train_targets = []
 
-    val_samples = []
-    val_targets = []
-    for split in splits:
-        samples_dir = os.path.join(args.data_root, "ILSVRC/Data/CLS-LOC", split)
-        for entry in os.listdir(samples_dir):
-            if split == "train":
-                syn_id = entry
-                target = syn_to_class[syn_id]
-                syn_folder = os.path.join(samples_dir, syn_id)
-                for sample in os.listdir(syn_folder):
-                    sample_path = os.path.join(syn_folder, sample)
-                    train_samples.append(sample_path)
-                    train_targets.append(target)
-            elif split == "val":
-                syn_id = val_to_syn[entry]
-                target = syn_to_class[syn_id]
-                sample_path = os.path.join(samples_dir, entry)
-                val_samples.append(sample_path)
-                val_targets.append(target)
+    with open(os.path.join(args.data_root, "imagenet_train.json"), "rb") as f:
+        train_data = json.load(f)
+
+    train_samples = list(train_data.keys())
+    train_targets = list(train_data.values())
+
+    with open(os.path.join(args.data_root, "imagenet_val.json"), "rb") as f:
+        val_data = json.load(f)
+
+    val_samples = list(val_data.keys())
+    val_targets = list(val_data.values())
 
     if args.dset_type == "arrow":
         save_arrow(args, splits, train_samples, train_targets, val_samples, val_targets)
@@ -72,8 +52,8 @@ def save_arrow(args, splits, train_samples, train_targets, val_samples, val_targ
                 'wb',
         ) as f:
             with pa.ipc.new_file(f, schema) as writer:
-                for (sample, label) in zip(samples, targets):
-                    with open(sample, 'rb') as f:
+                for (sample, label) in tqdm(zip(samples, targets)):
+                    with open(os.path.join(args.data_root, sample), 'rb') as f:
                         img_string = f.read()
 
                     image_data = pa.array([img_string], type=binary_t)
@@ -109,7 +89,7 @@ def save_h5(splits, train_samples, train_targets, val_samples, val_targets):
                 )
             
             for idx, (sample, target) in tqdm(enumerate(zip(samples, targets))):        
-                with open(sample, 'rb') as f:
+                with open(os.path.join(args.data_root, sample), 'rb') as f:
 
                     img_string = f.read()
                     
@@ -121,7 +101,7 @@ def save_h5(splits, train_samples, train_targets, val_samples, val_targets):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_root', type=str, default="/p/scratch/training2425/data/")
+    parser.add_argument('--data_root', type=str, default="/p/scratch/training2425/")
     parser.add_argument('--dset_type', choices=['h5', 'arrow'])
     parser.add_argument('--target_folder', type=str, required=True)
     args = parser.parse_args()

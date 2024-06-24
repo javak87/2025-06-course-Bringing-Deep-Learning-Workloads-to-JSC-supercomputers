@@ -18,4 +18,4 @@ export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"
 
 source $HOME/course/$USER/sc_venv_template/activate.sh
 
-time srun python3 imagenet_loaders.py --dset_type "fs" --data_root "/p/scratch/training2425/data/"
+time srun python3 imagenet_loaders.py --dset_type "fs" --data_root "/p/scratch/training2425/"

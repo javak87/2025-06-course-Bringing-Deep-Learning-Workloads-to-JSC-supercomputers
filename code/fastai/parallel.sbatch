@@ -6,8 +6,8 @@
 #SBATCH --job-name=cats-parallel
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=128
-#SBATCH --output=output.%j
-#SBATCH --error=err.%j
+#SBATCH --output=output-parallel.%j
+#SBATCH --error=error-parallel.%j
 #SBATCH --time=00:10:00
 #SBATCH --partition=dc-gpu
 ##SBATCH --reservation=training2425 # For today only

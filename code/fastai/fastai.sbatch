@@ -12,7 +12,7 @@
 #SBATCH --partition=dc-gpu
 ##SBATCH --reservation=training2425 # For today only
 
-cd /p/home/jusers/$USER/juwels/course/$USER
+cd $HOME/course/2024-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/fastai
 source sc_venv_template/activate.sh # Now we finally use the fastai module
 
 srun python cats.py

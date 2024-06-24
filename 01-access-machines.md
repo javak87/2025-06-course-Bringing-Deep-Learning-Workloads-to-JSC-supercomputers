@@ -856,21 +856,26 @@ wandb
 ### Example: Activating the virtual environment
 
 - `source sc_venv_template/activate.sh`
-- ```python
+
+---
+
+### Example: Activating the virtual environment
+
+- 
+```bash
 source ./activate.sh 
 The activation script must be sourced, otherwise the virtual environment will not work.
 Setting vars
 The following modules were not unloaded:
   (Use "module --force purge" to unload all):
+ 1) Stages/2024
 
-  1) Stages/2024
-
-python
-Python 3.11.3 (main, Jun 25 2023, 13:17:30) [GCC 12.3.0] on linux
-Type "help", "copyright", "credits" or "license" for more information.
+jureca01 $ python
+Python 3.11.3 (main, Jun 25 2023, 13:17:30) [GCC 12.3.0]
 >>> import fastai
 >>> fastai.__version__
 '2.7.14'
+
 ```
 
 ---
@@ -921,7 +926,7 @@ learn.fit_one_cycle(6, cbs=cbs)
 #SBATCH --partition=dc-gpu
 #SBATCH --reservation=training2425 # For today only
 
-cd $HOME/course/
+cd $HOME/course/2024-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/fastai
 source sc_venv_template/activate.sh # Now we finally use the fastai module
 
 srun python cats.py
@@ -1039,7 +1044,7 @@ python cats.py
 
 ```bash
 $ source sc_venv_template/activate.sh
-$ python fastai-demo.py 
+$ python cats.py 
 Downloading dataset...
  |████████-------------------------------| 23.50% [190750720/811706944 00:08<00:26]
  Downloading: "https://download.pytorch.org/models/resnet34-b627a593.pth" to /p/project/ccstao/cstao05/.cache/torch/hub/checkpoints/resnet34-b627a593.pth

@@ -847,6 +847,8 @@ git clone https://gitlab.jsc.fz-juelich.de/kesselheim1/sc_venv_template.git
  ```bash
 fastai
 wandb
+accelerate
+deepspeed
 ```
 
 - Run on the terminal: `sc_venv_template/setup.sh`

@@ -12,6 +12,14 @@
 #SBATCH --partition=dc-gpu
 ##SBATCH --reservation=training2425 # For today only
 
+export NCCL_DEBUG=INFO
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+export CUDA_VISIBLE_DEVICES="0,1,2,3"
+export MASTER_PORT=12802
+echo "NODELIST="${SLURM_NODELIST}
+master_addr=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n 1)
+export MASTER_ADDR=$master_addr"i"
+
 cd $HOME/course/2024-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/fastai
 source sc_venv_template/activate.sh # Now we finally use the fastai module
 

@@ -5,7 +5,7 @@
 #SBATCH --nodes=1
 #SBATCH --job-name=matrix-multiplication
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=128
 #SBATCH --output=output.%j
 #SBATCH --error=err.%j
 #SBATCH --time=00:10:00

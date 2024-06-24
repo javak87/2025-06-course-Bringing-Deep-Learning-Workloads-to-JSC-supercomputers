@@ -3,7 +3,7 @@
 #SBATCH --mail-user=MYUSER@fz-juelich.de
 #SBATCH --mail-type=ALL
 #SBATCH --nodes=1
-#SBATCH --job-name=matrix-multiplication
+#SBATCH --job-name=cats-parallel
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=128
 #SBATCH --output=output.%j

@@ -176,18 +176,6 @@ imagenet_val.json
 
 ---
 
-## Inodes 
-- Inodes (Index Nodes) are data structures that store metadata about files and directories.
-- Unique identification of files and directories within the file system.
-- Efficient management and retrieval of file metadata.
-- Essential for file operations like opening, reading, and writing.
-- **Limitations**:
-  - **Fixed Number**: Limited number of inodes; no new files if exhausted, even with free disk space.
-  - **Space Consumption**: Inodes consume disk space, balancing is needed for efficiency.
-![](images/inodes.png)
-
----
-
 ## Access File System
 
 ```python
@@ -198,6 +186,18 @@ def __getitem__(self, idx):
     return x, self.targets[idx]
    
 ```
+
+---
+
+## Inodes 
+- Inodes (Index Nodes) are data structures that store metadata about files and directories.
+- Unique identification of files and directories within the file system.
+- Efficient management and retrieval of file metadata.
+- Essential for file operations like opening, reading, and writing.
+- **Limitations**:
+  - **Fixed Number**: Limited number of inodes; no new files if exhausted, even with free disk space.
+  - **Space Consumption**: Inodes consume disk space, balancing is needed for efficiency.
+![](images/inodes.png)
 
 ---
 

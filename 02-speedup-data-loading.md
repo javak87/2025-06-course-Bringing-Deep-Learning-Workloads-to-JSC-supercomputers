@@ -331,6 +331,8 @@ with h5py.File(os.path.join(args.target_folder, 'ImageNet.h5'), "w") as f:
 :::: {.col}
 ```python
 
+group = g.create_group(split)
+
 dt_sample = h5py.vlen_dtype(np.dtype(np.uint8))
 dt_target = np.dtype('int16')
 

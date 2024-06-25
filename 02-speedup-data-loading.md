@@ -1,7 +1,7 @@
 ---
 author: Alexandre Strube // Sabrina Benassou
 title: Bringing Deep Learning Workloads to JSC supercomputers
-subtitle: Speedup Data loading
+subtitle: Data loading
 date: June 25, 2024
 ---
 
@@ -10,7 +10,7 @@ date: June 25, 2024
 | Time          | Title                |
 | ------------- | -----------          |
 | 10:00 - 10:15 | Welcome, questions   |
-| 10:15 - 11:30 | Speedup data loading |
+| 10:15 - 11:30 | Data loading |
 | 11:30 - 12:00 | Coffee Break (flexible) |
 | 12:30 - 14:00 | Parallelize Training |
 
@@ -176,7 +176,7 @@ imagenet_val.json
 
 ---
 
-## Inodes in Unix-like File Systems
+## Inodes 
 - Inodes (Index Nodes) are data structures that store metadata about files and directories.
 - Unique identification of files and directories within the file system.
 - Efficient management and retrieval of file metadata.
@@ -428,18 +428,6 @@ def __getitem__(self, idx):
         
     return img, target
 ```
-
----
-
-## Results and Conclusion
-
-- File system access: 00:04:27
-
-- H5 file access: 00:03:31
-
-- Arrow file access: 00:03:16
-
-* While reading the data from the H5 file or the arrow file is a bit faster than reading the data from the file system, it is still useful in cases where you have a lot of small files and not enough inodes.
 
 ---
 

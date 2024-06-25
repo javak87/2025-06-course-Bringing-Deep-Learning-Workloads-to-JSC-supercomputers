@@ -333,6 +333,21 @@ with h5py.File(os.path.join(args.target_folder, 'ImageNet.h5'), "w") as f:
 
 group = g.create_group(split)
 
+```
+::::
+:::: {.col}
+![](images/groups.png)
+::::
+:::
+
+---
+
+## HDF5
+
+
+::: {.container}
+:::: {.col}
+``` python 
 dt_sample = h5py.vlen_dtype(np.dtype(np.uint8))
 dt_target = np.dtype('int16')
 
@@ -347,28 +362,12 @@ dtargets = group.create_dataset(
         (len(samples),),
         dtype=dt_target,
     )
-
 ```
 ::::
 :::: {.col}
-![](images/groups.png)
+![](images/datasets.png){width=400 height=350}
 ::::
 :::
-
----
-
-## HDF5
-
-
-![](images/datasets.png){width=400 height=350}
-
-```python
-for idx, (sample, target) in tqdm(enumerate(zip(samples, targets))):        
-    with open(sample, 'rb') as f:
-        img_string = f.read() 
-        dset[idx] = np.array(list(img_string), dtype=np.uint8)
-        dtargets[idx] = target
-```
 
 ---
 

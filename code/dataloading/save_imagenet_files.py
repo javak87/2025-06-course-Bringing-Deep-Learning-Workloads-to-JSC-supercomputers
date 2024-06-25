@@ -64,7 +64,7 @@ def save_arrow(args, splits, train_samples, train_targets, val_samples, val_targ
                     writer.write(batch)
 
 def save_h5(splits, train_samples, train_targets, val_samples, val_targets):
-    with h5py.File(os.path.join(args.target_folder, 'ImageNet.h5'), "w") as f:
+    with h5py.File(os.path.join(args.target_folder, 'ImageNet.h5'), "w") as g:
         
         for split in splits:
             if split == "train":
@@ -74,7 +74,7 @@ def save_h5(splits, train_samples, train_targets, val_samples, val_targets):
                 samples = val_samples
                 targets = val_targets
                 
-            group = f.create_group(split)
+            group = g.create_group(split)
             dt_sample = h5py.vlen_dtype(np.dtype(np.uint8))
             dt_target = np.dtype('int16')
             dset = group.create_dataset(

@@ -224,7 +224,7 @@
 <section id="title-slide">
   <h1 class="title">Bringing Deep Learning Workloads to JSC
 supercomputers</h1>
-  <p class="subtitle">Speedup Data loading</p>
+  <p class="subtitle">Data loading</p>
   <p class="author">Alexandre Strube // Sabrina Benassou</p>
   <p class="date">June 25, 2024</p>
 </section>
@@ -246,7 +246,7 @@ supercomputers</h1>
 </tr>
 <tr class="even">
 <td>10:15 - 11:30</td>
-<td>Speedup data loading</td>
+<td>Data loading</td>
 </tr>
 <tr class="odd">
 <td>11:30 - 12:00</td>
@@ -460,8 +460,8 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/val/ILSVRC2012_val_00016007.JPEG&#39;</span><span class="ex">:</span> 709,</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a> <span class="kw">}</span></span></code></pre></div>
 </section>
-<section id="inodes-in-unix-like-file-systems" class="slide level2">
-<h2>Inodes in Unix-like File Systems</h2>
+<section id="inodes" class="slide level2">
+<h2>Inodes</h2>
 <ul>
 <li class="fragment">Inodes (Index Nodes) are data structures that store
 metadata about files and directories.</li>
@@ -666,18 +666,6 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a h
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> <span class="va">self</span>.transform(img)</span>
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> img, target</span></code></pre></div>
-</section>
-<section id="results-and-conclusion" class="slide level2">
-<h2>Results and Conclusion</h2>
-<ul>
-<li class="fragment"><p>File system access: 00:04:27</p></li>
-<li class="fragment"><p>H5 file access: 00:03:31</p></li>
-<li class="fragment"><p>Arrow file access: 00:03:16</p></li>
-<li class="fragment"><p>While reading the data from the H5 file or the
-arrow file is a bit faster than reading the data from the file system,
-it is still useful in cases where you have a lot of small files and not
-enough inodes.</p></li>
-</ul>
 </section>
 <section id="demo" class="slide level2">
 <h2>DEMO</h2>

@@ -106,7 +106,7 @@ cd $DATA_datasets
 ## We need to download some code
 
 ```bash
-cd $HOME/course/$USER
+cd $HOME/course
 git clone https://github.com/HelmholtzAI-FZJ/2024-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers.git
 ```
 

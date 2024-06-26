@@ -928,7 +928,7 @@ learn.fit_one_cycle(6, cbs=cbs)
 #SBATCH --partition=dc-gpu
 #SBATCH --reservation=training2425 # For today only
 
-cd $HOME/course/2024-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/fastai
+cd $HOME/course/
 source sc_venv_template/activate.sh # Now we finally use the fastai module
 
 srun python cats.py

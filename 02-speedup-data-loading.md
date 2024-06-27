@@ -44,7 +44,7 @@ date: June 25, 2024
 
 ## Where do I keep my files?
 
-- **`$PROJECT_projectname`** for code
+- **`$PROJECT_projectname`** for code (`projectname` is `training2425` in this case)
     - Most of your work should stay here
 - **`$DATA_projectname`** for big data(*)
     - Permanent location for big datasets
@@ -61,6 +61,7 @@ date: June 25, 2024
 - After being approved, connect to the supercomputer and try it:
 - ```bash
 cd $DATA_datasets
+ls -la
 ```
 
 ---

@@ -332,6 +332,16 @@ The keys randomart image is:
 code $HOME/.ssh/config
 ```
 
+Windows users, from Ubuntu WSL
+(Change username for your user on windows)
+
+```bash
+ls -la /mnt/c/Users/
+mkdir /mnt/c/Users/USERNAME/.ssh/
+cp $HOME/.ssh/* /mnt/c/Users/USERNAME/.ssh/
+```
+
+
 ---
 
 ### SSH

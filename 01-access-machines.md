@@ -670,7 +670,6 @@ The following modules match your search criteria: "toml"
 
 - ```bash
 cd $HOME/course/
-
 pwd
 ```
 
@@ -867,13 +866,14 @@ deepspeed
 
 ### Example: Activating the virtual environment
 
-- `source sc_venv_template/activate.sh`
+- ```bash
+source sc_venv_template/activate.sh
+```
 
 ---
 
 ### Example: Activating the virtual environment
 
-- 
 ```bash
 source ./activate.sh 
 The activation script must be sourced, otherwise the virtual environment will not work.
@@ -881,7 +881,9 @@ Setting vars
 The following modules were not unloaded:
   (Use "module --force purge" to unload all):
  1) Stages/2024
+```
 
+```bash
 jureca01 $ python
 Python 3.11.3 (main, Jun 25 2023, 13:17:30) [GCC 12.3.0]
 >>> import fastai
@@ -895,7 +897,10 @@ Python 3.11.3 (main, Jun 25 2023, 13:17:30) [GCC 12.3.0]
 ### Let's train a 🐈 classifier!
 
 - This is a minimal demo, to show some quirks of the supercomputer
-- Save it as cats.py
+- ```bash
+code cats.py
+```
+
 - ```python 
 from fastai.vision.all import *
 from fastai.callback.tensorboard import *
@@ -921,7 +926,9 @@ learn.fit_one_cycle(6, cbs=cbs)
 
 ### Submission file for the classifier
 
-#### Save this as `fastai.sbatch`
+```bash
+code fastai.sbatch
+```
 
 ```bash
 #!/bin/bash
@@ -948,7 +955,9 @@ srun python cats.py
 
 ### Submit it
 
-`sbatch fastai.sbatch`
+```bash
+sbatch fastai.sbatch
+```
 
 ---
 
@@ -1042,7 +1051,7 @@ learn = vision_learner(dls, resnet34, metrics=error_rate)
 
 - Comment out the line which does AI training:
 - ```python
-# learn.fit_one_cycle(3, cbs=TensorBoardCallback('runs', trace_model=True))
+# learn.fit_one_cycle(6, cbs=cbs)
 ```
 - Call our code on the login node!
 - ```bash
@@ -1125,7 +1134,10 @@ cbs=[SaveModelCallback(), TensorBoardCallback('runs', trace_model=True)]
 
 ## Example: Tensorboard
 
-- The command `tensorboard --logdir=runs  --port=9999 serve`
+- The command 
+- ```bash
+tensorboard --logdir=runs  --port=9999 serve
+```
 - Opens a connection on port 9999... *OF THE SUPERCOMPUTER*.
 - This port is behind the firewall. You can't access it directly... 
 - We need to do bypass the firewall 🏴‍☠️
@@ -1307,9 +1319,10 @@ Host *.jureca
 
 ## Proxy Jump: Connecting to a node
 
-- Example: A service provides web interface on port 1234
+Example: A service provides web interface on port 9999
 
 On the supercomputer:
+
 ```bash
 srun --time=00:05:00 \
      --nodes=1 --ntasks=1 \
@@ -1324,8 +1337,8 @@ jwb0002
 bash-4.4$ cd $HOME/course/
 bash-4.4$ source sc_venv_template/activate.sh
 bash-4.4$ tensorboard --logdir=runs  --port=9999 serve
-
 ```
+
 ---
 
 ## Proxy Jump 

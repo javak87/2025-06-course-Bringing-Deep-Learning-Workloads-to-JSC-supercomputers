@@ -150,7 +150,7 @@ def main(args):
         ])
 
     if args.dset_type == 'fs':
-        flickr_datasets = FlickrDataset(args.file_name, "/p/scratch/training2425/data/Flickr30K/flickr30k_images/flickr30k_images/results.csv", transform)
+        flickr_datasets = FlickrDataset(args.file_name, "/p/scratch/training2434/data/Flickr30K/flickr30k_images/flickr30k_images/results.csv", transform)
     elif args.dset_type == 'arrow':
         flickr_datasets = FlickrArrow(args.file_name, transform)
     else:

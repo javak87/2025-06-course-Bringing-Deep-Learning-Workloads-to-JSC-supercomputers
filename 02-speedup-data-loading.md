@@ -44,7 +44,7 @@ date: September 18, 2024
 
 ## Where do I keep my files?
 
-- **`$PROJECT_projectname`** for code (`projectname` is `training2425` in this case)
+- **`$PROJECT_projectname`** for code (`projectname` is `training2434` in this case)
     - Most of your work should stay here
 - **`$DATA_projectname`** for big data(*)
     - Permanent location for big datasets

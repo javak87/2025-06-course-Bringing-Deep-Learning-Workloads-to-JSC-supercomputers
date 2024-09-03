@@ -6,11 +6,11 @@
 #SBATCH --cpus-per-task=96
 #SBATCH --time=06:00:00
 #SBATCH --partition=dc-gpu
-#SBATCH --account=training2425
+#SBATCH --account=training2434
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
 
-#SBATCH --reservation=training2425
+#SBATCH --reservation=training2434
 
 # To get number of cpu per task
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"

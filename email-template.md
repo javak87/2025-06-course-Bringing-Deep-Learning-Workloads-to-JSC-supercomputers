@@ -14,7 +14,7 @@ https://go.fzj.de/bringing-dl-workloads-to-jsc-zoom
 
 
 *********
-IMPORTANT - Please check all steps! Some things need to be done a day BEFORE the course!!!
+IMPORTANT - Please check all steps! Some things need to be done some days BEFORE the course!!!
 *********
 
 Checklist for BEFORE the course:
@@ -53,6 +53,22 @@ The course is platform-independent. It can even be followed by a Windows user, b
 - Some knowledge of the Python language.
 
 ---
+
+***********************
+NOTE FOR ADVANCED USERS
+***********************
+
+The first day of the course is intended for people to get acquainted to the environment. If you are already familiar with the tools, you can skip the first day. On it, we will cover:
+- Using SSH
+- Creating SSH keys
+- Setting up a stable connection to JSC supercomputers
+- Using Visual Studio Code
+- Using the JSC batch system
+- Running a simple job
+- Running a simple deep learning job
+- Installing software on your own virtual environment
+
+
 
 The course material is available at https://go.fzj.de/bringing-dl-workloads-to-jsc - I will be making some final commits to it, so make sure you reload it every now and then.
 

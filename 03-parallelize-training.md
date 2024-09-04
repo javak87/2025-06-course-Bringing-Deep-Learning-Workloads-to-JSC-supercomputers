@@ -130,7 +130,7 @@ trainer.save_checkpoint("image_classification_model.pt")
 #SBATCH --account=training2434
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
-#SBATCH --reservation=training2434 
+#SBATCH --reservation=training2434_day2
 
 # To get number of cpu per task
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"
@@ -189,7 +189,7 @@ real	342m11.864s
 #SBATCH --account=training2434
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
-#SBATCH --reservation=training2434 
+#SBATCH --reservation=training2434_day2
 
 export CUDA_VISIBLE_DEVICES=0,1,2,3    # Very important to make the GPUs visible
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"
@@ -528,7 +528,7 @@ trainer.save_checkpoint("image_classification_model.pt")
 #SBATCH --account=training2434
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
-#SBATCH --reservation=training2434 
+#SBATCH --reservation=training2434_day2
 
 export CUDA_VISIBLE_DEVICES=0,1,2,3    # Very important to make the GPUs visible
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"

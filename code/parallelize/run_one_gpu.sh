@@ -10,7 +10,7 @@
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
 
-#SBATCH --reservation=training2434
+#SBATCH --reservation=training2434_day2
 
 # To get number of cpu per task
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"

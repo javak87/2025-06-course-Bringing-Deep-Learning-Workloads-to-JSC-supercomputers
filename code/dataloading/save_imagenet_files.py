@@ -5,23 +5,29 @@ from tqdm import tqdm
 import pyarrow as pa
 import h5py
 import numpy as np
+import pickle
 
 def save_files(args):
 
     splits = ["train", "val"]
 
-    with open(os.path.join(args.data_root, "imagenet_train.json"), "rb") as f:
-        train_data = json.load(f)
+    with open(os.path.join(args.data_root, "imagenet_train.pkl"), "rb") as f:
+        train_data = pickle.load(f)
 
     train_samples = list(train_data.keys())
     train_targets = list(train_data.values())
 
-    with open(os.path.join(args.data_root, "imagenet_val.json"), "rb") as f:
-        val_data = json.load(f)
+    with open(os.path.join(args.data_root, "imagenet_val.pkl"), "rb") as f:
+        val_data = pickle.load(f)
 
     val_samples = list(val_data.keys())
     val_targets = list(val_data.values())
 
+    print(f"Train samples: {len(train_samples)}")
+    print(f"Train targets: {len(train_targets)}")
+    print(f"Val samples: {len(val_samples)}")
+    print(f"Val targets: {len(val_targets)}")
+    
     if args.dset_type == "arrow":
         save_arrow(args, splits, train_samples, train_targets, val_samples, val_targets)
     elif args.dset_type == "h5":

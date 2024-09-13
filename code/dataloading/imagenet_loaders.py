@@ -2,7 +2,7 @@ import argparse
 import os
 import io
 import time
-import json
+import pickle
 
 import h5py
 import pyarrow as pa
@@ -20,8 +20,8 @@ class ImageNet(Dataset):
         
         self.root = root
         
-        with open(os.path.join(root, "imagenet_{}.json".format(split)), "rb") as f:
-            data = json.load(f)
+        with open(os.path.join(root, "imagenet_{}.pkl".format(split)), "rb") as f:
+            data = pickle.load(f)
 
         self.samples = list(data.keys())
         self.targets = list(data.values())

@@ -20,8 +20,8 @@ class ImageNet(Dataset):
         
         self.root = root
         
-        with open(os.path.join(root, "imagenet_{}.json".format(split)), "rb") as f:
-            data = json.load(f)
+        with open(os.path.join(root, "imagenet_{}.pk".format(split)), "rb") as f:
+            data = pickle.load(f)
 
         self.samples = list(data.keys())
         self.targets = list(data.values())
@@ -74,7 +74,8 @@ class ImageNetDataModule(pl.LightningDataModule):
 class resnet50Model(pl.LightningModule):
     def __init__(self):
         super().__init__()
-        self.model = resnet50(pretrained=True)
+        weights = ResNet50_Weights.DEFAULT
+        self.model = resnet50(weights=weights)
 
     def forward(self, x):
         return self.model(x)
@@ -103,7 +104,7 @@ transform = transforms.Compose([
 ])
 
 # 1. Organize the data
-datamodule = ImageNetDataModule("/p/scratch/training2434/data/", 256, \
+datamodule = ImageNetDataModule("/p/scratch/training2434/", 256, \
     int(os.getenv('SLURM_CPUS_PER_TASK')), transform)
 # 2. Build the model using desired Task
 model = resnet50Model()
@@ -479,7 +480,7 @@ nnodes = os.getenv("SLURM_NNODES")
 4. Allow only one process to save checkpoints.
 
 - ```python
-datamodule = ImageNetDataModule("/p/scratch/training2434/data/", 256, \
+datamodule = ImageNetDataModule("/p/scratch/training2434/", 256, \
     int(os.getenv('SLURM_CPUS_PER_TASK')), transform)
 trainer = pl.Trainer(max_epochs=10,  accelerator="gpu", num_nodes=nnodes)
 trainer.fit(model, datamodule=datamodule)
@@ -499,7 +500,7 @@ transform = transforms.Compose([
 # 1. The number of nodes
 nnodes = os.getenv("SLURM_NNODES")
 # 2. Organize the data
-datamodule = ImageNetDataModule("/p/scratch/training2434/data/", 128, \
+datamodule = ImageNetDataModule("/p/scratch/training2434/", 128, \
     int(os.getenv('SLURM_CPUS_PER_TASK')), transform)
 # 3. Build the model using desired Task
 model = resnet50Model()

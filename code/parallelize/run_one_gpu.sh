@@ -4,7 +4,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks-per-node=1  
 #SBATCH --cpus-per-task=96
-#SBATCH --time=06:00:00
+#SBATCH --time=07:00:00
 #SBATCH --partition=dc-gpu
 #SBATCH --account=training2434
 #SBATCH --output=%j.out

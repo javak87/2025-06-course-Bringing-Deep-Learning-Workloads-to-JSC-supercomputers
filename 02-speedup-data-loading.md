@@ -150,7 +150,7 @@ ILSVRC
 ---
 
 ## The ImageNet dataset
-imagenet_train.json
+imagenet_train.pkl
 
 ```bash 
 {
@@ -163,7 +163,7 @@ imagenet_train.json
  }
 ```
 
-imagenet_val.json
+imagenet_val.pkl
 
 ```bash
 {

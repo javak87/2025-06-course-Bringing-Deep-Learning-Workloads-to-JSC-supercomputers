@@ -658,7 +658,7 @@ tensorboard --logdir=[PATH_TO_TENSOR_BOARD]
 
 #### Feedback is more than welcome!
 
-#### Link to [other courses at JSC](https://go.fzj.de/intro-sc-ai-2023-other-courses)
+#### Link to [other courses at JSC](https://go.fzj.de/intro-sc-ai-2024-other-courses)
 
 ---
 

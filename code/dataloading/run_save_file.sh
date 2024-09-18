@@ -13,7 +13,7 @@
 #SBATCH --reservation=training2434_day2
 
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"
-source $HOME/course/$USER/sc_venv_template/activate.sh
+source $HOME/course/sc_venv_template/activate.sh
 
 mkdir -p "/p/scratch/training2434/$USER"
 

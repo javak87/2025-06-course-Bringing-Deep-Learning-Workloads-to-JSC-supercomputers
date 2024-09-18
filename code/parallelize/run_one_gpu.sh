@@ -16,7 +16,7 @@
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"
 
 # activate env
-source $HOME/course/$USER/sc_venv_template/activate.sh
+source $HOME/course/sc_venv_template/activate.sh
 
 # run script from above
 time srun python3 gpu_training.py

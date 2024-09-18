@@ -108,7 +108,7 @@ ls -la
 
 ```bash
 cd $HOME/course
-git clone https://github.com/HelmholtzAI-FZJ/2024-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers.git
+git clone https://github.com/HelmholtzAI-FZJ/2024-08-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers.git
 ```
 
 ---

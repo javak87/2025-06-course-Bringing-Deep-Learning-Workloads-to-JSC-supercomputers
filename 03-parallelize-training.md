@@ -658,7 +658,7 @@ tensorboard --logdir=[PATH_TO_TENSOR_BOARD]
 
 #### Feedback is more than welcome!
 
-#### Link to [other courses at JSC](https://go.fzj.de/bringing-dl-workloads-to-jsc-course)
+#### Link to [other courses at JSC](https://go.fzj.de/bringing-dl-workloads-to-jsc-all-courses)
 
 ---
 

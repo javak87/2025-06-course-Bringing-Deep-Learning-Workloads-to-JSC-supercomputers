@@ -3,7 +3,7 @@ author: Alexandre Strube // Sabrina Benassou
 title: Bringing Deep Learning Workloads to JSC supercomputers
 ---
 
-This repo is specifically for the course described in [indico](https://indico3-jsc.fz-juelich.de/event/181)
+This repo is specifically for the course described in [indico](https://indico3-jsc.fz-juelich.de/event/204)
 
 ### It's a two-mornings course.
 
@@ -39,11 +39,12 @@ This course is given in English.
 
 ### Date:
 
-Jun 25 – 26, 2024, 10:00 - 14:00 each day
+December 4th, 2024, 10:00 - 14:00
+December 5th, 2024, 10:00 - 14:00
 
 ### Further information:
 
-please visit the JSC webpage https://www.fz-juelich.de/en/ias/jsc/news/events/training-courses/2024/ai-sc-2
+please visit the JSC webpage https://go.fzj.de/bringing-dl-workloads-to-jsc-course
 
 ### Instructors:
 

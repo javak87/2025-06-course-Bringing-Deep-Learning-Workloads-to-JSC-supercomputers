@@ -2,7 +2,7 @@
 author: Alexandre Strube - Sabrina Benassou
 title: Bringing Deep Learning Workloads to JSC supercomputers
 # subtitle: A primer in supercomputers`
-date: September 17, 2024
+date: December 1st, 2024
 ---
 
 Dear students,
@@ -43,14 +43,14 @@ The course is platform-independent. It can even be followed by a Windows user, b
 
 - Visual Studio: Remote - SSH: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh
 
-- (WINDOWS ONLY): WSL. This installs the WSL support for Visual Studio Code, which will install WSL itself (And Ubuntu). https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl - This is a long install, take your time.
-  PLEASE MAKE SURE WSL IS ACTUALLY INSTALLED - Try running it. Check this example: https://pureinfotech.com/install-windows-subsystem-linux-2-windows-10/
-
-- A terminal. On Linux and Mac, it's just called "Terminal". Little familiarity with it is required. On windows, the WSL installs it.
+- A terminal. On Linux and Mac, it's just called "Terminal". Little familiarity with it is required. On windows, the WSL installs it. PowerShell is also an option, also STRONGLY discouraged.
 
 - The `ssh` command. It's installed by default on Mac and Linux, and should be on Windows after the aforementioned steps.
 
 - Some knowledge of the Python language.
+
+- (WINDOWS ONLY): You can use WSL to have all Linux tools under windows, but this is optional.. This installs the WSL support for Visual Studio Code, which will install WSL itself (And Ubuntu). https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl - This is a long install, take your time.
+  PLEASE MAKE SURE WSL IS ACTUALLY INSTALLED - Try running it. Check this example: https://pureinfotech.com/install-windows-subsystem-linux-2-windows-10/
 
 ---
 

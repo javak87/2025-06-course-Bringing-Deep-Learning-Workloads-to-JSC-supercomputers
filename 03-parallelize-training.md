@@ -2,7 +2,7 @@
 author: Alexandre Strube // Sabrina Benassou
 title: Bringing Deep Learning Workloads to JSC supercomputers
 subtitle: Parallelize Training
-date: September 18, 2024
+date: December 5th, 2024
 ---
 
 ## The ResNet50 Model

@@ -37,10 +37,10 @@ This course will be repeated in May, September and November. Exact dates are not
 
 This course is given in English.
 
-### Date:
+### Dates:
 
-December 4th, 2024, 10:00 - 14:00
-December 5th, 2024, 10:00 - 14:00
+- December 4th, 2024, 10:00 - 14:00
+- December 5th, 2024, 10:00 - 14:00
 
 ### Further information:
 

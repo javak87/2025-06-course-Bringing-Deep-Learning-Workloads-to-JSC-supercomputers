@@ -3,9 +3,9 @@ import pandas as pd
 import pyarrow as pa
 from tqdm import tqdm   
 
-root_folder = "/p/scratch/training2434/data/Flickr30K/flickr30k_images/flickr30k_images"
-csv_file = "/p/scratch/training2434/data/Flickr30K/flickr30k_images/flickr30k_images/results.csv"
-target_folder = "/p/scratch/training2434/data"
+root_folder = "/p/scratch/training2449/data/Flickr30K/flickr30k_images/flickr30k_images"
+csv_file = "/p/scratch/training2449/data/Flickr30K/flickr30k_images/flickr30k_images/results.csv"
+target_folder = "/p/scratch/training2449/data"
 
 root_dir = root_folder
 df = pd.read_csv(csv_file, delimiter='|')

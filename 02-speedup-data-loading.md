@@ -44,7 +44,7 @@ date: December 5th, 2024
 
 ## Where do I keep my files?
 
-- **`$PROJECT_projectname`** for code (`projectname` is `training2434` in this case)
+- **`$PROJECT_projectname`** for code (`projectname` is `training2449` in this case)
     - Most of your work should stay here
 - **`$DATA_projectname`** for big data(*)
     - Permanent location for big datasets
@@ -440,5 +440,5 @@ def __getitem__(self, idx):
 ## Exercise
 
 - Could you create an arrow file for the flickr dataset stored in 
-```/p/scratch/training2434/data/Flickr30K/```
+```/p/scratch/training2449/data/Flickr30K/```
 and read it using a dataloader ?

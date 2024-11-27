@@ -104,7 +104,7 @@ transform = transforms.Compose([
 ])
 
 # 1. Organize the data
-datamodule = ImageNetDataModule("/p/scratch/training2434/", 256, \
+datamodule = ImageNetDataModule("/p/scratch/training2449/", 256, \
     int(os.getenv('SLURM_CPUS_PER_TASK')), transform)
 # 2. Build the model using desired Task
 model = resnet50Model()
@@ -128,10 +128,10 @@ trainer.save_checkpoint("image_classification_model.pt")
 #SBATCH --cpus-per-task=96
 #SBATCH --time=06:00:00
 #SBATCH --partition=dc-gpu
-#SBATCH --account=training2434
+#SBATCH --account=training2449
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
-#SBATCH --reservation=training2434_day2
+#SBATCH --reservation=training2449_day2
 
 # To get number of cpu per task
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"
@@ -187,10 +187,10 @@ real	342m11.864s
 #SBATCH --cpus-per-task=24            # Divide the number of cpus (96) by the number of GPUs (4)
 #SBATCH --time=02:00:00
 #SBATCH --partition=dc-gpu
-#SBATCH --account=training2434
+#SBATCH --account=training2449
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
-#SBATCH --reservation=training2434_day2
+#SBATCH --reservation=training2449_day2
 
 export CUDA_VISIBLE_DEVICES=0,1,2,3    # Very important to make the GPUs visible
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"
@@ -480,7 +480,7 @@ nnodes = os.getenv("SLURM_NNODES")
 4. Allow only one process to save checkpoints.
 
 - ```python
-datamodule = ImageNetDataModule("/p/scratch/training2434/", 256, \
+datamodule = ImageNetDataModule("/p/scratch/training2449/", 256, \
     int(os.getenv('SLURM_CPUS_PER_TASK')), transform)
 trainer = pl.Trainer(max_epochs=10,  accelerator="gpu", num_nodes=nnodes)
 trainer.fit(model, datamodule=datamodule)
@@ -500,7 +500,7 @@ transform = transforms.Compose([
 # 1. The number of nodes
 nnodes = os.getenv("SLURM_NNODES")
 # 2. Organize the data
-datamodule = ImageNetDataModule("/p/scratch/training2434/", 128, \
+datamodule = ImageNetDataModule("/p/scratch/training2449/", 128, \
     int(os.getenv('SLURM_CPUS_PER_TASK')), transform)
 # 3. Build the model using desired Task
 model = resnet50Model()
@@ -526,10 +526,10 @@ trainer.save_checkpoint("image_classification_model.pt")
 #SBATCH --cpus-per-task=24             # Divide the number of cpus (96) by the number of GPUs (4)
 #SBATCH --time=00:15:00
 #SBATCH --partition=dc-gpu
-#SBATCH --account=training2434
+#SBATCH --account=training2449
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
-#SBATCH --reservation=training2434_day2
+#SBATCH --reservation=training2449_day2
 
 export CUDA_VISIBLE_DEVICES=0,1,2,3    # Very important to make the GPUs visible
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"

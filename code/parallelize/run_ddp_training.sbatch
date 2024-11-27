@@ -32,7 +32,7 @@ srun --cpu_bind=none bash -c "torchrun \
     --rdzv_id $RANDOM \
     --rdzv_endpoint=$MASTER_ADDR:$MASTER_PORT \
     --rdzv_conf=is_host=\$(if ((SLURM_NODEID)); then echo 0; else echo 1; fi) \
-    train.py "
+    ddp_training.py "
 
 
 

@@ -10,8 +10,8 @@ from torch.optim.lr_scheduler import StepLR
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 
 from xsum import *
-# This file contains utility_functions for distributed training.
-from distributed_utils import *
+## TODO 1: Import distributed_utils to use the utility methods available in it.
+
 
 def setup_model(model_name):
     model = T5ForConditionalGeneration.from_pretrained(model_name, use_cache=False)
@@ -46,8 +46,7 @@ def train_model(model, train_loader, optimizer, device):
         optimizer.zero_grad()
     
     result = total_loss / len(train_loader)
-    # Return the global average loss.
-    torch.distributed.all_reduce(result, torch.distributed.ReduceOp.AVG)
+    ## TODO 10: Obtain the global average loss.
     return result
 
 
@@ -69,49 +68,41 @@ def test_model(model, val_loader, device):
             loss += output["loss"]
 
     result = loss / len(val_loader)
-    # Return the global average loss.
-    torch.distributed.all_reduce(result, torch.distributed.ReduceOp.AVG)
+    ## TODO 10: Obtain the global average loss.
     return result
 
 
 def main(args):
     
-    # Initialize a communication group and return the right identifiers.
-    local_rank, rank, device = setup()
+    ## TODO 2-3: Remove this line and replace it with a call to the utility function setup().
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # Set up the model and tokenizer and move the model to the device
     model, tokenizer = setup_model("t5-base")
     model.to(device)
-    # Wrap the model in DistributedDataParallel module 
-    model = torch.nn.parallel.DistributedDataParallel(
-        model,
-        device_ids=[local_rank],
-    )
+    ## TODO 4: # Wraps the model in a DistributedDataParallel (DDP) module to parallelize the training across multiple GPUs.
+
 
     # Set up the datasets and dataloaders
     train_dataset = Xsum(tokenizer, 'train', 1500, 512, 150)
     val_dataset = Xsum(tokenizer, 'validation', 300, 512, 150)
     test_dataset = Xsum(tokenizer, 'test', 300, 512, 150)
 
-    # DistributedSampler object for each set to ensure that each process gets a different subset of the data.
-    train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset, 
-                                                                    shuffle=True, 
-                                                                    seed=args.seed)
-    val_sampler = torch.utils.data.distributed.DistributedSampler(val_dataset)
-    test_sampler = torch.utils.data.distributed.DistributedSampler(test_dataset)
+    ## TODO 5: Create a DistributedSampler object for each set. ** shuffle=True only for training set
+
 
     train_loader = DataLoader(train_dataset, 
                             batch_size=args.batch_size, 
-                            sampler=train_sampler, # pass the sampler argument to the DataLoader
+                            shuffle=True, ## TODO 6: Remove this line and replace it the sampler argument 
                             num_workers=int(os.getenv('SLURM_CPUS_PER_TASK')),
                             pin_memory=True)
     val_loader = DataLoader(val_dataset,
                             batch_size=args.batch_size,
-                            sampler=val_sampler, # pass the sampler argument to the DataLoader
+                            ## TODO 7: Don't forget to pass val_sampler to the sampler argument of the DataLoader.
                             pin_memory=True)
     test_loader = DataLoader(test_dataset,
                             batch_size=args.batch_size,
-                            sampler=test_sampler, # pass the sampler argument to the DataLoader
+                            ## TODO 8: Don't forget to pass test_sampler to the sampler argument of the DataLoader.
                             pin_memory=True)             
 
     # Set up the optimizer
@@ -124,32 +115,30 @@ def main(args):
 
     # Train the model
     for epoch in range(args.epochs):
-        # Pass the current epoch to the sampler to ensure proper data shuffling in each epoch
-        train_sampler.set_epoch(epoch)
+        ## TODO 9: Sets the current epoch for the dataset sampler to ensure proper data shuffling in each epoch
+
 
         train_loss = train_model(model, train_loader, optimizer, device)
         val_loss = test_model(model, val_loader, device)
 
-        # We use the utility function print0 to print messages only from rank 0.
-        print0(f'[{epoch+1}/{args.epochs}] Train loss: {train_loss:.5f}, Validation loss: {val_loss:.5f}') ## TODO 11: Replace print by print0 to print messages once.
+
+        print(f'[{epoch+1}/{args.epochs}] Train loss: {train_loss:.5f}, Validation loss: {val_loss:.5f}') ## TODO 11: Replace print by print0 to print messages once.
 
         if val_loss < best_val_loss:
             best_val_loss = val_loss
-            # We allow only rank=0 to save the model
-            save0(model, 'model-best')
+            torch.save(model, 'model-best') ## TODO 12: Replace torch.save method with the utility function save0 to save the model.
+
 
         scheduler.step()
 
     end_time = time.perf_counter()
-    # We use the utility function print0 to print messages only from rank 0.
-    print0('Finished training after', end_time - start_time, 'seconds.') ## TODO 11: Replace print by print0 to print messages once.
+    print('Finished training after', end_time - start_time, 'seconds.') ## TODO 11: Replace print by print0 to print messages once.
     
     test_loss = test_model(model, test_loader, device)
-    # We use the utility function print0 to print messages only from rank 0.
-    print0('Final test loss:', test_loss.item()) ## TODO 11: Replace print by print0 to print messages once.
+    print('Final test loss:', test_loss.item()) ## TODO 11: Replace print by print0 to print messages once.
 
-    # We allow only rank=0 to save the model
-    save0(model, 'model-final')
+    torch.save(model, 'model-final') ## TODO 12: Replace torch.save method with the utility function save0 to save the model.
+    
     
 if __name__ == '__main__':
     # Training settings

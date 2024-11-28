@@ -1,5 +1,5 @@
 ---
-author: Alexandre Strube // Sabrina Benassou
+author: Alexandre Strube // Sabrina Benassou // José Ignacio Robledo
 title: Accessing the machines, intro
 # subtitle: A primer in supercomputers`
 date: December 4th, 2024
@@ -44,6 +44,10 @@ Links for the complimentary parts of this course:
 :::: {.col}
 ![Sabrina Benassou](pics/sabrina.jpg)
 ::::
+:::: {.col}
+![José Ignacio Robledo](pics/robledo.png)
+::::
+
 :::
 
 ![](images/Logo_FZ_Juelich_rgb_Schutzzone_transparent.svg)

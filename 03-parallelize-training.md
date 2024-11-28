@@ -1,8 +1,8 @@
 ---
-author: Alexandre Strube // Sabrina Benassou // Javad Kasravi
+author: Alexandre Strube // Sabrina Benassou // José Ignacio Robledo
 title: Bringing Deep Learning Workloads to JSC supercomputers
 subtitle: Parallelize Training
-date: November 19, 2024
+date: December 5th, 2024
 
 ---
 

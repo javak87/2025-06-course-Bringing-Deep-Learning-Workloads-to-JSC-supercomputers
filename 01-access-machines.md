@@ -858,10 +858,13 @@ git clone https://gitlab.jsc.fz-juelich.de/kesselheim1/sc_venv_template.git
 - Add these lines at the end: 
 -
  ```bash
-fastai
-wandb
+fastai==2.7.15
+scipy==1.11.1
+matplotlib==3.7.2
+scikit-learn==1.3.1
+pandas==2.0.3
+torch==2.1.2
 accelerate
-deepspeed
 ```
 
 - Run on the terminal: `sc_venv_template/setup.sh`

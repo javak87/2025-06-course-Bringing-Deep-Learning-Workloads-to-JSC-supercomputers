@@ -1,5 +1,5 @@
 ---
-author: Alexandre Strube // Sabrina Benassou
+author: Alexandre Strube // Sabrina Benassou // José Ignacio Robledo
 title: Accessing the machines, intro
 # subtitle: A primer in supercomputers`
 date: December 4th, 2024
@@ -44,6 +44,10 @@ Links for the complimentary parts of this course:
 :::: {.col}
 ![Sabrina Benassou](pics/sabrina.jpg)
 ::::
+:::: {.col}
+![José Ignacio Robledo](pics/robledo.png)
+::::
+
 :::
 
 ![](images/Logo_FZ_Juelich_rgb_Schutzzone_transparent.svg)
@@ -854,10 +858,13 @@ git clone https://gitlab.jsc.fz-juelich.de/kesselheim1/sc_venv_template.git
 - Add these lines at the end: 
 -
  ```bash
-fastai
-wandb
+fastai==2.7.15
+scipy==1.11.1
+matplotlib==3.7.2
+scikit-learn==1.3.1
+pandas==2.0.3
+torch==2.1.2
 accelerate
-deepspeed
 ```
 
 - Run on the terminal: `sc_venv_template/setup.sh`

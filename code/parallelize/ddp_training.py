@@ -9,7 +9,7 @@ from torch.optim.lr_scheduler import StepLR
 
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 
-from xsum import *
+from dataset import *
 # This file contains utility_functions for distributed training.
 from distributed_utils import *
 
@@ -156,7 +156,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Single GPU Training')
     parser.add_argument('--batch-size', type=int, default=4,
                         help='input batch size ')
-    parser.add_argument('--epochs', type=int, default=5,
+    parser.add_argument('--epochs', type=int, default=10,
                         help='number of epochs to train (default: 3)')
     parser.add_argument('--lr', type=float, default=.002,
                         help='learning rate (default: .002)')

@@ -1,10 +1,10 @@
 import re
 from torch.utils.data import Dataset
-from nlp import load_dataset
+from datasets import load_dataset
 
 class Xsum(Dataset):
     def __init__(self, tokenizer, type_path, num_samples, input_length, output_length):
-        self.dataset = load_dataset("xsum", split=type_path)
+        self.dataset = load_dataset("EdinburghNLP/xsum", split=type_path)
         if num_samples:
             self.dataset = self.dataset.select(list(range(0, num_samples)))
         self.input_length = input_length

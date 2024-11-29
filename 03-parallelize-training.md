@@ -26,10 +26,26 @@ date: December 5th, 2024
 ## What this code does 
 
 - It trains a [transformer](https://arxiv.org/pdf/1706.03762) model on the [xsum](https://paperswithcode.com/dataset/xsum) dataset to summarize documents.
+- **Transformers** is a deep learning model architecture that uses self-attention to process sequences in parallel.
+- **XSum** is a dataset for abstractive text summarization, containing news articles and their summaries.
+
+---
+
+## What this code does 
+
 - Again, this is not a deep learning course.
 - If you are not familiar with the model and the dataset, just imagine it as a black box: you provide it with text, and it returns a summary.
 
     ![](images/black_box.svg)
+
+---
+
+## Libraries
+
+- You already downloaded the libraries yesterday that we will use today:
+    - **PyTorch:** A deep learning framework for building and training models.
+    - **Hugging Face:** A platform and library for natural language processing (NLP) models and datasets.
+    - **Transformers:** A library by Hugging Face for state-of-the-art NLP models.
 
 ---
 

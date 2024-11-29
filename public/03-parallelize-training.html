@@ -19,11 +19,8 @@
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
+    ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
@@ -31,7 +28,7 @@
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -42,7 +39,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -247,16 +244,41 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="
 <section id="what-this-code-does" class="slide level2">
 <h2>What this code does</h2>
 <ul>
-<li class="fragment"><p>It trains a <a
+<li class="fragment">It trains a <a
 href="https://arxiv.org/pdf/1706.03762">transformer</a> model on the <a
 href="https://paperswithcode.com/dataset/xsum">xsum</a> dataset to
-summarize documents.</p></li>
+summarize documents.</li>
+<li class="fragment"><strong>Transformers</strong> is a deep learning
+model architecture that uses self-attention to process sequences in
+parallel.</li>
+<li class="fragment"><strong>XSum</strong> is a dataset for abstractive
+text summarization, containing news articles and their summaries.</li>
+</ul>
+</section>
+<section id="what-this-code-does-1" class="slide level2">
+<h2>What this code does</h2>
+<ul>
 <li class="fragment"><p>Again, this is not a deep learning
 course.</p></li>
 <li class="fragment"><p>If you are not familiar with the model and the
 dataset, just imagine it as a black box: you provide it with text, and
 it returns a summary.</p>
 <p><img data-src="images/black_box.svg" /></p></li>
+</ul>
+</section>
+<section id="libraries" class="slide level2">
+<h2>Libraries</h2>
+<ul>
+<li class="fragment">You already downloaded the libraries yesterday that
+we will use today:
+<ul>
+<li class="fragment"><strong>PyTorch:</strong> A deep learning framework
+for building and training models.</li>
+<li class="fragment"><strong>Hugging Face:</strong> A platform and
+library for natural language processing (NLP) models and datasets.</li>
+<li class="fragment"><strong>Transformers:</strong> A library by Hugging
+Face for state-of-the-art NLP models.</li>
+</ul></li>
 </ul>
 </section>
 <section class="slide level2">

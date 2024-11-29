@@ -18,7 +18,7 @@ date: November 19, 2024
 - Move to the correct folder
     
     ```bash
-    cd code/parallelize
+    cd 2024-12-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/parallelize/
     ```
 
 ---
@@ -28,6 +28,8 @@ date: November 19, 2024
 - It trains a [transformer](https://arxiv.org/pdf/1706.03762) model on the [xsum](https://paperswithcode.com/dataset/xsum) dataset to summarize documents.
 - Again, this is not a deep learning course.
 - If you are not familiar with the model and the dataset, just imagine it as a black box: you provide it with text, and it returns a summary.
+
+    ![](images/black_box.svg)
 
 ---
 
@@ -57,7 +59,7 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
 
 - Remember, there is no internet on the compute node.
 - Therefore, you should:
-    - Comment lines 90 to 130.
+    - **Comment out** lines 90 **to** 140.
     - Activate your environment:
 
         ```bash
@@ -70,21 +72,53 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
         python train.py
         ```
 
-    - Uncomment lines 90-130.
+    - **Uncomment back** lines 90-140.
     - Finally, run your job again 🚀:
 
         ```bash
         sbatch run_train.sbatch
         ```
 
+---
 
---- 
-
-## What's about many gpus ?  👀
+## JOB Running
 
 - Congrats, you are training a DL model on the supercomputer using one GPU 🎉
 
-- Can we run our model on multiple GPUs ?
+--- 
+
+## llview
+
+- You can monitor your training using [llview](https://go.fzj.de/llview-jureca). 
+- Use your Judoor credentials to connect.
+- Check the job number that you are intrested in and go to the right to open the PDF document.
+    ![](images/llview.png){height=400px}
+
+---
+
+## llview
+
+- You have many information about your job
+
+- ![](images/llview_info.png)
+
+---
+
+## GPU utilization 
+
+- You can see that in fact we are using **1 GPU**
+
+- ![](images/llview_gpu_1.png)
+
+---
+
+## GPU utilization   
+
+- It is a waste of resources.
+
+- The training takes time (13m according to llview).
+
+- Then, can we run our model on multiple GPUs ?
 
 ---
 
@@ -96,20 +130,30 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
     #SBATCH --gres=gpu:4
     ```
 
-- And we change the values of the variable ```CUDA_VISIBLE_DEVICES``` at line 13 as follow:
+- And run our job again
 
     ```bash
-    export CUDA_VISIBLE_DEVICES=0,1,2,3
+    sbatch run_train.sbatch
     ```
 
 --- 
 
-## IT WON't work
 
-- We don't have an established communication between the GPUs
-- So, each GPU will perform its training independently.
+## llview
 
-    ![](images/dist/no_comm.svg){height=450px}
+- We are still using **1 GPU**
+
+- ![](images/llview_gpu_2.png)
+
+---
+
+## We need communication
+
+- Without correct setup, the GPUs might not be utilized.
+
+- Furthermore, we don't have an established communication between the GPUs
+
+    ![](images/dist/no_comm.svg){height=400px}
 
 ---
 
@@ -242,6 +286,18 @@ we can move on to distributed training (training on multiple GPUs).
 
 --- 
 
+## DDP
+
+If you're scaling DDP to use multiple nodes, the underlying principle remains the same as single-node multi-GPU training.
+
+---
+
+## DDP
+
+![](images/ddp/multi_node.svg){height=500px}
+
+---
+
 ## DDP recap
 
 - Each GPU on each node gets its own process.
@@ -255,7 +311,9 @@ we can move on to distributed training (training on multiple GPUs).
 
 ## Let's start coding!
 
-- Whenever you see **TODOs**💻📝, it means you need to follow the instructions to either copy-paste the code or type it yourself.
+- Whenever you see **TODOs**💻📝, follow the instructions to either copy-paste the code at the specified line numbers or type it yourself.
+
+- Depending on how you copy and paste, the line numbers may vary, but always refer to the TODO numbers in the code and slides.
 
 ---
 
@@ -501,14 +559,14 @@ def save0(*args, **kwargs):
 
 In **```run_train.sbatch```** file:
 
-- **TODOs 13**💻📝: **if it is not already done**
-    - At line 3, increase the number of GPUs to 4.
+- **TODOs 13**💻📝: 
+    - At line 3, increase the number of GPUs to 4 if it is not already done.
 
         ```bash
         #SBATCH --gres=gpu:4
         ```
 
-    - At line 14, pass the correct number of devices.
+    - At line 22, pass the correct number of devices.
 
         ```bash
         export CUDA_VISIBLE_DEVICES=0,1,2,3
@@ -522,7 +580,7 @@ Stay in **```run_train.sbatch```** file:
 
 - **TODO 14**💻📝: we need to setup **MASTER_ADDR** and **MASTER_PORT** to allow communication over the system.
 
-    - At line 16, add the following:
+    - At line 24, add the following:
 
         ```bash
         # Extracts the first hostname from the list of allocated nodes to use as the master address.
@@ -542,11 +600,11 @@ We are not done yet with **```run_train.sbatch```** file:
 
 - **TODO 15**💻📝: 
     
-    - At line 27, we change the lauching script to use **torchrun_jsc** and pass the following argument: 
+    - At line 35, we change the lauching script to use **torchrun_jsc** and pass the following argument: 
 
         ```bash
         # Launch a distributed training job across multiple nodes and GPUs
-        srun --cpu_bind=none bash -c "torchrun \
+        srun --cpu_bind=none bash -c "torchrun_jsc \
             --nnodes=$SLURM_NNODES \
             --rdzv_backend c10d \
             --nproc_per_node=gpu \
@@ -581,11 +639,27 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ---
 
-## Congrats 👏
+## llview
 
-- You have run your model on 4 GPUs 
+- Let's have a look at our job using [llview](https://go.fzj.de/llview-jureca) again.
 
-- But what about many nodes ?
+- You can see that now, we are using all the GPUs of the node
+
+- ![](images/llview_gpu_4.png)
+
+--- 
+
+## llview
+
+- And that our job took less time to finish training (4m vs 13m with one GPU)
+
+- And even the test loss function is lower (0.538 vs 0.636 with one GPU). 
+
+- But what about using more nodes ?
+
+---
+
+## What about using more nodes ?
 
 ---
 
@@ -607,7 +681,17 @@ We are not done yet with **```run_train.sbatch```** file:
 
 --- 
 
-## That's it for DDP
+## llview
+
+- Open [llview](https://go.fzj.de/llview-jureca) again.
+
+- You can see that now, we are using 2 nodes and 8 GPUs.
+
+- ![](images/llview_gpu_8.png)
+
+---
+
+## Amazing ✨
 
 ---
 
@@ -765,15 +849,16 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ## FSDP
 
-- FSDP is again good enough
-- It is a primitive method to PyTorch 
-- However, it require a high-bandwidth system
-- If you have bandwidth-limited clusters FSDP maybe not good and would prefer Pipelining
+- FSDP is a primitive method in PyTorch.
+- Its memory efficiency is high because model parameters, gradients and optimizers are sharded.
+- However, it requires a high-bandwidth system because it involves frequent communication between GPUs.
+- If you have bandwidth-limited clusters, FSDP may not be ideal, and you would prefer pipelining technique.
 
 ---
 
 ## Model Parallel
 
+- Before talking about pipelining, let's talk about Model Parallelism (MP).
 - Model *itself* is too big to fit in one single GPU 🐋
 - Each GPU holds a slice of the model 🍕
 - Data moves from one GPU to the next
@@ -936,29 +1021,96 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ---
 
----
+## Pipeline Parallelism
 
-## Llview
-- [llview](https://go.fzj.de/llview-jureca)
-- https://go.fzj.de/llview-jureca
-![](images/llview.png)
+- Pipeline parallelism does not require frequent communication because the model is stored sequentially in stages.
+- If your model is computationally intensive with extremely wide layers, you may consider Tensor Parallelism (TP).
 
 ---
 
-## Part 2 RECAP 
+## Tensor Parallelism (TP)
 
-- You know what is a distributed training.
-- Can submit single GPU, multi-GPU and multi-node training using DDP.
-- You know other distributed training techniques.
-- Usage of llview.
+![](images/tp/tp-1.png)
+
+---
+
+## TP
+
+![](images/tp/tp-2.png)
+
+---
+
+## TP
+
+![](images/tp/tp-3.png)
+
+
+---
+
+## TP
+
+![](images/tp/tp-4.png)
+
+
+---
+
+## TP
+
+![](images/tp/tp-5.png)
+
+---
+
+## TP 
+
+- We have introduced row parallelism.
+- There is also column parallelism, where the weight columns are split across GPUs.
+- Tensor Parallelism (TP) is great for large, compute-heavy layers like matrix multiplications.
+- However, TP requires frequent communication during tensor operations.
+
+---
+
+## 3D Parallelism
+
+![[3D Parallelism](https://arxiv.org/pdf/2410.06511)](images/3dp.png)
+
+- 3D Parallelism combines Tensor Parallelism (TP), Pipeline Parallelism (PP), and Data Parallelism (DP) to efficiently train large models by distributing computation, memory, and data across multiple GPUs. 
+- It enables scaling to very large models by addressing compute, memory, and communication bottlenecks in a balanced way.
+
+---
+
+## Day 2 RECAP 
+
+- You know what distributed training is. 🧑‍💻
+- You can submit training jobs on a single GPU, multiple GPUs, or across multiple nodes. 🎮💻
+- You are familiar with DDP and aware of other distributed training techniques like FSDP, TP, PP, and 3D parallelism. ⚙️💡
+- You know how to monitor your training using llview. 📊👀
+
+---
+
+## Find Out More
+
+- Here are some useful:
+
+    - Papers:
+        - [FSDP paper](https://arxiv.org/pdf/2304.11277)
+        - [Pipeline Parallelism](https://arxiv.org/pdf/1811.06965)
+        - [Tensor Parallelism](https://arxiv.org/pdf/1909.08053)
+
+    - Tutorials:
+        - [PyTorch at JSC](https://sdlaml.pages.jsc.fz-juelich.de/ai/recipes/pytorch_at_jsc/)
+        - [PyTorch tutorials GitHub](https://github.com/pytorch/tutorials/tree/main)
+        - [PyTorch documentation](https://pytorch.org/tutorials/distributed/home.html)
+
+    - Links
+        - [AI Landing Page](https://sdlaml.pages.jsc.fz-juelich.de/ai/)
+        - [Other courses at JSC](https://www.fz-juelich.de/en/ias/jsc/education/training-courses)
+
 
 ---
 
 ## ANY QUESTIONS??
 
 #### Feedback is more than welcome!
-
-#### Link to [other courses at JSC](https://go.fzj.de/dl-in-neuroscience-all-courses)
 
 ---
 

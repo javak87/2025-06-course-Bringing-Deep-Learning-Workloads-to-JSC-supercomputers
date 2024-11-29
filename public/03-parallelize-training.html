@@ -239,20 +239,22 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/HelmholtzAI-FZJ/2024-12-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers.git</span></code></pre></div></li>
 <li class="fragment"><p>Move to the correct folder</p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> code/parallelize</span></code></pre></div></li>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 2024-12-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/parallelize/</span></code></pre></div></li>
 </ul>
 </section>
 <section id="what-this-code-does" class="slide level2">
 <h2>What this code does</h2>
 <ul>
-<li class="fragment">It trains a <a
+<li class="fragment"><p>It trains a <a
 href="https://arxiv.org/pdf/1706.03762">transformer</a> model on the <a
 href="https://paperswithcode.com/dataset/xsum">xsum</a> dataset to
-summarize documents.</li>
-<li class="fragment">Again, this is not a deep learning course.</li>
-<li class="fragment">If you are not familiar with the model and the
+summarize documents.</p></li>
+<li class="fragment"><p>Again, this is not a deep learning
+course.</p></li>
+<li class="fragment"><p>If you are not familiar with the model and the
 dataset, just imagine it as a black box: you provide it with text, and
-it returns a summary.</li>
+it returns a summary.</p>
+<p><img data-src="images/black_box.svg" /></p></li>
 </ul>
 </section>
 <section class="slide level2">
@@ -279,26 +281,66 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="
 node.</li>
 <li class="fragment">Therefore, you should:
 <ul>
-<li class="fragment"><p>Comment lines 90 to 130.</p></li>
+<li class="fragment"><p><strong>Comment out</strong> lines 90
+<strong>to</strong> 140.</p></li>
 <li class="fragment"><p>Activate your environment:</p>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> <span class="va">$HOME</span>/course/<span class="va">$USER</span>/sc_venv_template/activate.sh</span></code></pre></div></li>
 <li class="fragment"><p>Run:</p>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> train.py</span></code></pre></div></li>
-<li class="fragment"><p>Uncomment lines 90-130.</p></li>
+<li class="fragment"><p><strong>Uncomment back</strong> lines
+90-140.</p></li>
 <li class="fragment"><p>Finally, run your job again 🚀:</p>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> run_train.sbatch</span></code></pre></div></li>
 </ul></li>
 </ul>
 </section>
-<section id="whats-about-many-gpus" class="slide level2">
-<h2>What’s about many gpus ? 👀</h2>
+<section id="job-running" class="slide level2">
+<h2>JOB Running</h2>
 <ul>
-<li class="fragment"><p>Congrats, you are training a DL model on the
-supercomputer using one GPU 🎉</p></li>
-<li class="fragment"><p>Can we run our model on multiple GPUs ?</p></li>
+<li class="fragment">Congrats, you are training a DL model on the
+supercomputer using one GPU 🎉</li>
+</ul>
+</section>
+<section id="llview" class="slide level2">
+<h2>llview</h2>
+<ul>
+<li class="fragment">You can monitor your training using <a
+href="https://go.fzj.de/llview-jureca">llview</a>.</li>
+<li class="fragment">Use your Judoor credentials to connect.</li>
+<li class="fragment">Check the job number that you are intrested in and
+go to the right to open the PDF document. <img
+data-src="images/llview.png" height="400" /></li>
+</ul>
+</section>
+<section id="llview-1" class="slide level2">
+<h2>llview</h2>
+<ul>
+<li class="fragment"><p>You have many information about your
+job</p></li>
+<li class="fragment"><p><img
+data-src="images/llview_info.png" /></p></li>
+</ul>
+</section>
+<section id="gpu-utilization" class="slide level2">
+<h2>GPU utilization</h2>
+<ul>
+<li class="fragment"><p>You can see that in fact we are using <strong>1
+GPU</strong></p></li>
+<li class="fragment"><p><img
+data-src="images/llview_gpu_1.png" /></p></li>
+</ul>
+</section>
+<section id="gpu-utilization-1" class="slide level2">
+<h2>GPU utilization</h2>
+<ul>
+<li class="fragment"><p>It is a waste of resources.</p></li>
+<li class="fragment"><p>The training takes time (13m according to
+llview).</p></li>
+<li class="fragment"><p>Then, can we run our model on multiple GPUs
+?</p></li>
 </ul>
 </section>
 <section id="what-if" class="slide level2">
@@ -309,27 +351,35 @@ supercomputer using one GPU 🎉</p></li>
 of GPUs at line 3 to 4:</p>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --gres=gpu:4</span></span></code></pre></div></li>
-<li class="fragment"><p>And we change the values of the variable
-<code>CUDA_VISIBLE_DEVICES</code> at line 13 as follow:</p>
+<li class="fragment"><p>And run our job again</p>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CUDA_VISIBLE_DEVICES</span><span class="op">=</span>0,1,2,3</span></code></pre></div></li>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> run_train.sbatch</span></code></pre></div></li>
 </ul>
 </section>
-<section id="it-wont-work" class="slide level2">
-<h2>IT WON’t work</h2>
+<section id="llview-2" class="slide level2">
+<h2>llview</h2>
 <ul>
-<li class="fragment"><p>We don’t have an established communication
-between the GPUs</p></li>
-<li class="fragment"><p>So, each GPU will perform its training
-independently.</p>
-<p><img data-src="images/dist/no_comm.svg" height="450" /></p></li>
+<li class="fragment"><p>We are still using <strong>1
+GPU</strong></p></li>
+<li class="fragment"><p><img
+data-src="images/llview_gpu_2.png" /></p></li>
 </ul>
 </section>
 <section id="we-need-communication" class="slide level2">
 <h2>We need communication</h2>
-<p><img data-src="images/dist/comm1.svg" height="500" /></p>
+<ul>
+<li class="fragment"><p>Without correct setup, the GPUs might not be
+utilized.</p></li>
+<li class="fragment"><p>Furthermore, we don’t have an established
+communication between the GPUs</p>
+<p><img data-src="images/dist/no_comm.svg" height="400" /></p></li>
+</ul>
 </section>
 <section id="we-need-communication-1" class="slide level2">
+<h2>We need communication</h2>
+<p><img data-src="images/dist/comm1.svg" height="500" /></p>
+</section>
+<section id="we-need-communication-2" class="slide level2">
 <h2>We need communication</h2>
 <p><img data-src="images/dist/comm2.svg" height="500" /></p>
 </section>
@@ -432,6 +482,15 @@ across multiple GPUs or nodes efficiently.</p>
 <h2>DDP</h2>
 <p><img data-src="images/ddp/ddp-9.svg" height="500" /></p>
 </section>
+<section id="ddp-7" class="slide level2">
+<h2>DDP</h2>
+<p>If you’re scaling DDP to use multiple nodes, the underlying principle
+remains the same as single-node multi-GPU training.</p>
+</section>
+<section id="ddp-8" class="slide level2">
+<h2>DDP</h2>
+<p><img data-src="images/ddp/multi_node.svg" height="500" /></p>
+</section>
 <section id="ddp-recap" class="slide level2">
 <h2>DDP recap</h2>
 <ul>
@@ -449,9 +508,12 @@ all processes.</li>
 <section id="lets-start-coding" class="slide level2">
 <h2>Let’s start coding!</h2>
 <ul>
-<li class="fragment">Whenever you see <strong>TODOs</strong>💻📝, it
-means you need to follow the instructions to either copy-paste the code
-or type it yourself.</li>
+<li class="fragment"><p>Whenever you see <strong>TODOs</strong>💻📝,
+follow the instructions to either copy-paste the code at the specified
+line numbers or type it yourself.</p></li>
+<li class="fragment"><p>Depending on how you copy and paste, the line
+numbers may vary, but always refer to the TODO numbers in the code and
+slides.</p></li>
 </ul>
 </section>
 <section id="setup-communication" class="slide level2">
@@ -695,13 +757,13 @@ lines to <strong>run_train.sbatch</strong> file</li>
 <h2>Setup communication</h2>
 <p>In <strong><code>run_train.sbatch</code></strong> file:</p>
 <ul>
-<li class="fragment"><strong>TODOs 13</strong>💻📝: <strong>if it is not
-already done</strong>
+<li class="fragment"><strong>TODOs 13</strong>💻📝:
 <ul>
-<li class="fragment"><p>At line 3, increase the number of GPUs to 4.</p>
+<li class="fragment"><p>At line 3, increase the number of GPUs to 4 if
+it is not already done.</p>
 <div class="sourceCode" id="cb27"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --gres=gpu:4</span></span></code></pre></div></li>
-<li class="fragment"><p>At line 14, pass the correct number of
+<li class="fragment"><p>At line 22, pass the correct number of
 devices.</p>
 <div class="sourceCode" id="cb28"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CUDA_VISIBLE_DEVICES</span><span class="op">=</span>0,1,2,3</span></code></pre></div></li>
@@ -716,7 +778,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href=
 <strong>MASTER_ADDR</strong> and <strong>MASTER_PORT</strong> to allow
 communication over the system.</p>
 <ul>
-<li class="fragment"><p>At line 16, add the following:</p>
+<li class="fragment"><p>At line 24, add the following:</p>
 <div class="sourceCode" id="cb29"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracts the first hostname from the list of allocated nodes to use as the master address.</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="va">MASTER_ADDR</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$(</span><span class="ex">scontrol</span> show hostnames <span class="st">&quot;</span><span class="va">$SLURM_JOB_NODELIST</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1<span class="va">)</span><span class="st">&quot;</span></span>
@@ -735,11 +797,11 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href=
 <ul>
 <li class="fragment"><p><strong>TODO 15</strong>💻📝:</p>
 <ul>
-<li class="fragment"><p>At line 27, we change the lauching script to use
+<li class="fragment"><p>At line 35, we change the lauching script to use
 <strong>torchrun_jsc</strong> and pass the following argument:</p>
 <div class="sourceCode" id="cb30"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch a distributed training job across multiple nodes and GPUs</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--cpu_bind</span><span class="op">=</span>none bash <span class="at">-c</span> <span class="st">&quot;torchrun </span><span class="dt">\</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--cpu_bind</span><span class="op">=</span>none bash <span class="at">-c</span> <span class="st">&quot;torchrun_jsc </span><span class="dt">\</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="st">    --nnodes=</span><span class="va">$SLURM_NNODES</span><span class="st"> </span><span class="dt">\</span></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="st">    --rdzv_backend c10d </span><span class="dt">\</span></span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="st">    --nproc_per_node=gpu </span><span class="dt">\</span></span>
@@ -785,12 +847,29 @@ setup of communication among the nodes.</li>
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> run_train.sbatch</span></code></pre></div></li>
 </ul>
 </section>
-<section id="congrats" class="slide level2">
-<h2>Congrats 👏</h2>
+<section id="llview-3" class="slide level2">
+<h2>llview</h2>
 <ul>
-<li class="fragment"><p>You have run your model on 4 GPUs</p></li>
-<li class="fragment"><p>But what about many nodes ?</p></li>
+<li class="fragment"><p>Let’s have a look at our job using <a
+href="https://go.fzj.de/llview-jureca">llview</a> again.</p></li>
+<li class="fragment"><p>You can see that now, we are using all the GPUs
+of the node</p></li>
+<li class="fragment"><p><img
+data-src="images/llview_gpu_4.png" /></p></li>
 </ul>
+</section>
+<section id="llview-4" class="slide level2">
+<h2>llview</h2>
+<ul>
+<li class="fragment"><p>And that our job took less time to finish
+training (4m vs 13m with one GPU)</p></li>
+<li class="fragment"><p>And even the test loss function is lower (0.538
+vs 0.636 with one GPU).</p></li>
+<li class="fragment"><p>But what about using more nodes ?</p></li>
+</ul>
+</section>
+<section id="what-about-using-more-nodes" class="slide level2">
+<h2>What about using more nodes ?</h2>
 </section>
 <section id="multi-node-training" class="slide level2">
 <h2>Multi-node training</h2>
@@ -807,8 +886,19 @@ training.</p></li>
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> run_train.sbatch</span></code></pre></div></li>
 </ul>
 </section>
-<section id="thats-it-for-ddp" class="slide level2">
-<h2>That’s it for DDP</h2>
+<section id="llview-5" class="slide level2">
+<h2>llview</h2>
+<ul>
+<li class="fragment"><p>Open <a
+href="https://go.fzj.de/llview-jureca">llview</a> again.</p></li>
+<li class="fragment"><p>You can see that now, we are using 2 nodes and 8
+GPUs.</p></li>
+<li class="fragment"><p><img
+data-src="images/llview_gpu_8.png" /></p></li>
+</ul>
+</section>
+<section id="amazing" class="slide level2">
+<h2>Amazing ✨</h2>
 </section>
 <section id="before-we-go-further" class="slide level2">
 <h2>Before we go further…</h2>
@@ -906,16 +996,20 @@ single GPU</li>
 <section id="fsdp-20" class="slide level2">
 <h2>FSDP</h2>
 <ul>
-<li class="fragment">FSDP is again good enough</li>
-<li class="fragment">It is a primitive method to PyTorch</li>
-<li class="fragment">However, it require a high-bandwidth system</li>
-<li class="fragment">If you have bandwidth-limited clusters FSDP maybe
-not good and would prefer Pipelining</li>
+<li class="fragment">FSDP is a primitive method in PyTorch.</li>
+<li class="fragment">Its memory efficiency is high because model
+parameters, gradients and optimizers are sharded.</li>
+<li class="fragment">However, it requires a high-bandwidth system
+because it involves frequent communication between GPUs.</li>
+<li class="fragment">If you have bandwidth-limited clusters, FSDP may
+not be ideal, and you would prefer pipelining technique.</li>
 </ul>
 </section>
 <section id="model-parallel" class="slide level2">
 <h2>Model Parallel</h2>
 <ul>
+<li class="fragment">Before talking about pipelining, let’s talk about
+Model Parallelism (MP).</li>
 <li class="fragment">Model <em>itself</em> is too big to fit in one
 single GPU 🐋</li>
 <li class="fragment">Each GPU holds a slice of the model 🍕</li>
@@ -1050,36 +1144,119 @@ weights.</li>
 <h2>Model Parallel - Multi Node</h2>
 <p><img data-src="images/model-parallel-multi-node.svg" /></p>
 </section>
-<section class="slide level2">
-
-</section>
-<section id="llview" class="slide level2">
-<h2>Llview</h2>
+<section id="pipeline-parallelism" class="slide level2">
+<h2>Pipeline Parallelism</h2>
 <ul>
-<li class="fragment"><a
-href="https://go.fzj.de/llview-jureca">llview</a></li>
-<li class="fragment">https://go.fzj.de/llview-jureca <img
-data-src="images/llview.png" /></li>
+<li class="fragment">Pipeline parallelism does not require frequent
+communication because the model is stored sequentially in stages.</li>
+<li class="fragment">If your model is computationally intensive with
+extremely wide layers, you may consider Tensor Parallelism (TP).</li>
 </ul>
 </section>
-<section id="part-2-recap" class="slide level2">
-<h2>Part 2 RECAP</h2>
+<section id="tensor-parallelism-tp" class="slide level2">
+<h2>Tensor Parallelism (TP)</h2>
+<p><img data-src="images/tp/tp-1.png" /></p>
+</section>
+<section id="tp" class="slide level2">
+<h2>TP</h2>
+<p><img data-src="images/tp/tp-2.png" /></p>
+</section>
+<section id="tp-1" class="slide level2">
+<h2>TP</h2>
+<p><img data-src="images/tp/tp-3.png" /></p>
+</section>
+<section id="tp-2" class="slide level2">
+<h2>TP</h2>
+<p><img data-src="images/tp/tp-4.png" /></p>
+</section>
+<section id="tp-3" class="slide level2">
+<h2>TP</h2>
+<p><img data-src="images/tp/tp-5.png" /></p>
+</section>
+<section id="tp-4" class="slide level2">
+<h2>TP</h2>
 <ul>
-<li class="fragment">You know what is a distributed training.</li>
-<li class="fragment">Can submit single GPU, multi-GPU and multi-node
-training using DDP.</li>
-<li class="fragment">You know other distributed training
-techniques.</li>
-<li class="fragment">Usage of llview.</li>
+<li class="fragment">We have introduced row parallelism.</li>
+<li class="fragment">There is also column parallelism, where the weight
+columns are split across GPUs.</li>
+<li class="fragment">Tensor Parallelism (TP) is great for large,
+compute-heavy layers like matrix multiplications.</li>
+<li class="fragment">However, TP requires frequent communication during
+tensor operations.</li>
+</ul>
+</section>
+<section id="d-parallelism" class="slide level2">
+<h2>3D Parallelism</h2>
+<figure>
+<img data-src="images/3dp.png" alt="3D Parallelism" />
+<figcaption aria-hidden="true"><a
+href="https://arxiv.org/pdf/2410.06511">3D Parallelism</a></figcaption>
+</figure>
+<ul>
+<li class="fragment">3D Parallelism combines Tensor Parallelism (TP),
+Pipeline Parallelism (PP), and Data Parallelism (DP) to efficiently
+train large models by distributing computation, memory, and data across
+multiple GPUs.</li>
+<li class="fragment">It enables scaling to very large models by
+addressing compute, memory, and communication bottlenecks in a balanced
+way.</li>
+</ul>
+</section>
+<section id="day-2-recap" class="slide level2">
+<h2>Day 2 RECAP</h2>
+<ul>
+<li class="fragment">You know what distributed training is. 🧑‍💻</li>
+<li class="fragment">You can submit training jobs on a single GPU,
+multiple GPUs, or across multiple nodes. 🎮💻</li>
+<li class="fragment">You are familiar with DDP and aware of other
+distributed training techniques like FSDP, TP, PP, and 3D parallelism.
+⚙️💡</li>
+<li class="fragment">You know how to monitor your training using llview.
+📊👀</li>
+</ul>
+</section>
+<section id="find-out-more" class="slide level2">
+<h2>Find Out More</h2>
+<ul>
+<li class="fragment"><p>Here are some useful:</p>
+<ul>
+<li class="fragment">Papers:
+<ul>
+<li class="fragment"><a href="https://arxiv.org/pdf/2304.11277">FSDP
+paper</a></li>
+<li class="fragment"><a href="https://arxiv.org/pdf/1811.06965">Pipeline
+Parallelism</a></li>
+<li class="fragment"><a href="https://arxiv.org/pdf/1909.08053">Tensor
+Parallelism</a></li>
+</ul></li>
+<li class="fragment">Tutorials:
+<ul>
+<li class="fragment"><a
+href="https://sdlaml.pages.jsc.fz-juelich.de/ai/recipes/pytorch_at_jsc/">PyTorch
+at JSC</a></li>
+<li class="fragment"><a
+href="https://github.com/pytorch/tutorials/tree/main">PyTorch tutorials
+GitHub</a></li>
+<li class="fragment"><a
+href="https://pytorch.org/tutorials/distributed/home.html">PyTorch
+documentation</a></li>
+</ul></li>
+<li class="fragment">Links
+<ul>
+<li class="fragment"><a
+href="https://sdlaml.pages.jsc.fz-juelich.de/ai/">AI Landing
+Page</a></li>
+<li class="fragment"><a
+href="https://www.fz-juelich.de/en/ias/jsc/education/training-courses">Other
+courses at JSC</a></li>
+</ul></li>
+</ul></li>
 </ul>
 </section>
 <section id="any-questions" class="slide level2">
 <h2>ANY QUESTIONS??</h2>
 <h4 id="feedback-is-more-than-welcome">Feedback is more than
 welcome!</h4>
-<h4 id="link-to-other-courses-at-jsc">Link to <a
-href="https://go.fzj.de/dl-in-neuroscience-all-courses">other courses at
-JSC</a></h4>
 </section>
 <section class="slide level2">
 

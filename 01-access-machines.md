@@ -865,6 +865,12 @@ scikit-learn==1.3.1
 pandas==2.0.3
 torch==2.1.2
 accelerate
+pyarrow
+tqdm
+transformers
+sentencepiece
+datasets
+torchrun_jsc
 ```
 
 - Run on the terminal: `sc_venv_template/setup.sh`

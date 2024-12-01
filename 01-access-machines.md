@@ -1166,8 +1166,7 @@ tensorboard --logdir=runs  --port=9999 serve
 
 ## Port Forwarding
 
-![
-A tunnel which exposes the supercomputer's port 3000 as port 1234 locally](images/port-forwarding.svg)
+![A tunnel which exposes the supercomputer's port 3000 as port 1234 locally](images/port-forwarding.svg)
 
 
 ---
@@ -1178,7 +1177,6 @@ A tunnel which exposes the supercomputer's port 3000 as port 1234 locally](image
 - ```bash
 cd $HOME/course/
 source sc_venv_template/activate.sh
-
 tensorboard --logdir=runs  --port=12345 serve
 ```
 - Note the tab `PORTS` next to the terminal 
@@ -1274,12 +1272,11 @@ As of now, I expect you managed to:
 
 - ```json
     {
-      "title": "Mistral helmholtz",
-      "provider": "openai",
-      "contextLength": 16384,
-      "model": "alias-code",
-      "apiKey": "ADD-YOUR-TOKEN-HERE",
-      "apiBase": "https://helmholtz-blablador.fz-juelich.de:8000"
+      "model": "AUTODETECT",
+      "title": "Blablador",
+      "apiKey": "ADD_BLABLADOR_TOKEN_HERE",
+      "apiBase": "https://api.helmholtz-blablador.fz-juelich.de/v1",
+      "provider": "openai"
     },
 ```
 

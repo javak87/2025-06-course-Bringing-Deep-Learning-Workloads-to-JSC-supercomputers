@@ -694,10 +694,10 @@ Paste this into the file:
 import torch
 
 matrix1 = torch.randn(3,3)
-print("The first matrix is", matrix1)
+print("The first matrix is:\n", matrix1)
 
 matrix2 = torch.randn(3,3)
-print("The second matrix is", matrix2)
+print("The second matrix is:\n", matrix2)
 
 result = torch.matmul(matrix1,matrix2)
 print("The result is:\n", result)
@@ -708,8 +708,8 @@ print("The result is:\n", result)
 ### How to run it on the login node
 
 ```
-module load Stages/2023
-module load GCC OpenMPI PyTorch
+module load Stages/2024 
+module load GCC OpenMPI Python PyTorch 
 python matrix.py
 ```
 
@@ -865,6 +865,12 @@ scikit-learn==1.3.1
 pandas==2.0.3
 torch==2.1.2
 accelerate
+pyarrow
+tqdm
+transformers
+sentencepiece
+datasets
+torchrun_jsc
 ```
 
 - Run on the terminal: `sc_venv_template/setup.sh`
@@ -882,7 +888,7 @@ source sc_venv_template/activate.sh
 ### Example: Activating the virtual environment
 
 ```bash
-source ./activate.sh 
+source sc_venv_template/activate.sh 
 The activation script must be sourced, otherwise the virtual environment will not work.
 Setting vars
 The following modules were not unloaded:
@@ -1027,7 +1033,7 @@ path = untar_data(URLs.PETS)/'images'
 
 - And this one downloads the pre-trained weights:
 - ```python
-learn = vision_learner(dls, resnet34, metrics=error_rate)
+learn = vision_learner(dls, resnet34, metrics=accuracy)
 ```
 
 ---
@@ -1147,7 +1153,7 @@ tensorboard --logdir=runs  --port=9999 serve
 ```
 - Opens a connection on port 9999... *OF THE SUPERCOMPUTER*.
 - This port is behind the firewall. You can't access it directly... 
-- We need to do bypass the firewall 🏴‍☠️
+- We need to bypass the firewall 🏴‍☠️
   - SSH PORT FORWARDING
 
 ---
@@ -1160,8 +1166,7 @@ tensorboard --logdir=runs  --port=9999 serve
 
 ## Port Forwarding
 
-![
-A tunnel which exposes the supercomputer's port 3000 as port 1234 locally](images/port-forwarding.svg)
+![A tunnel which exposes the supercomputer's port 3000 as port 1234 locally](images/port-forwarding.svg)
 
 
 ---
@@ -1267,12 +1272,11 @@ As of now, I expect you managed to:
 
 - ```json
     {
-      "title": "Mistral helmholtz",
-      "provider": "openai",
-      "contextLength": 16384,
-      "model": "alias-code",
-      "apiKey": "ADD-YOUR-TOKEN-HERE",
-      "apiBase": "https://helmholtz-blablador.fz-juelich.de:8000"
+      "model": "AUTODETECT",
+      "title": "Blablador",
+      "apiKey": "ADD_BLABLADOR_TOKEN_HERE",
+      "apiBase": "https://api.helmholtz-blablador.fz-juelich.de/v1",
+      "provider": "openai"
     },
 ```
 

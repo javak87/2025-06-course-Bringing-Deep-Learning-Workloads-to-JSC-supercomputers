@@ -8,13 +8,6 @@ date: December 5th, 2024
 
 ## Before Starting
 
-- We need to download some code
-
-    ```bash
-    cd $HOME/course
-    git clone https://github.com/HelmholtzAI-FZJ/2024-12-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers.git
-    ```
-
 - Move to the correct folder
     
     ```bash
@@ -57,6 +50,7 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
 
 ## Run the Training Script
 
+- There are TODOs in these two files. **Do not modify the TODOs for now**. The code is already working, so you don’t need to make any changes at this point.
 - Now run:
 
     ```bash
@@ -107,16 +101,23 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
 
 - You can monitor your training using [llview](https://go.fzj.de/llview-jureca). 
 - Use your Judoor credentials to connect.
-- Check the job number that you are intrested in and go to the right to open the PDF document.
-    ![](images/llview.png){height=400px}
+- Check the job number that you are intrested in.
+    ![](images/llview_job.png){height=400px}
+
+---
+
+
+## llview
+
+- Go to the right to open the PDF document. **It may take some time to load the job information, so please wait until the icon turns blue**.
+    ![](images/llview.png){height=450px}
 
 ---
 
 ## llview
 
-- You have many information about your job
-
-- ![](images/llview_info.png)
+- You have many information about your job once you open the PDF file.
+    ![](images/llview_info.png)
 
 ---
 
@@ -124,7 +125,7 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
 
 - You can see that in fact we are using **1 GPU**
 
-- ![](images/llview_gpu_1.png)
+    ![](images/llview_gpu_1.png)
 
 ---
 
@@ -1096,6 +1097,8 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ## Day 2 RECAP 
 
+- You know where to store your code and your data. 🗂️
+- How to create HDF5 and PyArrow files. 📄
 - You know what distributed training is. 🧑‍💻
 - You can submit training jobs on a single GPU, multiple GPUs, or across multiple nodes. 🎮💻
 - You are familiar with DDP and aware of other distributed training techniques like FSDP, TP, PP, and 3D parallelism. ⚙️💡

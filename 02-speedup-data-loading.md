@@ -18,99 +18,74 @@ date: December 5th, 2024
 
 ## Let's talk about DATA
 
-- Some general considerations one should have in mind
-
----
-
-![Not this data](images/data-and-lore.jpg)
+![](images/data.jpeg)
 
 --- 
 
 ## I/O is separate and shared
 
-#### All compute nodes of all supercomputers see the same files
-
+- All compute nodes of all supercomputers see the same files
 - Performance tradeoff between shared acessibility and speed
-- It's simple to load data fast to 1 or 2 gpus. But to 100? 1000? 10000?
-
----
-
-### Jülich Supercomputers
-
 - Our I/O server is almost a supercomputer by itself
-- ![JSC Supercomputer Stragegy](images/machines.png)
+    ![JSC Supercomputer Stragegy](images/machines.png){height=350pt}
 
 ---
 
 ## Where do I keep my files?
 
-- **`$PROJECT_projectname`** for code (`projectname` is `training2449` in this case)
-    - Most of your work should stay here
-- **`$DATA_projectname`** for big data(*)
-    - Permanent location for big datasets
-- **`$SCRATCH_projectname`** for temporary files (fast, but not permanent)
-    - Files are deleted after 90 days untouched
+- Always store your code in the project folder (**`$PROJECT_projectname`** ). In our case 
 
----
+    ```bash
+    /p/project/training2449/$USER
+    ```
 
-## Data services
+- Store data in the scratch directory for faster I/O access (**`$SCRATCH_projectname`**). Files in scratch are deleted after 90 days of inactivity.
+    
+    ```bash
+    /p/scratch/training2449/$USER
+    ```
 
-- JSC provides different data services
-- Data projects give massive amounts of storage
-- We use it for ML datasets. Join the project at **[Judoor](https://judoor.fz-juelich.de/projects/join/datasets)**
-- After being approved, connect to the supercomputer and try it:
-- ```bash
-cd $DATA_datasets
-ls -la
-```
+- Store the data in `$DATA_dataset` for a more permanent location. **This location is not accessible by compute nodes. Please copy the data to scratch to ensure your job can access it**.
 
----
-
-## Data Staging
-
-- [LARGEDATA filesystem](https://apps.fz-juelich.de/jsc/hps/juwels/filesystems.html) is not accessible by compute nodes
-    - Copy files to an accessible filesystem BEFORE working
-- Imagenet-21K copy alone takes 21+ minutes to $SCRATCH
-    - We already copied it to $SCRATCH for you
+    ```bash
+    /p/data1/datasets
+    ```
 
 ---
 
 ## Data loading
 
-![Fat GPUs need to be fed FAST](images/nomnom.jpg)
-
---- 
-
-## Strategies
-
 - We have CPUs and lots of memory - let's use them
-    - multitask training and data loading for the next batch
-    - `/dev/shm` is a filesystem on ram - ultra fast ⚡️
-- Use big files made for parallel computing
-    - HDF5, Zarr, mmap() in a parallel fs, LMDB
-- Use specialized data loading libraries
-    - FFCV, DALI, Apache Arrow
-- Compression sush as squashfs 
-    - data transfer can be slower than decompression (must be checked case by case)
-    - Beneficial in cases where numerous small files are at hand.
+- If your dataset is relatively small (< 500 GB) and can fit into the working memory (RAM) of each compute node (along with the program state), you can store it in ``/dev/shm``. This is a special filesystem that uses RAM for storage, making it extremely fast for data access. ⚡️
+- For bigger datasets (> 500 GB) you have many strategies:
+    - Hierarchical Data Format 5 (HDF5)
+    - Apache Arrow
+    - NVIDIA Data Loading Library (DALI)
+    - SquashFS
 
 ---
 
-## Libraries
+## Data loading
 
-- Apache Arrow [https://arrow.apache.org/](https://arrow.apache.org/)
-- FFCV [https://github.com/libffcv/ffcv](https://github.com/libffcv/ffcv) and [FFCV for PyTorch-Lightning](https://github.com/SerezD/ffcv_pytorch_lightning)
-- Nvidia's DALI [https://developer.nvidia.com/dali](https://developer.nvidia.com/dali)
+- In this course, we will demonstrate how to store your data in HDF5 and PyArrow files.
+- We will use the ImageNet dataset to create HDF5 and PyArrow files.
 
 ---
 
+## But before
 
-## We need to download some code
+- We need to download some code
 
-```bash
-cd $HOME/course
-git clone https://github.com/HelmholtzAI-FZJ/2024-08-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers.git
-```
+    ```bash
+    cd $HOME/course
+    git clone https://github.com/HelmholtzAI-FZJ/2024-08-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers.git
+    ```
+
+- Move to the correct folder
+
+    ```
+    cd 2024-12-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/dataloading/
+    ```
 
 ---
 
@@ -181,11 +156,26 @@ imagenet_val.pkl
 ## Access File System
 
 ```python
-def __getitem__(self, idx):
-    x = Image.open(os.path.join(self.root, self.samples[idx])).convert("RGB")
-    if self.transform:
-        x = self.transform(x)
-    return x, self.targets[idx]
+class ImageNet(Dataset):
+    def __init__(self, root, split, transform=None):
+
+        file_name = "imagenet_train.pkl" if split == "train" else "imagenet_val.pkl"
+
+        with open(os.path.join(args.data_root, file_name), "rb") as f:
+            train_data = pickle.load(f)
+
+        self.samples = list(train_data.keys())
+        self.targets = list(train_data.values())
+        self.transform = transform
+
+    def __len__(self):
+            return len(self.samples)
+
+    def __getitem__(self, idx):
+        x = Image.open(os.path.join(self.samples[idx])).convert("RGB")
+        if self.transform:
+            x = self.transform(x)
+        return x, self.targets[idx]    
    
 ```
 

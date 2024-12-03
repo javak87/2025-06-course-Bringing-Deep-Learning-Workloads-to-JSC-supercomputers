@@ -54,7 +54,7 @@ def save_arrow(args, splits, train_samples, train_targets, val_samples, val_targ
             samples = val_samples
             targets = val_targets
         with pa.OSFile(
-                os.path.join(args.target_folder, f'ImageNet-{split}.arrow'),
+                os.path.join(args.target_folder, f'ImageNet_{split}.arrow'),
                 'wb',
         ) as f:
             with pa.ipc.new_file(f, schema) as writer:

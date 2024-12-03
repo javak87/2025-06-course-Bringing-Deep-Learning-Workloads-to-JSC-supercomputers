@@ -876,13 +876,13 @@ matplotlib==3.7.2
 scikit-learn==1.3.1
 pandas==2.0.3
 torch==2.1.2
-accelerate
-pyarrow
-tqdm
-transformers
-sentencepiece
-datasets
-torchrun_jsc
+accelerate==1.1.1
+pyarrow==18.1.0
+tqdm==4.67.1
+transformers==4.46.3
+sentencepiece==0.2.0
+datasets==3.1.0
+torchrun_jsc==0.0.10
 ```
 
 - Run on the terminal: `sc_venv_template/setup.sh`

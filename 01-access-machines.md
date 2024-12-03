@@ -592,7 +592,13 @@ Search with the version - it will suggest the hierarchy
 
 ```bash
 $ python
--bash: python: command not found
+Python 3.9.18 (main, Jan 24 2024, 00:00:00)  
+[GCC 11.4.1 20231218 (Red Hat 11.4.1-3)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import torch
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'torch'
 ```
 
 Oh noes! 🙈
@@ -605,8 +611,8 @@ Let's bring Python together with PyTorch!
 
 Copy and paste these lines
 ```bash
-# This command fails, as we have no proper python
-python 
+# This command fails, as we have no proper pytorch
+python -c "import torch ; print(torch.__version__)" 
 # So, we load the correct modules...
 module load Stages/2024
 module load GCC OpenMPI Python PyTorch
@@ -616,12 +622,14 @@ python -c "import torch ; print(torch.__version__)"
 
 Should look like this:
 ```bash
-$ python
--bash: python: command not found
+$ python -c "import torch ; print(torch.__version__)" 
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'torch'
 $ module load Stages/2024
 $ module load GCC OpenMPI Python PyTorch
 $ python -c "import torch ; print(torch.__version__)" 
-2.1.0
+2.1.2
 ```
 ---
 
@@ -634,15 +642,19 @@ module key toml
 The following modules match your search criteria: "toml"
 ------------------------------------------------------------------------------------
 
-  Jupyter: Jupyter/2020.2.5-Python-3.8.5, Jupyter/2021.3.1-Python-3.8.5, Jupyter/2021.3.2-Python-3.8.5, Jupyter/2022.3.3, Jupyter/2022.3.4
-    Project Jupyter exists to develop open-source software, open-standards, and services for interactive computing across dozens of programming languages.
+  Jupyter: Jupyter/2020.2.5-Python-3.8.5, Jupyter/2021.3.1-Python-3.8.5,
+    Jupyter/2021.3.2-Python-3.8.5, Jupyter/2022.3.3, Jupyter/2022.3.4
+    Project Jupyter exists to develop open-source software, open-standards,
+    and services for interactive computing across dozens of programming languages.
     
 
   PyQuil: PyQuil/3.0.1
-    PyQuil is a library for generating and executing Quil programs on the Rigetti Forest platform.
+    PyQuil is a library for generating and executing Quil programs on the Rigetti
+    Forest platform.
 
   Python: Python/3.8.5, Python/3.9.6, Python/3.10.4
-    Python is a programming language that lets you work more quickly and integrate your systems more effectively.
+    Python is a programming language that lets you work more quickly and integrate 
+    your systems more effectively.
 
 ------------------------------------------------------------------------------------
 ```
@@ -694,10 +706,10 @@ Paste this into the file:
 import torch
 
 matrix1 = torch.randn(3,3)
-print("The first matrix is", matrix1)
+print("The first matrix is:\n", matrix1)
 
 matrix2 = torch.randn(3,3)
-print("The second matrix is", matrix2)
+print("The second matrix is:\n", matrix2)
 
 result = torch.matmul(matrix1,matrix2)
 print("The result is:\n", result)
@@ -708,8 +720,8 @@ print("The result is:\n", result)
 ### How to run it on the login node
 
 ```
-module load Stages/2023
-module load GCC OpenMPI PyTorch
+module load Stages/2024 
+module load GCC OpenMPI Python PyTorch 
 python matrix.py
 ```
 
@@ -834,7 +846,7 @@ Or simply open it on VSCode!
 
 #### You want that extra software from `pip`....
 
-[Venv/Kernel template](https://gitlab.jsc.fz-juelich.de/kesselheim1/sc_venv_template)
+[venv/Kernel template](https://gitlab.jsc.fz-juelich.de/kesselheim1/sc_venv_template)
 
 ```bash
 cd $HOME/course/
@@ -865,6 +877,12 @@ scikit-learn==1.3.1
 pandas==2.0.3
 torch==2.1.2
 accelerate
+pyarrow
+tqdm
+transformers
+sentencepiece
+datasets
+torchrun_jsc
 ```
 
 - Run on the terminal: `sc_venv_template/setup.sh`
@@ -882,7 +900,7 @@ source sc_venv_template/activate.sh
 ### Example: Activating the virtual environment
 
 ```bash
-source ./activate.sh 
+source sc_venv_template/activate.sh 
 The activation script must be sourced, otherwise the virtual environment will not work.
 Setting vars
 The following modules were not unloaded:
@@ -1027,7 +1045,7 @@ path = untar_data(URLs.PETS)/'images'
 
 - And this one downloads the pre-trained weights:
 - ```python
-learn = vision_learner(dls, resnet34, metrics=error_rate)
+learn = vision_learner(dls, resnet34, metrics=accuracy)
 ```
 
 ---
@@ -1084,7 +1102,7 @@ Downloading dataset...
 ## Run it again on the compute nodes!
 
 - Un-comment back the line that does training:
-- ```bash
+- ```python
 learn.fit_one_cycle(6, cbs=cbs)
 ```
 - Submit the job!
@@ -1147,7 +1165,7 @@ tensorboard --logdir=runs  --port=9999 serve
 ```
 - Opens a connection on port 9999... *OF THE SUPERCOMPUTER*.
 - This port is behind the firewall. You can't access it directly... 
-- We need to do bypass the firewall 🏴‍☠️
+- We need to bypass the firewall 🏴‍☠️
   - SSH PORT FORWARDING
 
 ---
@@ -1160,8 +1178,7 @@ tensorboard --logdir=runs  --port=9999 serve
 
 ## Port Forwarding
 
-![
-A tunnel which exposes the supercomputer's port 3000 as port 1234 locally](images/port-forwarding.svg)
+![A tunnel which exposes the supercomputer's port 3000 as port 1234 locally](images/port-forwarding.svg)
 
 
 ---
@@ -1267,12 +1284,11 @@ As of now, I expect you managed to:
 
 - ```json
     {
-      "title": "Mistral helmholtz",
-      "provider": "openai",
-      "contextLength": 16384,
-      "model": "alias-code",
-      "apiKey": "ADD-YOUR-TOKEN-HERE",
-      "apiBase": "https://helmholtz-blablador.fz-juelich.de:8000"
+      "model": "AUTODETECT",
+      "title": "Blablador",
+      "apiKey": "ADD_BLABLADOR_TOKEN_HERE",
+      "apiBase": "https://api.helmholtz-blablador.fz-juelich.de/v1",
+      "provider": "openai"
     },
 ```
 

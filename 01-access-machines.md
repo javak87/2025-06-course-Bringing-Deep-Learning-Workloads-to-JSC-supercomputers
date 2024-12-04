@@ -81,7 +81,7 @@ Please open this document on your own browser! We will need it for the exercises
 
 ### Jülich Supercomputers
 
-![JSC Supercomputer Stragegy](images/machines.png)
+![JSC Supercomputer Strategy](images/machines.png)
 
 ---
 
@@ -236,8 +236,8 @@ Please open this document on your own browser! We will need it for the exercises
 - Join the course project `training2449`
 - Sign the Usage Agreements ([Video](https://drive.google.com/file/d/1mEN1GmWyGFp75uMIi4d6Tpek2NC_X8eY/view))
 - Compute time allocation is based on compute projects. For every compute job, a compute project pays.
-- Time is measured in core-hours. One hour of Jureca DC is 48 core-hours.
-- Example: Job runs for 8 hours on 64 nodes of Jureca DC: 8 * 64 * 48 = 24576 core-h!
+- Time is measured in core-hours. One hour of Jureca DC is 128 core-hours.
+- Example: Job runs for 8 hours on 64 nodes of Jureca DC: 8 * 64 * 128 = 65536 core-h!
 
 ---
 

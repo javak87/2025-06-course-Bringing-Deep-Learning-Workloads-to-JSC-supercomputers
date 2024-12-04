@@ -19,8 +19,11 @@
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
     ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
@@ -28,7 +31,7 @@
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -556,9 +559,9 @@ href="https://drive.google.com/file/d/1mEN1GmWyGFp75uMIi4d6Tpek2NC_X8eY/view">Vi
 <li class="fragment">Compute time allocation is based on compute
 projects. For every compute job, a compute project pays.</li>
 <li class="fragment">Time is measured in core-hours. One hour of Jureca
-DC is 48 core-hours.</li>
+DC is 128 core-hours.</li>
 <li class="fragment">Example: Job runs for 8 hours on 64 nodes of Jureca
-DC: 8 * 64 * 48 = 24576 core-h!</li>
+DC: 8 * 128 * 48 = 65536 core-h!</li>
 </ul>
 </section>
 <section id="jupyter" class="slide level2">

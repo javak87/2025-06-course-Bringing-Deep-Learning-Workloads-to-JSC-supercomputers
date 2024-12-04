@@ -911,15 +911,12 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 <g fill='#b3d9d9'>
 <g stroke='#b3d9d9'>
-<g stroke='#000'>
 <g fill='#b3d9d9'>
 <g stroke='#b3d9d9'>
-<g stroke='#000'>
-<path d='M 10.86977 81.80162 L 21.53954 81.80162 L 21.53954 60.46208 L 10.86977 60.46208 C 4.97694 60.46208 0.2 65.23903 0.2 71.13185 C 0.2 77.02467 4.97694 81.80162 10.86977 81.80162 Z'/>
+<path d='M -17.58298 81.80162 L -6.91321 81.80162 L -6.91321 60.46208 L -17.58298 60.46208 C -23.4758 60.46208 -28.25275 65.23903 -28.25275 71.13185 C -28.25275 77.02467 -23.4758 81.80162 -17.58298 81.80162 Z'/>
 </g>
 </g>
-</g>
-<g transform='translate(10.86977,71.13185)'>
+<g transform='translate(-17.58298,71.13185)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
@@ -928,23 +925,136 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 </g>
 </g>
-</g>
-<g fill='#ffd9b3'>
-<g stroke='#ffd9b3'>
-<g stroke='#000'>
-<g fill='#ffd9b3'>
-<g stroke='#ffd9b3'>
-<g stroke='#000'>
-<path d='M 10.86977 53.34888 L 21.53954 53.34888 L 21.53954 32.00934 L 10.86977 32.00934 C 4.97694 32.00934 0.2 36.78629 0.2 42.67911 C 0.2 48.57193 4.97694 53.34888 10.86977 53.34888 Z'/>
+<g fill='#9cc'>
+<g stroke='#9cc'>
+<g fill='#9cc'>
+<g stroke='#9cc'>
+<path d='M -6.51321 60.46208 h 21.33954 v 21.33954 h -21.33954 Z'/>
 </g>
 </g>
-</g>
-<g transform='translate(10.86977,42.67911)'>
+<g transform='translate(4.15656,71.13185)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
 </g>
 </g>
+</g>
+</g>
+</g>
+<g fill='#80c0c0'>
+<g stroke='#80c0c0'>
+<g fill='#80c0c0'>
+<g stroke='#80c0c0'>
+<path d='M 15.22632 60.46208 h 21.33954 v 21.33954 h -21.33954 Z'/>
+</g>
+</g>
+<g transform='translate(25.89609,71.13185)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#66b3b3'>
+<g stroke='#66b3b3'>
+<g fill='#66b3b3'>
+<g stroke='#66b3b3'>
+<path d='M 47.63562 81.80162 L 47.63562 81.80162 C 53.52844 81.80162 58.30539 77.02467 58.30539 71.13185 C 58.30539 65.23903 53.52844 60.46208 47.63562 60.46208 L 36.96585 60.46208 L 36.96585 81.80162 Z'/>
+</g>
+</g>
+<g transform='translate(47.63562,71.13185)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform='translate(-16.48553,66.9652)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'>
+<text class='f0' x='318.082186' y='67.676207'>All</text>
+<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
+<text class='f0' x='337.575002' y='67.676207'>Gather1</text>
+</g>
+</g>
+</g>
+</g>
+<g fill='#ffd9b3'>
+<g stroke='#ffd9b3'>
+<g fill='#ffd9b3'>
+<g stroke='#ffd9b3'>
+<path d='M -17.58298 53.34888 L -6.91321 53.34888 L -6.91321 32.00934 L -17.58298 32.00934 C -23.4758 32.00934 -28.25275 36.78629 -28.25275 42.67911 C -28.25275 48.57193 -23.4758 53.34888 -17.58298 53.34888 Z'/>
+</g>
+</g>
+<g transform='translate(-17.58298,42.67911)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#fc9'>
+<g stroke='#fc9'>
+<g fill='#fc9'>
+<g stroke='#fc9'>
+<path d='M -6.51321 32.00934 h 21.33954 v 21.33954 h -21.33954 Z'/>
+</g>
+</g>
+<g transform='translate(4.15656,42.67911)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#ffc080'>
+<g stroke='#ffc080'>
+<g fill='#ffc080'>
+<g stroke='#ffc080'>
+<path d='M 15.22632 32.00934 h 21.33954 v 21.33954 h -21.33954 Z'/>
+</g>
+</g>
+<g transform='translate(25.89609,42.67911)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#ffb366'>
+<g stroke='#ffb366'>
+<g fill='#ffb366'>
+<g stroke='#ffb366'>
+<path d='M 47.63562 53.34888 L 47.63562 53.34888 C 53.52844 53.34888 58.30539 48.57193 58.30539 42.67911 C 58.30539 36.78629 53.52844 32.00934 47.63562 32.00934 L 36.96585 32.00934 L 36.96585 53.34888 Z'/>
+</g>
+</g>
+<g transform='translate(47.63562,42.67911)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform='translate(-16.48553,38.51245)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'>
+<text class='f0' x='318.082186' y='67.676207'>All</text>
+<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
+<text class='f0' x='337.575002' y='67.676207'>Gather1</text>
 </g>
 </g>
 </g>
@@ -1026,150 +1136,40 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 <g fill='#b3ffff'>
 <g stroke='#b3ffff'>
+<g stroke='#000'>
 <g fill='#b3ffff'>
 <g stroke='#b3ffff'>
-<path d='M -17.58298 -3.5566 L -6.91321 -3.5566 L -6.91321 -24.89613 L -17.58298 -24.89613 C -23.4758 -24.89613 -28.25275 -20.11919 -28.25275 -14.22636 C -28.25275 -8.33354 -23.4758 -3.5566 -17.58298 -3.5566 Z'/>
+<g stroke='#000'>
+<path d='M 10.86977 -3.5566 L 21.53954 -3.5566 L 21.53954 -24.89613 L 10.86977 -24.89613 C 4.97694 -24.89613 0.2 -20.11919 0.2 -14.22636 C 0.2 -8.33354 4.97694 -3.5566 10.86977 -3.5566 Z'/>
 </g>
 </g>
-<g transform='translate(-17.58298,-14.22636)'>
+</g>
+<g transform='translate(10.86977,-14.22636)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
 </g>
 </g>
-</g>
-</g>
-</g>
-<g fill='#9ff'>
-<g stroke='#9ff'>
-<g fill='#9ff'>
-<g stroke='#9ff'>
-<path d='M -6.51321 -24.89613 h 21.33954 v 21.33954 h -21.33954 Z'/>
-</g>
-</g>
-<g transform='translate(4.15656,-14.22636)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#80ffff'>
-<g stroke='#80ffff'>
-<g fill='#80ffff'>
-<g stroke='#80ffff'>
-<path d='M 15.22632 -24.89613 h 21.33954 v 21.33954 h -21.33954 Z'/>
-</g>
-</g>
-<g transform='translate(25.89609,-14.22636)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#6ff'>
-<g stroke='#6ff'>
-<g fill='#6ff'>
-<g stroke='#6ff'>
-<path d='M 47.63562 -3.5566 L 47.63562 -3.5566 C 53.52844 -3.5566 58.30539 -8.33354 58.30539 -14.22636 C 58.30539 -20.11919 53.52844 -24.89613 47.63562 -24.89613 L 36.96585 -24.89613 L 36.96585 -3.5566 Z'/>
-</g>
-</g>
-<g transform='translate(47.63562,-14.22636)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g transform='translate(-16.48553,-18.39302)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'>
-<text class='f0' x='318.082186' y='67.676207'>All</text>
-<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
-<text class='f0' x='337.575002' y='67.676207'>Gather2</text>
 </g>
 </g>
 </g>
 </g>
 <g fill='#ecb3c6'>
 <g stroke='#ecb3c6'>
+<g stroke='#000'>
 <g fill='#ecb3c6'>
 <g stroke='#ecb3c6'>
-<path d='M -17.58298 -32.00934 L -6.91321 -32.00934 L -6.91321 -53.34888 L -17.58298 -53.34888 C -23.4758 -53.34888 -28.25275 -48.57193 -28.25275 -42.67911 C -28.25275 -36.78629 -23.4758 -32.00934 -17.58298 -32.00934 Z'/>
+<g stroke='#000'>
+<path d='M 10.86977 -32.00934 L 21.53954 -32.00934 L 21.53954 -53.34888 L 10.86977 -53.34888 C 4.97694 -53.34888 0.2 -48.57193 0.2 -42.67911 C 0.2 -36.78629 4.97694 -32.00934 10.86977 -32.00934 Z'/>
 </g>
 </g>
-<g transform='translate(-17.58298,-42.67911)'>
+</g>
+<g transform='translate(10.86977,-42.67911)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
 </g>
 </g>
-</g>
-</g>
-</g>
-<g fill='#e699b3'>
-<g stroke='#e699b3'>
-<g fill='#e699b3'>
-<g stroke='#e699b3'>
-<path d='M -6.51321 -53.34888 h 21.33954 v 21.33954 h -21.33954 Z'/>
-</g>
-</g>
-<g transform='translate(4.15656,-42.67911)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#e080a0'>
-<g stroke='#e080a0'>
-<g fill='#e080a0'>
-<g stroke='#e080a0'>
-<path d='M 15.22632 -53.34888 h 21.33954 v 21.33954 h -21.33954 Z'/>
-</g>
-</g>
-<g transform='translate(25.89609,-42.67911)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#d9668c'>
-<g stroke='#d9668c'>
-<g fill='#d9668c'>
-<g stroke='#d9668c'>
-<path d='M 47.63562 -32.00934 L 47.63562 -32.00934 C 53.52844 -32.00934 58.30539 -36.78629 58.30539 -42.67911 C 58.30539 -48.57193 53.52844 -53.34888 47.63562 -53.34888 L 36.96585 -53.34888 L 36.96585 -32.00934 Z'/>
-</g>
-</g>
-<g transform='translate(47.63562,-42.67911)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g transform='translate(-16.48553,-46.84576)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'>
-<text class='f0' x='318.082186' y='67.676207'>All</text>
-<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
-<text class='f0' x='337.575002' y='67.676207'>Gather2</text>
 </g>
 </g>
 </g>
@@ -1249,17 +1249,14 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 </g>
 </g>
-<g fill='#9cc'>
-<g stroke='#9cc'>
-<g stroke='#000'>
-<g fill='#9cc'>
-<g stroke='#9cc'>
-<g stroke='#000'>
-<path d='M 299.05273 60.46208 h 21.33954 v 21.33954 h -21.33954 Z'/>
+<g fill='#b3d9d9'>
+<g stroke='#b3d9d9'>
+<g fill='#b3d9d9'>
+<g stroke='#b3d9d9'>
+<path d='M 281.26976 81.80162 L 291.93953 81.80162 L 291.93953 60.46208 L 281.26976 60.46208 C 275.37694 60.46208 270.59999 65.23903 270.59999 71.13185 C 270.59999 77.02467 275.37694 81.80162 281.26976 81.80162 Z'/>
 </g>
 </g>
-</g>
-<g transform='translate(309.7225,71.13185)'>
+<g transform='translate(281.26976,71.13185)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
@@ -1268,23 +1265,136 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 </g>
 </g>
-</g>
-<g fill='#fc9'>
-<g stroke='#fc9'>
-<g stroke='#000'>
-<g fill='#fc9'>
-<g stroke='#fc9'>
-<g stroke='#000'>
-<path d='M 299.05273 32.00934 h 21.33954 v 21.33954 h -21.33954 Z'/>
+<g fill='#9cc'>
+<g stroke='#9cc'>
+<g fill='#9cc'>
+<g stroke='#9cc'>
+<path d='M 292.33952 60.46208 h 21.33954 v 21.33954 h -21.33954 Z'/>
 </g>
 </g>
-</g>
-<g transform='translate(309.7225,42.67911)'>
+<g transform='translate(303.0093,71.13185)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
 </g>
 </g>
+</g>
+</g>
+</g>
+<g fill='#80c0c0'>
+<g stroke='#80c0c0'>
+<g fill='#80c0c0'>
+<g stroke='#80c0c0'>
+<path d='M 314.07906 60.46208 h 21.33954 v 21.33954 h -21.33954 Z'/>
+</g>
+</g>
+<g transform='translate(324.74883,71.13185)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#66b3b3'>
+<g stroke='#66b3b3'>
+<g fill='#66b3b3'>
+<g stroke='#66b3b3'>
+<path d='M 346.48836 81.80162 L 346.48836 81.80162 C 352.38118 81.80162 357.15813 77.02467 357.15813 71.13185 C 357.15813 65.23903 352.38118 60.46208 346.48836 60.46208 L 335.81859 60.46208 L 335.81859 81.80162 Z'/>
+</g>
+</g>
+<g transform='translate(346.48836,71.13185)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform='translate(282.3672,66.9652)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'>
+<text class='f0' x='318.082186' y='67.676207'>All</text>
+<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
+<text class='f0' x='337.575002' y='67.676207'>Gather1</text>
+</g>
+</g>
+</g>
+</g>
+<g fill='#ffd9b3'>
+<g stroke='#ffd9b3'>
+<g fill='#ffd9b3'>
+<g stroke='#ffd9b3'>
+<path d='M 281.26976 53.34888 L 291.93953 53.34888 L 291.93953 32.00934 L 281.26976 32.00934 C 275.37694 32.00934 270.59999 36.78629 270.59999 42.67911 C 270.59999 48.57193 275.37694 53.34888 281.26976 53.34888 Z'/>
+</g>
+</g>
+<g transform='translate(281.26976,42.67911)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#fc9'>
+<g stroke='#fc9'>
+<g fill='#fc9'>
+<g stroke='#fc9'>
+<path d='M 292.33952 32.00934 h 21.33954 v 21.33954 h -21.33954 Z'/>
+</g>
+</g>
+<g transform='translate(303.0093,42.67911)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#ffc080'>
+<g stroke='#ffc080'>
+<g fill='#ffc080'>
+<g stroke='#ffc080'>
+<path d='M 314.07906 32.00934 h 21.33954 v 21.33954 h -21.33954 Z'/>
+</g>
+</g>
+<g transform='translate(324.74883,42.67911)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#ffb366'>
+<g stroke='#ffb366'>
+<g fill='#ffb366'>
+<g stroke='#ffb366'>
+<path d='M 346.48836 53.34888 L 346.48836 53.34888 C 352.38118 53.34888 357.15813 48.57193 357.15813 42.67911 C 357.15813 36.78629 352.38118 32.00934 346.48836 32.00934 L 335.81859 32.00934 L 335.81859 53.34888 Z'/>
+</g>
+</g>
+<g transform='translate(346.48836,42.67911)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform='translate(282.3672,38.51245)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'>
+<text class='f0' x='318.082186' y='67.676207'>All</text>
+<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
+<text class='f0' x='337.575002' y='67.676207'>Gather1</text>
 </g>
 </g>
 </g>
@@ -1364,92 +1474,21 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 </g>
 </g>
-<g fill='#b3ffff'>
-<g stroke='#b3ffff'>
-<g fill='#b3ffff'>
-<g stroke='#b3ffff'>
-<path d='M 281.26976 -3.5566 L 291.93953 -3.5566 L 291.93953 -24.89613 L 281.26976 -24.89613 C 275.37694 -24.89613 270.59999 -20.11919 270.59999 -14.22636 C 270.59999 -8.33354 275.37694 -3.5566 281.26976 -3.5566 Z'/>
-</g>
-</g>
-<g transform='translate(281.26976,-14.22636)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
 <g fill='#9ff'>
 <g stroke='#9ff'>
+<g stroke='#000'>
 <g fill='#9ff'>
 <g stroke='#9ff'>
-<path d='M 292.33952 -24.89613 h 21.33954 v 21.33954 h -21.33954 Z'/>
+<g stroke='#000'>
+<path d='M 299.05273 -24.89613 h 21.33954 v 21.33954 h -21.33954 Z'/>
 </g>
 </g>
-<g transform='translate(303.0093,-14.22636)'>
+</g>
+<g transform='translate(309.7225,-14.22636)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
 </g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#80ffff'>
-<g stroke='#80ffff'>
-<g fill='#80ffff'>
-<g stroke='#80ffff'>
-<path d='M 314.07906 -24.89613 h 21.33954 v 21.33954 h -21.33954 Z'/>
-</g>
-</g>
-<g transform='translate(324.74883,-14.22636)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#6ff'>
-<g stroke='#6ff'>
-<g fill='#6ff'>
-<g stroke='#6ff'>
-<path d='M 346.48836 -3.5566 L 346.48836 -3.5566 C 352.38118 -3.5566 357.15813 -8.33354 357.15813 -14.22636 C 357.15813 -20.11919 352.38118 -24.89613 346.48836 -24.89613 L 335.81859 -24.89613 L 335.81859 -3.5566 Z'/>
-</g>
-</g>
-<g transform='translate(346.48836,-14.22636)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g transform='translate(282.3672,-18.39302)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'>
-<text class='f0' x='318.082186' y='67.676207'>All</text>
-<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
-<text class='f0' x='337.575002' y='67.676207'>Gather2</text>
-</g>
-</g>
-</g>
-</g>
-<g fill='#ecb3c6'>
-<g stroke='#ecb3c6'>
-<g fill='#ecb3c6'>
-<g stroke='#ecb3c6'>
-<path d='M 281.26976 -32.00934 L 291.93953 -32.00934 L 291.93953 -53.34888 L 281.26976 -53.34888 C 275.37694 -53.34888 270.59999 -48.57193 270.59999 -42.67911 C 270.59999 -36.78629 275.37694 -32.00934 281.26976 -32.00934 Z'/>
-</g>
-</g>
-<g transform='translate(281.26976,-42.67911)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
 </g>
 </g>
 </g>
@@ -1457,59 +1496,20 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 <g fill='#e699b3'>
 <g stroke='#e699b3'>
+<g stroke='#000'>
 <g fill='#e699b3'>
 <g stroke='#e699b3'>
-<path d='M 292.33952 -53.34888 h 21.33954 v 21.33954 h -21.33954 Z'/>
+<g stroke='#000'>
+<path d='M 299.05273 -53.34888 h 21.33954 v 21.33954 h -21.33954 Z'/>
 </g>
 </g>
-<g transform='translate(303.0093,-42.67911)'>
+</g>
+<g transform='translate(309.7225,-42.67911)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
 </g>
 </g>
-</g>
-</g>
-</g>
-<g fill='#e080a0'>
-<g stroke='#e080a0'>
-<g fill='#e080a0'>
-<g stroke='#e080a0'>
-<path d='M 314.07906 -53.34888 h 21.33954 v 21.33954 h -21.33954 Z'/>
-</g>
-</g>
-<g transform='translate(324.74883,-42.67911)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#d9668c'>
-<g stroke='#d9668c'>
-<g fill='#d9668c'>
-<g stroke='#d9668c'>
-<path d='M 346.48836 -32.00934 L 346.48836 -32.00934 C 352.38118 -32.00934 357.15813 -36.78629 357.15813 -42.67911 C 357.15813 -48.57193 352.38118 -53.34888 346.48836 -53.34888 L 335.81859 -53.34888 L 335.81859 -32.00934 Z'/>
-</g>
-</g>
-<g transform='translate(346.48836,-42.67911)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g transform='translate(282.3672,-46.84576)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'>
-<text class='f0' x='318.082186' y='67.676207'>All</text>
-<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
-<text class='f0' x='337.575002' y='67.676207'>Gather2</text>
 </g>
 </g>
 </g>
@@ -1589,17 +1589,14 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 </g>
 </g>
-<g fill='#80c0c0'>
-<g stroke='#80c0c0'>
-<g stroke='#000'>
-<g fill='#80c0c0'>
-<g stroke='#80c0c0'>
-<g stroke='#000'>
-<path d='M 0.2 -248.39066 h 21.33954 v 21.33954 h -21.33954 Z'/>
+<g fill='#b3d9d9'>
+<g stroke='#b3d9d9'>
+<g fill='#b3d9d9'>
+<g stroke='#b3d9d9'>
+<path d='M -17.58298 -227.05112 L -6.91321 -227.05112 L -6.91321 -248.39066 L -17.58298 -248.39066 C -23.4758 -248.39066 -28.25275 -243.61371 -28.25275 -237.72089 C -28.25275 -231.82806 -23.4758 -227.05112 -17.58298 -227.05112 Z'/>
 </g>
 </g>
-</g>
-<g transform='translate(10.86977,-237.72089)'>
+<g transform='translate(-17.58298,-237.72089)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
@@ -1608,23 +1605,136 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 </g>
 </g>
-</g>
-<g fill='#ffc080'>
-<g stroke='#ffc080'>
-<g stroke='#000'>
-<g fill='#ffc080'>
-<g stroke='#ffc080'>
-<g stroke='#000'>
-<path d='M 0.2 -276.8434 h 21.33954 v 21.33954 h -21.33954 Z'/>
+<g fill='#9cc'>
+<g stroke='#9cc'>
+<g fill='#9cc'>
+<g stroke='#9cc'>
+<path d='M -6.51321 -248.39066 h 21.33954 v 21.33954 h -21.33954 Z'/>
 </g>
 </g>
-</g>
-<g transform='translate(10.86977,-266.17363)'>
+<g transform='translate(4.15656,-237.72089)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
 </g>
 </g>
+</g>
+</g>
+</g>
+<g fill='#80c0c0'>
+<g stroke='#80c0c0'>
+<g fill='#80c0c0'>
+<g stroke='#80c0c0'>
+<path d='M 15.22632 -248.39066 h 21.33954 v 21.33954 h -21.33954 Z'/>
+</g>
+</g>
+<g transform='translate(25.89609,-237.72089)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#66b3b3'>
+<g stroke='#66b3b3'>
+<g fill='#66b3b3'>
+<g stroke='#66b3b3'>
+<path d='M 47.63562 -227.05112 L 47.63562 -227.05112 C 53.52844 -227.05112 58.30539 -231.82806 58.30539 -237.72089 C 58.30539 -243.61371 53.52844 -248.39066 47.63562 -248.39066 L 36.96585 -248.39066 L 36.96585 -227.05112 Z'/>
+</g>
+</g>
+<g transform='translate(47.63562,-237.72089)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform='translate(-16.48553,-241.88754)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'>
+<text class='f0' x='318.082186' y='67.676207'>All</text>
+<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
+<text class='f0' x='337.575002' y='67.676207'>Gather1</text>
+</g>
+</g>
+</g>
+</g>
+<g fill='#ffd9b3'>
+<g stroke='#ffd9b3'>
+<g fill='#ffd9b3'>
+<g stroke='#ffd9b3'>
+<path d='M -17.58298 -255.50386 L -6.91321 -255.50386 L -6.91321 -276.8434 L -17.58298 -276.8434 C -23.4758 -276.8434 -28.25275 -272.06645 -28.25275 -266.17363 C -28.25275 -260.2808 -23.4758 -255.50386 -17.58298 -255.50386 Z'/>
+</g>
+</g>
+<g transform='translate(-17.58298,-266.17363)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#fc9'>
+<g stroke='#fc9'>
+<g fill='#fc9'>
+<g stroke='#fc9'>
+<path d='M -6.51321 -276.8434 h 21.33954 v 21.33954 h -21.33954 Z'/>
+</g>
+</g>
+<g transform='translate(4.15656,-266.17363)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#ffc080'>
+<g stroke='#ffc080'>
+<g fill='#ffc080'>
+<g stroke='#ffc080'>
+<path d='M 15.22632 -276.8434 h 21.33954 v 21.33954 h -21.33954 Z'/>
+</g>
+</g>
+<g transform='translate(25.89609,-266.17363)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#ffb366'>
+<g stroke='#ffb366'>
+<g fill='#ffb366'>
+<g stroke='#ffb366'>
+<path d='M 47.63562 -255.50386 L 47.63562 -255.50386 C 53.52844 -255.50386 58.30539 -260.2808 58.30539 -266.17363 C 58.30539 -272.06645 53.52844 -276.8434 47.63562 -276.8434 L 36.96585 -276.8434 L 36.96585 -255.50386 Z'/>
+</g>
+</g>
+<g transform='translate(47.63562,-266.17363)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform='translate(-16.48553,-270.34029)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'>
+<text class='f0' x='318.082186' y='67.676207'>All</text>
+<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
+<text class='f0' x='337.575002' y='67.676207'>Gather1</text>
 </g>
 </g>
 </g>
@@ -1704,108 +1814,21 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 </g>
 </g>
-<g fill='#b3ffff'>
-<g stroke='#b3ffff'>
-<g fill='#b3ffff'>
-<g stroke='#b3ffff'>
-<path d='M -17.58298 -312.40933 L -6.91321 -312.40933 L -6.91321 -333.74887 L -17.58298 -333.74887 C -23.4758 -333.74887 -28.25275 -328.97192 -28.25275 -323.0791 C -28.25275 -317.18628 -23.4758 -312.40933 -17.58298 -312.40933 Z'/>
-</g>
-</g>
-<g transform='translate(-17.58298,-323.0791)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#9ff'>
-<g stroke='#9ff'>
-<g fill='#9ff'>
-<g stroke='#9ff'>
-<path d='M -6.51321 -333.74887 h 21.33954 v 21.33954 h -21.33954 Z'/>
-</g>
-</g>
-<g transform='translate(4.15656,-323.0791)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
 <g fill='#80ffff'>
 <g stroke='#80ffff'>
+<g stroke='#000'>
 <g fill='#80ffff'>
 <g stroke='#80ffff'>
-<path d='M 15.22632 -333.74887 h 21.33954 v 21.33954 h -21.33954 Z'/>
+<g stroke='#000'>
+<path d='M 0.2 -333.74887 h 21.33954 v 21.33954 h -21.33954 Z'/>
 </g>
 </g>
-<g transform='translate(25.89609,-323.0791)'>
+</g>
+<g transform='translate(10.86977,-323.0791)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
 </g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#6ff'>
-<g stroke='#6ff'>
-<g fill='#6ff'>
-<g stroke='#6ff'>
-<path d='M 47.63562 -312.40933 L 47.63562 -312.40933 C 53.52844 -312.40933 58.30539 -317.18628 58.30539 -323.0791 C 58.30539 -328.97192 53.52844 -333.74887 47.63562 -333.74887 L 36.96585 -333.74887 L 36.96585 -312.40933 Z'/>
-</g>
-</g>
-<g transform='translate(47.63562,-323.0791)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g transform='translate(-16.48553,-327.24576)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'>
-<text class='f0' x='318.082186' y='67.676207'>All</text>
-<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
-<text class='f0' x='337.575002' y='67.676207'>Gather2</text>
-</g>
-</g>
-</g>
-</g>
-<g fill='#ecb3c6'>
-<g stroke='#ecb3c6'>
-<g fill='#ecb3c6'>
-<g stroke='#ecb3c6'>
-<path d='M -17.58298 -340.86208 L -6.91321 -340.86208 L -6.91321 -362.20161 L -17.58298 -362.20161 C -23.4758 -362.20161 -28.25275 -357.42467 -28.25275 -351.53185 C -28.25275 -345.63902 -23.4758 -340.86208 -17.58298 -340.86208 Z'/>
-</g>
-</g>
-<g transform='translate(-17.58298,-351.53185)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#e699b3'>
-<g stroke='#e699b3'>
-<g fill='#e699b3'>
-<g stroke='#e699b3'>
-<path d='M -6.51321 -362.20161 h 21.33954 v 21.33954 h -21.33954 Z'/>
-</g>
-</g>
-<g transform='translate(4.15656,-351.53185)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
 </g>
 </g>
 </g>
@@ -1813,43 +1836,20 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 <g fill='#e080a0'>
 <g stroke='#e080a0'>
+<g stroke='#000'>
 <g fill='#e080a0'>
 <g stroke='#e080a0'>
-<path d='M 15.22632 -362.20161 h 21.33954 v 21.33954 h -21.33954 Z'/>
+<g stroke='#000'>
+<path d='M 0.2 -362.20161 h 21.33954 v 21.33954 h -21.33954 Z'/>
 </g>
 </g>
-<g transform='translate(25.89609,-351.53185)'>
+</g>
+<g transform='translate(10.86977,-351.53185)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
 </g>
 </g>
-</g>
-</g>
-</g>
-<g fill='#d9668c'>
-<g stroke='#d9668c'>
-<g fill='#d9668c'>
-<g stroke='#d9668c'>
-<path d='M 47.63562 -340.86208 L 47.63562 -340.86208 C 53.52844 -340.86208 58.30539 -345.63902 58.30539 -351.53185 C 58.30539 -357.42467 53.52844 -362.20161 47.63562 -362.20161 L 36.96585 -362.20161 L 36.96585 -340.86208 Z'/>
-</g>
-</g>
-<g transform='translate(47.63562,-351.53185)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g transform='translate(-16.48553,-355.6985)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'>
-<text class='f0' x='318.082186' y='67.676207'>All</text>
-<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
-<text class='f0' x='337.575002' y='67.676207'>Gather2</text>
 </g>
 </g>
 </g>
@@ -1929,17 +1929,14 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 </g>
 </g>
-<g fill='#66b3b3'>
-<g stroke='#66b3b3'>
-<g stroke='#000'>
-<g fill='#66b3b3'>
-<g stroke='#66b3b3'>
-<g stroke='#000'>
-<path d='M 309.7225 -227.05112 L 309.7225 -227.05112 C 315.61533 -227.05112 320.39227 -231.82806 320.39227 -237.72089 C 320.39227 -243.61371 315.61533 -248.39066 309.7225 -248.39066 L 299.05273 -248.39066 L 299.05273 -227.05112 Z'/>
+<g fill='#b3d9d9'>
+<g stroke='#b3d9d9'>
+<g fill='#b3d9d9'>
+<g stroke='#b3d9d9'>
+<path d='M 281.26976 -227.05112 L 291.93953 -227.05112 L 291.93953 -248.39066 L 281.26976 -248.39066 C 275.37694 -248.39066 270.59999 -243.61371 270.59999 -237.72089 C 270.59999 -231.82806 275.37694 -227.05112 281.26976 -227.05112 Z'/>
 </g>
 </g>
-</g>
-<g transform='translate(309.7225,-237.72089)'>
+<g transform='translate(281.26976,-237.72089)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
@@ -1948,23 +1945,136 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 </g>
 </g>
-</g>
-<g fill='#ffb366'>
-<g stroke='#ffb366'>
-<g stroke='#000'>
-<g fill='#ffb366'>
-<g stroke='#ffb366'>
-<g stroke='#000'>
-<path d='M 309.7225 -255.50386 L 309.7225 -255.50386 C 315.61533 -255.50386 320.39227 -260.2808 320.39227 -266.17363 C 320.39227 -272.06645 315.61533 -276.8434 309.7225 -276.8434 L 299.05273 -276.8434 L 299.05273 -255.50386 Z'/>
+<g fill='#9cc'>
+<g stroke='#9cc'>
+<g fill='#9cc'>
+<g stroke='#9cc'>
+<path d='M 292.33952 -248.39066 h 21.33954 v 21.33954 h -21.33954 Z'/>
 </g>
 </g>
-</g>
-<g transform='translate(309.7225,-266.17363)'>
+<g transform='translate(303.0093,-237.72089)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
 </g>
 </g>
+</g>
+</g>
+</g>
+<g fill='#80c0c0'>
+<g stroke='#80c0c0'>
+<g fill='#80c0c0'>
+<g stroke='#80c0c0'>
+<path d='M 314.07906 -248.39066 h 21.33954 v 21.33954 h -21.33954 Z'/>
+</g>
+</g>
+<g transform='translate(324.74883,-237.72089)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#66b3b3'>
+<g stroke='#66b3b3'>
+<g fill='#66b3b3'>
+<g stroke='#66b3b3'>
+<path d='M 346.48836 -227.05112 L 346.48836 -227.05112 C 352.38118 -227.05112 357.15813 -231.82806 357.15813 -237.72089 C 357.15813 -243.61371 352.38118 -248.39066 346.48836 -248.39066 L 335.81859 -248.39066 L 335.81859 -227.05112 Z'/>
+</g>
+</g>
+<g transform='translate(346.48836,-237.72089)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform='translate(282.3672,-241.88754)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'>
+<text class='f0' x='318.082186' y='67.676207'>All</text>
+<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
+<text class='f0' x='337.575002' y='67.676207'>Gather1</text>
+</g>
+</g>
+</g>
+</g>
+<g fill='#ffd9b3'>
+<g stroke='#ffd9b3'>
+<g fill='#ffd9b3'>
+<g stroke='#ffd9b3'>
+<path d='M 281.26976 -255.50386 L 291.93953 -255.50386 L 291.93953 -276.8434 L 281.26976 -276.8434 C 275.37694 -276.8434 270.59999 -272.06645 270.59999 -266.17363 C 270.59999 -260.2808 275.37694 -255.50386 281.26976 -255.50386 Z'/>
+</g>
+</g>
+<g transform='translate(281.26976,-266.17363)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#fc9'>
+<g stroke='#fc9'>
+<g fill='#fc9'>
+<g stroke='#fc9'>
+<path d='M 292.33952 -276.8434 h 21.33954 v 21.33954 h -21.33954 Z'/>
+</g>
+</g>
+<g transform='translate(303.0093,-266.17363)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#ffc080'>
+<g stroke='#ffc080'>
+<g fill='#ffc080'>
+<g stroke='#ffc080'>
+<path d='M 314.07906 -276.8434 h 21.33954 v 21.33954 h -21.33954 Z'/>
+</g>
+</g>
+<g transform='translate(324.74883,-266.17363)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g fill='#ffb366'>
+<g stroke='#ffb366'>
+<g fill='#ffb366'>
+<g stroke='#ffb366'>
+<path d='M 346.48836 -255.50386 L 346.48836 -255.50386 C 352.38118 -255.50386 357.15813 -260.2808 357.15813 -266.17363 C 357.15813 -272.06645 352.38118 -276.8434 346.48836 -276.8434 L 335.81859 -276.8434 L 335.81859 -255.50386 Z'/>
+</g>
+</g>
+<g transform='translate(346.48836,-266.17363)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g transform='translate(282.3672,-270.34029)'>
+<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
+<g fill='#000'>
+<g stroke='none'>
+<text class='f0' x='318.082186' y='67.676207'>All</text>
+<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
+<text class='f0' x='337.575002' y='67.676207'>Gather1</text>
 </g>
 </g>
 </g>
@@ -2044,124 +2154,21 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 </g>
 </g>
-<g fill='#b3ffff'>
-<g stroke='#b3ffff'>
-<g fill='#b3ffff'>
-<g stroke='#b3ffff'>
-<path d='M 281.26976 -312.40933 L 291.93953 -312.40933 L 291.93953 -333.74887 L 281.26976 -333.74887 C 275.37694 -333.74887 270.59999 -328.97192 270.59999 -323.0791 C 270.59999 -317.18628 275.37694 -312.40933 281.26976 -312.40933 Z'/>
-</g>
-</g>
-<g transform='translate(281.26976,-323.0791)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#9ff'>
-<g stroke='#9ff'>
-<g fill='#9ff'>
-<g stroke='#9ff'>
-<path d='M 292.33952 -333.74887 h 21.33954 v 21.33954 h -21.33954 Z'/>
-</g>
-</g>
-<g transform='translate(303.0093,-323.0791)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#80ffff'>
-<g stroke='#80ffff'>
-<g fill='#80ffff'>
-<g stroke='#80ffff'>
-<path d='M 314.07906 -333.74887 h 21.33954 v 21.33954 h -21.33954 Z'/>
-</g>
-</g>
-<g transform='translate(324.74883,-323.0791)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
 <g fill='#6ff'>
 <g stroke='#6ff'>
+<g stroke='#000'>
 <g fill='#6ff'>
 <g stroke='#6ff'>
-<path d='M 346.48836 -312.40933 L 346.48836 -312.40933 C 352.38118 -312.40933 357.15813 -317.18628 357.15813 -323.0791 C 357.15813 -328.97192 352.38118 -333.74887 346.48836 -333.74887 L 335.81859 -333.74887 L 335.81859 -312.40933 Z'/>
+<g stroke='#000'>
+<path d='M 309.7225 -312.40933 L 309.7225 -312.40933 C 315.61533 -312.40933 320.39227 -317.18628 320.39227 -323.0791 C 320.39227 -328.97192 315.61533 -333.74887 309.7225 -333.74887 L 299.05273 -333.74887 L 299.05273 -312.40933 Z'/>
 </g>
 </g>
-<g transform='translate(346.48836,-323.0791)'>
+</g>
+<g transform='translate(309.7225,-323.0791)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
 </g>
-</g>
-</g>
-</g>
-</g>
-<g transform='translate(282.3672,-327.24576)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'>
-<text class='f0' x='318.082186' y='67.676207'>All</text>
-<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
-<text class='f0' x='337.575002' y='67.676207'>Gather2</text>
-</g>
-</g>
-</g>
-</g>
-<g fill='#ecb3c6'>
-<g stroke='#ecb3c6'>
-<g fill='#ecb3c6'>
-<g stroke='#ecb3c6'>
-<path d='M 281.26976 -340.86208 L 291.93953 -340.86208 L 291.93953 -362.20161 L 281.26976 -362.20161 C 275.37694 -362.20161 270.59999 -357.42467 270.59999 -351.53185 C 270.59999 -345.63902 275.37694 -340.86208 281.26976 -340.86208 Z'/>
-</g>
-</g>
-<g transform='translate(281.26976,-351.53185)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#e699b3'>
-<g stroke='#e699b3'>
-<g fill='#e699b3'>
-<g stroke='#e699b3'>
-<path d='M 292.33952 -362.20161 h 21.33954 v 21.33954 h -21.33954 Z'/>
-</g>
-</g>
-<g transform='translate(303.0093,-351.53185)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
-</g>
-</g>
-</g>
-</g>
-</g>
-<g fill='#e080a0'>
-<g stroke='#e080a0'>
-<g fill='#e080a0'>
-<g stroke='#e080a0'>
-<path d='M 314.07906 -362.20161 h 21.33954 v 21.33954 h -21.33954 Z'/>
-</g>
-</g>
-<g transform='translate(324.74883,-351.53185)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'/>
 </g>
 </g>
 </g>
@@ -2169,27 +2176,20 @@ text.f2 {font-family:cmr10;font-size:9.96264px}
 </g>
 <g fill='#d9668c'>
 <g stroke='#d9668c'>
+<g stroke='#000'>
 <g fill='#d9668c'>
 <g stroke='#d9668c'>
-<path d='M 346.48836 -340.86208 L 346.48836 -340.86208 C 352.38118 -340.86208 357.15813 -345.63902 357.15813 -351.53185 C 357.15813 -357.42467 352.38118 -362.20161 346.48836 -362.20161 L 335.81859 -362.20161 L 335.81859 -340.86208 Z'/>
+<g stroke='#000'>
+<path d='M 309.7225 -340.86208 L 309.7225 -340.86208 C 315.61533 -340.86208 320.39227 -345.63902 320.39227 -351.53185 C 320.39227 -357.42467 315.61533 -362.20161 309.7225 -362.20161 L 299.05273 -362.20161 L 299.05273 -340.86208 Z'/>
 </g>
 </g>
-<g transform='translate(346.48836,-351.53185)'>
+</g>
+<g transform='translate(309.7225,-351.53185)'>
 <g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
 <g fill='#000'>
 <g stroke='none'/>
 </g>
 </g>
-</g>
-</g>
-</g>
-<g transform='translate(282.3672,-355.6985)'>
-<g stroke='none' transform='scale(-1.00375,1.00375)translate(318.082186,67.676207)scale(-1,-1)'>
-<g fill='#000'>
-<g stroke='none'>
-<text class='f0' x='318.082186' y='67.676207'>All</text>
-<rect x='334.063177' y='67.277707' height='.3985' width='3.511825'/>
-<text class='f0' x='337.575002' y='67.676207'>Gather2</text>
 </g>
 </g>
 </g>

@@ -722,145 +722,211 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ## Fully Sharded Data Parallel (FSDP)
 
-![](images/fsdp/fsdp-0.svg)
+![](images/fsdp/fsdp-0.svg){height=375pt}
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-1.svg)
-
-
----
-
-## FSDP
-
-![](images/fsdp/fsdp-2.svg)
+![](images/fsdp/fsdp-1.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-3.svg)
+![](images/fsdp/fsdp-2.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-4.svg)
+![](images/fsdp/fsdp-3.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-5.svg)
+![](images/fsdp/fsdp-4.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-6.svg)
+![](images/fsdp/fsdp-5.svg){height=425pt}
+
+---
+
+## FSDP
+
+![](images/fsdp/fsdp-5-5.svg){height=425pt}
+
+---
+
+## FSDP
+
+![](images/fsdp/fsdp-6.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-7.svg)
+![](images/fsdp/fsdp-7.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-8.svg)
+![](images/fsdp/fsdp-8.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-9.svg)
+![](images/fsdp/fsdp-9.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-10.svg)
+![](images/fsdp/fsdp-10.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-11.svg)
+![](images/fsdp/fsdp-11.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-12.svg)
+![](images/fsdp/fsdp-12.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-13.svg)
+![](images/fsdp/fsdp-13.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-14.svg)
+![](images/fsdp/fsdp-14.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-15.svg)
+![](images/fsdp/fsdp-15.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-16.svg)
+![](images/fsdp/fsdp-16.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-17.svg)
+![](images/fsdp/fsdp-17.svg){height=425pt}
 
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-18.svg)
+![](images/fsdp/fsdp-18.svg){height=425pt}
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-19.svg)
+![](images/fsdp/fsdp-19.svg){height=425pt}
 
 ---
 
 ## FSDP
 
-![](images/fsdp/fsdp-20.svg)
+![](images/fsdp/fsdp-20.svg){height=425pt}
 
+
+---
+
+## FSDP
+
+![](images/fsdp/fsdp-21.svg){height=425pt}
+
+
+
+---
+
+## FSDP
+
+![](images/fsdp/fsdp-22.svg){height=425pt}
+
+
+
+---
+
+## FSDP
+
+![](images/fsdp/fsdp-23.svg){height=425pt}
+
+
+
+---
+
+## FSDP
+
+![](images/fsdp/fsdp-24.svg){height=425pt}
+
+
+
+---
+
+## FSDP
+
+![](images/fsdp/fsdp-25.svg){height=425pt}
+
+
+
+---
+
+## FSDP
+
+![](images/fsdp/fsdp-26.svg){height=425pt}
+
+
+
+---
+
+## FSDP
+
+![](images/fsdp/fsdp-27.svg){height=425pt}
+
+
+---
+
+## FSDP
+
+![](images/fsdp/fsdp-28.svg){height=425pt}
 
 ---
 

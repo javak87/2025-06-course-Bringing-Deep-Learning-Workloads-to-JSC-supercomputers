@@ -56,7 +56,7 @@ date: December 5th, 2024
 ## Data loading
 
 - We have CPUs and lots of memory - let's use them
-- If your dataset is relatively small (< 500 GB) and can fit into the working memory (RAM) of each compute node (along with the program state), you can store it in ``/dev/shm``. This is a special filesystem that uses RAM for storage, making it extremely fast for data access. ⚡️
+- If your dataset is relatively small (< 500 GB) and can fit into the working memory (RAM) of each compute node (along with the program state), you can store it in **``/dev/shm``**. This is a special filesystem that uses RAM for storage, making it extremely fast for data access. ⚡️
 - For bigger datasets (> 500 GB) you have many strategies:
     - Hierarchical Data Format 5 (HDF5)
     - Apache Arrow
@@ -239,16 +239,16 @@ class ImageNet(Dataset):
 ![](images/batch.png){width=650 height=300}
 
 ```python 
+    for (sample, label) in tqdm(zip(samples, targets)):
+        with open(os.path.join(args.data_root, sample), 'rb') as f:
+            img_string = f.read()
 
-    with open(sample, 'rb') as f:
-        img_string = f.read()
+        image_data = pa.array([img_string], type=binary_t)
+        label = pa.array([label], type=uint16_t)
 
-    image_data = pa.array([img_string], type=binary_t)
-    label = pa.array([label], type=uint16_t)
+        batch = pa.record_batch([image_data, label], schema=schema)
 
-    batch = pa.record_batch([image_data, label], schema=schema)
-
-    writer.write(batch)
+        writer.write(batch)
 ```
 
 ---
@@ -259,15 +259,16 @@ class ImageNet(Dataset):
 
 ```python 
 
-    with open(sample, 'rb') as f:
-        img_string = f.read()
+    for (sample, label) in tqdm(zip(samples, targets)):
+        with open(os.path.join(args.data_root, sample), 'rb') as f:
+            img_string = f.read()
 
-    image_data = pa.array([img_string], type=binary_t)
-    label = pa.array([label], type=uint16_t)
+        image_data = pa.array([img_string], type=binary_t)
+        label = pa.array([label], type=uint16_t)
 
-    batch = pa.record_batch([image_data, label], schema=schema)
+        batch = pa.record_batch([image_data, label], schema=schema)
 
-    writer.write(batch)
+        writer.write(batch)
 ```
 
 ---

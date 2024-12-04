@@ -303,9 +303,10 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="
 them</li>
 <li class="fragment">If your dataset is relatively small (&lt; 500 GB)
 and can fit into the working memory (RAM) of each compute node (along
-with the program state), you can store it in <code>/dev/shm</code>. This
-is a special filesystem that uses RAM for storage, making it extremely
-fast for data access. ⚡️</li>
+with the program state), you can store it in
+<strong><code>/dev/shm</code></strong>. This is a special filesystem
+that uses RAM for storage, making it extremely fast for data access.
+⚡️</li>
 <li class="fragment">For bigger datasets (&gt; 500 GB) you have many
 strategies:
 <ul>
@@ -475,31 +476,32 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a h
 <h2>Pyarrow File Creation</h2>
 <p><img data-src="images/batch.png" width="650" height="300" /></p>
 <div class="sourceCode" id="cb13"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(sample, <span class="st">&#39;rb&#39;</span>) <span class="im">as</span> f:</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        img_string <span class="op">=</span> f.read()</span>
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (sample, label) <span class="kw">in</span> tqdm(<span class="bu">zip</span>(samples, targets)):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(os.path.join(args.data_root, sample), <span class="st">&#39;rb&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            img_string <span class="op">=</span> f.read()</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    image_data <span class="op">=</span> pa.array([img_string], <span class="bu">type</span><span class="op">=</span>binary_t)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    label <span class="op">=</span> pa.array([label], <span class="bu">type</span><span class="op">=</span>uint16_t)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        image_data <span class="op">=</span> pa.array([img_string], <span class="bu">type</span><span class="op">=</span>binary_t)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        label <span class="op">=</span> pa.array([label], <span class="bu">type</span><span class="op">=</span>uint16_t)</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    batch <span class="op">=</span> pa.record_batch([image_data, label], schema<span class="op">=</span>schema)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        batch <span class="op">=</span> pa.record_batch([image_data, label], schema<span class="op">=</span>schema)</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    writer.write(batch)</span></code></pre></div>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        writer.write(batch)</span></code></pre></div>
 </section>
 <section id="pyarrow-file-creation-4" class="slide level2">
 <h2>Pyarrow File Creation</h2>
 <p><img data-src="images/pyarrow.png" width="650" height="300" /></p>
 <div class="sourceCode" id="cb14"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(sample, <span class="st">&#39;rb&#39;</span>) <span class="im">as</span> f:</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        img_string <span class="op">=</span> f.read()</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    image_data <span class="op">=</span> pa.array([img_string], <span class="bu">type</span><span class="op">=</span>binary_t)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    label <span class="op">=</span> pa.array([label], <span class="bu">type</span><span class="op">=</span>uint16_t)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    batch <span class="op">=</span> pa.record_batch([image_data, label], schema<span class="op">=</span>schema)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    writer.write(batch)</span></code></pre></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (sample, label) <span class="kw">in</span> tqdm(<span class="bu">zip</span>(samples, targets)):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(os.path.join(args.data_root, sample), <span class="st">&#39;rb&#39;</span>) <span class="im">as</span> f:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>            img_string <span class="op">=</span> f.read()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        image_data <span class="op">=</span> pa.array([img_string], <span class="bu">type</span><span class="op">=</span>binary_t)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        label <span class="op">=</span> pa.array([label], <span class="bu">type</span><span class="op">=</span>uint16_t)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        batch <span class="op">=</span> pa.record_batch([image_data, label], schema<span class="op">=</span>schema)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        writer.write(batch)</span></code></pre></div>
 </section>
 <section id="access-arrow-file" class="slide level2">
 <h2>Access Arrow File</h2>

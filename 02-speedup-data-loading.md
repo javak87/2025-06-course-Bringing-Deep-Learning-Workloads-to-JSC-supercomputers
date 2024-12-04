@@ -45,7 +45,7 @@ date: December 5th, 2024
     /p/scratch/training2449/$USER
     ```
 
-- Store the data in `$DATA_dataset` for a more permanent location. **This location is not accessible by compute nodes. Please copy the data to scratch to ensure your job can access it**.
+- Store the data in [`$DATA_dataset`](https://judoor.fz-juelich.de/projects/datasets/) for a more permanent location. **This location is not accessible by compute nodes. Please copy the data to scratch to ensure your job can access it**.
 
     ```bash
     /p/data1/datasets

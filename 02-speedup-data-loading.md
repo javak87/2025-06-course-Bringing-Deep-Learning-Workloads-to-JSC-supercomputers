@@ -78,7 +78,7 @@ date: December 5th, 2024
 
     ```bash
     cd $HOME/course
-    git clone https://github.com/HelmholtzAI-FZJ/2024-08-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers.git
+    git clone https://github.com/HelmholtzAI-FZJ/2024-12-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers.git
     ```
 
 - Move to the correct folder

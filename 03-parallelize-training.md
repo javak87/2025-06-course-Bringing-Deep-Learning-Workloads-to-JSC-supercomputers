@@ -73,7 +73,7 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
     - Activate your environment:
 
         ```bash
-        source $HOME/course/$USER/sc_venv_template/activate.sh
+        source $HOME/course/sc_venv_template/activate.sh
         ```
 
     - Run:

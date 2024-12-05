@@ -493,7 +493,7 @@ def setup():
     
         ```python
         # We use the utility function print0 to print messages only from rank 0.
-        print0(f'[{epoch+1}/{args.epochs}; {i}] Train loss: {train_loss:.5f}, validation loss: {val_loss:.5f}')
+        print0(f'[{epoch+1}/{args.epochs}] Train loss: {train_loss:.5f}, validation loss: {val_loss:.5f}')
         ```
         ```python
         # We use the utility function print0 to print messages only from rank 0.

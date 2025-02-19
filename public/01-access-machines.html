@@ -42,7 +42,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -227,7 +227,7 @@
   <h1 class="title">Accessing the machines, intro</h1>
   <p class="author">Alexandre Strube // Sabrina Benassou // José Ignacio
 Robledo</p>
-  <p class="date">December 4th, 2024</p>
+  <p class="date">March 18th, 2025</p>
 </section>
 
 <section id="communication" class="slide level2">
@@ -372,8 +372,8 @@ computer, really</figcaption>
 
 <h3 id="jülich-supercomputers">Jülich Supercomputers</h3>
 <figure>
-<img data-src="images/machines.png" alt="JSC Supercomputer Stragegy" />
-<figcaption aria-hidden="true">JSC Supercomputer Stragegy</figcaption>
+<img data-src="images/machines.png" alt="JSC Supercomputer Strategy" />
+<figcaption aria-hidden="true">JSC Supercomputer Strategy</figcaption>
 </figure>
 </section>
 <section class="slide level2">
@@ -561,7 +561,7 @@ projects. For every compute job, a compute project pays.</li>
 <li class="fragment">Time is measured in core-hours. One hour of Jureca
 DC is 128 core-hours.</li>
 <li class="fragment">Example: Job runs for 8 hours on 64 nodes of Jureca
-DC: 8 * 128 * 48 = 65536 core-h!</li>
+DC: 8 * 64 * 128 = 65536 core-h!</li>
 </ul>
 </section>
 <section id="jupyter" class="slide level2">

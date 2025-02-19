@@ -2,8 +2,7 @@
 author: Alexandre Strube // Sabrina Benassou // José Ignacio Robledo
 title: Bringing Deep Learning Workloads to JSC supercomputers
 subtitle: Parallelize Training
-date: December 5th, 2024
-
+date: March 19th, 2025
 ---
 
 ## Before Starting
@@ -11,7 +10,7 @@ date: December 5th, 2024
 - Move to the correct folder
     
     ```bash
-    cd 2024-12-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/parallelize/
+    cd 2025-03-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/parallelize/
     ```
 
 ---

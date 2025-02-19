@@ -39,8 +39,8 @@ This course is given in English.
 
 ### Dates:
 
-- December 4th, 2024, 10:00 - 14:00
-- December 5th, 2024, 10:00 - 14:00
+- March 18th, 2025, 13:00 - 17:00
+- March 19th, 2025, 13:00 - 17:00
 
 ### Further information:
 

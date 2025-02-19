@@ -592,8 +592,7 @@ Search with the version - it will suggest the hierarchy
 
 ```bash
 $ python
-Python 3.9.18 (main, Jan 24 2024, 00:00:00)  
-[GCC 11.4.1 20231218 (Red Hat 11.4.1-3)] on linux
+Python 3.12.3 (main, Apr 15 2024, 18:07:06) [GCC 11.4.1 20231218 (Red Hat 11.4.1-3)] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import torch
 Traceback (most recent call last):

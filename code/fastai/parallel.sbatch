@@ -20,7 +20,7 @@ echo "NODELIST="${SLURM_NODELIST}
 master_addr=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n 1)
 export MASTER_ADDR=$master_addr"i"
 
-cd $HOME/course/2024-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/fastai
+cd $HOME/course/2025-03-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/fastai
 source sc_venv_template/activate.sh # Now we finally use the fastai module
 
 srun python cats-parallel.py

@@ -3,13 +3,13 @@
 #SBATCH --gres=gpu:4  
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=128
-#SBATCH --account=training2449
+#SBATCH --account=training2501
 #SBATCH --partition=dc-gpu
 #SBATCH --time=02:00:00
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
 
-#SBATCH --reservation=training2449_day2
+#SBATCH --reservation=training2501_day2
 
 # Export the necessary environment variables for huggingface offline mode
 export HF_DATASETS_OFFLINE=1

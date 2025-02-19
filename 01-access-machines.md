@@ -614,7 +614,7 @@ Copy and paste these lines
 # This command fails, as we have no proper pytorch
 python -c "import torch ; print(torch.__version__)" 
 # So, we load the correct modules...
-module load Stages/2024
+module load Stages/2025
 module load GCC OpenMPI Python PyTorch
 # And we run a small test: import pytorch and ask its version
 python -c "import torch ; print(torch.__version__)" 
@@ -626,7 +626,7 @@ $ python -c "import torch ; print(torch.__version__)"
 Traceback (most recent call last):
   File "<string>", line 1, in <module>
 ModuleNotFoundError: No module named 'torch'
-$ module load Stages/2024
+$ module load Stages/2025
 $ module load GCC OpenMPI Python PyTorch
 $ python -c "import torch ; print(torch.__version__)" 
 2.1.2
@@ -720,7 +720,7 @@ print("The result is:\n", result)
 ### How to run it on the login node
 
 ```
-module load Stages/2024 
+module load Stages/2025 
 module load GCC OpenMPI Python PyTorch 
 python matrix.py
 ```
@@ -769,7 +769,7 @@ Simple Linux Utility for Resource Management
 #SBATCH --partition=dc-gpu         # Machine partition
 #SBATCH --reservation=training2501_day1 # For today only
 
-module load Stages/2024
+module load Stages/2025
 module load GCC OpenMPI PyTorch  # Load the correct modules on the compute node(s)
 
 srun python matrix.py            # srun tells the supercomputer how to run it
@@ -905,7 +905,7 @@ The activation script must be sourced, otherwise the virtual environment will no
 Setting vars
 The following modules were not unloaded:
   (Use "module --force purge" to unload all):
- 1) Stages/2024
+ 1) Stages/2025
 ```
 
 ```bash
@@ -1005,7 +1005,7 @@ $ cat err.7948496
 The following modules were not unloaded:
   (Use "module --force purge" to unload all):
 
-  1) Stages/2024
+  1) Stages/2025
 ```
 
 ---

@@ -936,7 +936,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href=
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This command fails, as we have no proper pytorch</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">&quot;import torch ; print(torch.__version__)&quot;</span> </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># So, we load the correct modules...</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load Stages/2024</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load Stages/2025</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load GCC OpenMPI Python PyTorch</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># And we run a small test: import pytorch and ask its version</span></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">&quot;import torch ; print(torch.__version__)&quot;</span> </span></code></pre></div>
@@ -946,7 +946,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href=
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Traceback</span> <span class="er">(</span><span class="ex">most</span> recent call last<span class="kw">)</span><span class="bu">:</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">File</span> <span class="st">&quot;&lt;string&gt;&quot;</span>, line 1, in <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ModuleNotFoundError:</span> No module named <span class="st">&#39;torch&#39;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> module load Stages/2024</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> module load Stages/2025</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> module load GCC OpenMPI Python PyTorch</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python <span class="at">-c</span> <span class="st">&quot;import torch ; print(torch.__version__)&quot;</span> </span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ex">2.1.2</span></span></code></pre></div>
@@ -1033,7 +1033,7 @@ class="sourceCode numberSource python number-lines"><code class="sourceCode pyth
 
 <h3 id="how-to-run-it-on-the-login-node">How to run it on the login
 node</h3>
-<pre><code>module load Stages/2024 
+<pre><code>module load Stages/2025 
 module load GCC OpenMPI Python PyTorch 
 python matrix.py</code></pre>
 </section>
@@ -1080,7 +1080,7 @@ class="sourceCode numberSource bash number-lines"><code class="sourceCode bash">
 <span id="cb19-10"><a href="#cb19-10"></a><span class="co">#SBATCH --partition=dc-gpu         # Machine partition</span></span>
 <span id="cb19-11"><a href="#cb19-11"></a><span class="co">#SBATCH --reservation=training2501_day1 # For today only</span></span>
 <span id="cb19-12"><a href="#cb19-12"></a></span>
-<span id="cb19-13"><a href="#cb19-13"></a><span class="ex">module</span> load Stages/2024</span>
+<span id="cb19-13"><a href="#cb19-13"></a><span class="ex">module</span> load Stages/2025</span>
 <span id="cb19-14"><a href="#cb19-14"></a><span class="ex">module</span> load GCC OpenMPI PyTorch  <span class="co"># Load the correct modules on the compute node(s)</span></span>
 <span id="cb19-15"><a href="#cb19-15"></a></span>
 <span id="cb19-16"><a href="#cb19-16"></a><span class="ex">srun</span> python matrix.py            <span class="co"># srun tells the supercomputer how to run it</span></span></code></pre></div>
@@ -1209,7 +1209,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href=
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Setting</span> vars</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> following modules were not unloaded:</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">Use</span> <span class="st">&quot;module --force purge&quot;</span> to unload all<span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span><span class="er">)</span> <span class="ex">Stages/2024</span></span></code></pre></div>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span><span class="er">)</span> <span class="ex">Stages/2025</span></span></code></pre></div>
 <div class="sourceCode" id="cb28"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jureca01</span> $ python</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Python</span> 3.11.3 <span class="er">(</span><span class="ex">main,</span> Jun 25 2023, 13:17:30<span class="kw">)</span> <span class="ex">[GCC</span> 12.3.0]</span>
@@ -1299,7 +1299,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href=
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> following modules were not unloaded:</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">Use</span> <span class="st">&quot;module --force purge&quot;</span> to unload all<span class="kw">)</span><span class="bu">:</span></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span><span class="er">)</span> <span class="ex">Stages/2024</span></span></code></pre></div></li>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span><span class="er">)</span> <span class="ex">Stages/2025</span></span></code></pre></div></li>
 </ul>
 </section>
 <section id="section" class="slide level2">

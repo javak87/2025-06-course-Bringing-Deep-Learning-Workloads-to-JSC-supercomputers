@@ -95,7 +95,7 @@ Please open this document on your own browser! We will need it for the exercises
 
 ### Anatomy of a supercomputer
 
--  Login Nodes: Normal machines, for compilation, data transfer,  scripting, etc. No GPUs.
+-  Login Nodes: Normal machines, for compilation, data transfer, scripting, etc. No GPUs.
 - Compute Nodes: Guess what? 
   - For compute! With GPUs! 🤩
 - High-speed, ultra-low-latency network
@@ -106,6 +106,7 @@ Please open this document on your own browser! We will need it for the exercises
     - RAM
     - Network: Bandwidth, Latency
     - Accelerators (e.g. GPUs)
+      - GPU MEMORY
 
 ---
 

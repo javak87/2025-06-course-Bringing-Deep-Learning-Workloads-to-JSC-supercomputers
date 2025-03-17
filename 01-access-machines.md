@@ -1,5 +1,5 @@
 ---
-author: Alexandre Strube // Sabrina Benassou // José Ignacio Robledo
+author: Alexandre Strube // Sabrina Benassou
 title: Accessing the machines, intro
 # subtitle: A primer in supercomputers`
 date: March 18th, 2025
@@ -44,10 +44,6 @@ Links for the complimentary parts of this course:
 :::: {.col}
 ![Sabrina Benassou](pics/sabrina.jpg)
 ::::
-:::: {.col}
-![José Ignacio Robledo](pics/robledo.png)
-::::
-
 :::
 
 ![](images/Logo_FZ_Juelich_rgb_Schutzzone_transparent.svg)
@@ -58,15 +54,15 @@ Links for the complimentary parts of this course:
 
 | Time          | Title        |
 | ------------- | -----------  |
-| 10:00 - 10:15 | Welcome      |
-| 10:15 - 11:00 | Introduction |
-| 11:00 - 11:15 | Coffee break |
-| 11:16 - 11:30 | Judoor, Keys |
-| 11:30 - 12:00 | SSH, Jupyter, VS Code |
-| 12:00 - 12:15 | Coffee Break |
-| 12:15 - 13:00 | Running services on the login and compute nodes | 
-| 13:00 - 13:15 | Coffee Break |
-| 13:30 - 14:00 | Sync (everyone should be at the same point) |
+| 13:00 - 13:15 | Welcome      |
+| 13:15 - 14:00 | Introduction |
+| 14:00 - 14:15 | Coffee break |
+| 14:16 - 14:30 | Judoor, Keys |
+| 14:30 - 15:00 | SSH, Jupyter, VS Code |
+| 15:00 - 15:15 | Coffee Break |
+| 15:15 - 16:00 | Running services on the login and compute nodes | 
+| 16:00 - 16:15 | Coffee Break |
+| 16:30 - 17:00 | Sync (everyone should be at the same point) |
 
 ---
 

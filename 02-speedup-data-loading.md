@@ -10,9 +10,9 @@ date: March 19th, 2025
 | Time          | Title                |
 | ------------- | -----------          |
 | 13:00 - 13:10 | Welcome, questions   |
-| 13:10 - 15:00 | Data loading |
-| 15:00 - 15:15 | Coffee Break (flexible) |
-| 15:15 - 17:00 | Parallelize Training |
+| 13:10 - 14:10 | Data loading |
+| 14:10 - 14:25 | Coffee Break (flexible) |
+| 14:25 - 17:00 | Parallelize Training |
 
 ---
 

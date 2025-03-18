@@ -1,5 +1,5 @@
 ---
-author: Alexandre Strube // Sabrina Benassou // José Ignacio Robledo
+author: Alexandre Strube // Sabrina Benassou 
 title: Bringing Deep Learning Workloads to JSC supercomputers
 subtitle: Parallelize Training
 date: March 19th, 2025
@@ -488,16 +488,22 @@ def setup():
 
 - **TODO 11**💻📝:
 
-    - At **lines 133, 144, and 148**, **replace** all the ```print``` methods by **```print0```** method defined in **```distributed_utils.py```** to allow only rank 0 to print in the output file.
+    - **Replace** all the ```print``` methods by **```print0```** method defined in **```distributed_utils.py```** to allow only rank 0 to print in the output file.
     
+    - At **line 133** 
+
         ```python
         # We use the utility function print0 to print messages only from rank 0.
         print0(f'[{epoch+1}/{args.epochs}] Train loss: {train_loss:.5f}, validation loss: {val_loss:.5f}')
         ```
+    - At **line 144**
+
         ```python
         # We use the utility function print0 to print messages only from rank 0.
         print0('Finished training after', end_time - start_time, 'seconds.')
         ```
+    - At **line 148**
+    
         ```python
         # We use the utility function print0 to print messages only from rank 0.
         print0('Final test loss:', test_loss.item())

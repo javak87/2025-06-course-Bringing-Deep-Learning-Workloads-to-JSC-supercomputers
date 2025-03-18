@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="author" content="Alexandre Strube // Sabrina Benassou // José Ignacio Robledo">
+  <meta name="author" content="Alexandre Strube // Sabrina Benassou">
   <title>Bringing Deep Learning Workloads to JSC supercomputers</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -19,11 +19,8 @@
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
+    ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
@@ -31,7 +28,7 @@
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -42,7 +39,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -227,8 +224,7 @@
   <h1 class="title">Bringing Deep Learning Workloads to JSC
 supercomputers</h1>
   <p class="subtitle">Parallelize Training</p>
-  <p class="author">Alexandre Strube // Sabrina Benassou // José Ignacio
-Robledo</p>
+  <p class="author">Alexandre Strube // Sabrina Benassou</p>
   <p class="date">March 19th, 2025</p>
 </section>
 
@@ -705,17 +701,19 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a h
 <ul>
 <li class="fragment"><p><strong>TODO 11</strong>💻📝:</p>
 <ul>
-<li class="fragment"><p>At <strong>lines 133, 144, and 148</strong>,
-<strong>replace</strong> all the <code>print</code> methods by
-<strong><code>print0</code></strong> method defined in
-<strong><code>distributed_utils.py</code></strong> to allow only rank 0
-to print in the output file.</p>
+<li class="fragment"><p><strong>Replace</strong> all the
+<code>print</code> methods by <strong><code>print0</code></strong>
+method defined in <strong><code>distributed_utils.py</code></strong> to
+allow only rank 0 to print in the output file.</p></li>
+<li class="fragment"><p>At <strong>line 133</strong></p>
 <div class="sourceCode" id="cb19"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We use the utility function print0 to print messages only from rank 0.</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>print0(<span class="ss">f&#39;[</span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>args<span class="sc">.</span>epochs<span class="sc">}</span><span class="ss">] Train loss: </span><span class="sc">{</span>train_loss<span class="sc">:.5f}</span><span class="ss">, validation loss: </span><span class="sc">{</span>val_loss<span class="sc">:.5f}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>print0(<span class="ss">f&#39;[</span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>args<span class="sc">.</span>epochs<span class="sc">}</span><span class="ss">] Train loss: </span><span class="sc">{</span>train_loss<span class="sc">:.5f}</span><span class="ss">, validation loss: </span><span class="sc">{</span>val_loss<span class="sc">:.5f}</span><span class="ss">&#39;</span>)</span></code></pre></div></li>
+<li class="fragment"><p>At <strong>line 144</strong></p>
 <div class="sourceCode" id="cb20"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We use the utility function print0 to print messages only from rank 0.</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>print0(<span class="st">&#39;Finished training after&#39;</span>, end_time <span class="op">-</span> start_time, <span class="st">&#39;seconds.&#39;</span>)</span></code></pre></div>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>print0(<span class="st">&#39;Finished training after&#39;</span>, end_time <span class="op">-</span> start_time, <span class="st">&#39;seconds.&#39;</span>)</span></code></pre></div></li>
+<li class="fragment"><p>At <strong>line 148</strong></p>
 <div class="sourceCode" id="cb21"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We use the utility function print0 to print messages only from rank 0.</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>print0(<span class="st">&#39;Final test loss:&#39;</span>, test_loss.item())</span></code></pre></div></li>

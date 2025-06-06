@@ -3,7 +3,7 @@ author: Alexandre Strube // Sabrina Benassou
 title: Bringing Deep Learning Workloads to JSC supercomputers
 ---
 
-This repo is specifically for the course described in [indico](https://indico3-jsc.fz-juelich.de/event/204)
+This repo is specifically for the course described in [indico](https://indico3-jsc.fz-juelich.de/event/232)
 
 ### It's a two-mornings course.
 

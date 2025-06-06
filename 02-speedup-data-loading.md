@@ -2,7 +2,7 @@
 author: Alexandre Strube // Sabrina Benassou 
 title: Bringing Deep Learning Workloads to JSC supercomputers
 subtitle: Data loading
-date: March 19th, 2025
+date: June 25th, 2025
 ---
 
 ### Schedule for day 2
@@ -78,13 +78,13 @@ date: March 19th, 2025
 
     ```bash
     cd $HOME/course
-    git clone https://github.com/HelmholtzAI-FZJ/2025-03-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers.git
+    git clone https://github.com/HelmholtzAI-FZJ/2025-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers.git
     ```
 
 - Move to the correct folder
 
     ```
-    cd 2025-03-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/dataloading/
+    cd 2025-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/dataloading/
     ```
 
 ---

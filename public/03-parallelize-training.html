@@ -19,14 +19,18 @@
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
     ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -225,7 +229,7 @@
 supercomputers</h1>
   <p class="subtitle">Parallelize Training</p>
   <p class="author">Alexandre Strube // Sabrina Benassou</p>
-  <p class="date">March 19th, 2025</p>
+  <p class="date">June 25th, 2025</p>
 </section>
 
 <section id="before-starting" class="slide level2">
@@ -233,7 +237,7 @@ supercomputers</h1>
 <ul>
 <li class="fragment"><p>Move to the correct folder</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 2025-03-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/parallelize/</span></code></pre></div></li>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 2025-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/parallelize/</span></code></pre></div></li>
 </ul>
 </section>
 <section id="what-this-code-does" class="slide level2">

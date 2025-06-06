@@ -39,8 +39,8 @@ This course is given in English.
 
 ### Dates:
 
-- March 18th, 2025, 13:00 - 17:00
-- March 19th, 2025, 13:00 - 17:00
+- June 18th, 2025, 13:00 - 17:00
+- June 19th, 2025, 13:00 - 17:00
 
 ### Further information:
 

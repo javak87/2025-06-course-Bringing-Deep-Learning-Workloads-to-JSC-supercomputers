@@ -2,7 +2,7 @@
 author: Alexandre Strube // Sabrina Benassou
 title: Accessing the machines, intro
 # subtitle: A primer in supercomputers`
-date: March 18th, 2025
+date: June 24th, 2025
 ---
 ## Communication:
 

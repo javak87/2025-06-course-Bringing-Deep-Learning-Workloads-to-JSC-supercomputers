@@ -36,13 +36,13 @@ date: June 25th, 2025
 - Always store your code in the project folder (**`$PROJECT_projectname`** ). In our case 
 
     ```bash
-    /p/project/training2501/$USER
+    /p/project/training2529/$USER
     ```
 
 - Store data in the scratch directory for faster I/O access (**`$SCRATCH_projectname`**). Files in scratch are deleted after 90 days of inactivity.
     
     ```bash
-    /p/scratch/training2501/$USER
+    /p/scratch/training2529/$USER
     ```
 
 - Store the data in [`$DATA_dataset`](https://judoor.fz-juelich.de/projects/datasets/) for a more permanent location. **This location is not accessible by compute nodes. Please copy the data to scratch to ensure your job can access it**.
@@ -432,5 +432,5 @@ def __getitem__(self, idx):
 ## Exercise
 
 - Could you create an arrow file for the flickr dataset stored in 
-```/p/scratch/training2501/data/Flickr30K/```
+```/p/scratch/training2529/data/Flickr30K/```
 and read it using a dataloader ?

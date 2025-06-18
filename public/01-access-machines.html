@@ -1168,19 +1168,24 @@ some software!</h3>
 sc_venv_template/requirements.txt</p></li>
 <li class="fragment"><p>Add these lines at the end:</p></li>
 <li class="fragment"><div class="sourceCode" id="cb23"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="va">fastai</span><span class="op">=</span>=2.7.15</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="va">scipy</span><span class="op">=</span>=1.11.1</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="va">matplotlib</span><span class="op">=</span>=3.7.2</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">scikit-learn==1.3.1</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="va">pandas</span><span class="op">=</span>=2.0.3</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="va">torch</span><span class="op">=</span>=2.1.2</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="va">accelerate</span><span class="op">=</span>=1.1.1</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="va">pyarrow</span><span class="op">=</span>=18.1.0</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="va">tqdm</span><span class="op">=</span>=4.67.1</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="va">transformers</span><span class="op">=</span>=4.46.3</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="va">sentencepiece</span><span class="op">=</span>=0.2.0</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="va">datasets</span><span class="op">=</span>=3.1.0</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="va">torchrun_jsc</span><span class="op">=</span>=0.0.10</span></code></pre></div></li>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add here the pip packages you would like to install on this virtual environment / kernel</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ipykernel</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">fastai</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="va">numba</span><span class="op">=</span>=0.60.0</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="va">numpy</span><span class="op">=</span>=1.26.4</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="va">scipy</span><span class="op">=</span>=1.13.1</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="va">matplotlib</span><span class="op">=</span>=3.9.2</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="ex">scikit-learn==1.5.2</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="va">pandas</span><span class="op">=</span>=2.2.2</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="va">accelerate</span><span class="op">=</span>=1.1.1</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="va">pyarrow</span><span class="op">=</span>=18.1.0</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="va">transformers</span><span class="op">=</span>=4.46.3</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="va">sentencepiece</span><span class="op">=</span>=0.2.0</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="va">datasets</span><span class="op">=</span>=3.6.0</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="va">fsspec</span><span class="op">=</span>=2025.2.0.<span class="pp">*</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="va">torch</span><span class="op">=</span>=2.5.1</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="ex">torchrun_jsc</span><span class="op">&gt;</span>=0.0.15</span></code></pre></div></li>
 <li class="fragment"><p>Run on the terminal:
 <code>sc_venv_template/setup.sh</code></p></li>
 </ul>

@@ -866,19 +866,24 @@ git clone https://gitlab.jsc.fz-juelich.de/kesselheim1/sc_venv_template.git
 - Add these lines at the end: 
 -
  ```bash
-fastai==2.7.15
-scipy==1.11.1
-matplotlib==3.7.2
-scikit-learn==1.3.1
-pandas==2.0.3
-torch==2.1.2
+# Add here the pip packages you would like to install on this virtual environment / kernel
+pip
+ipykernel
+fastai
+numba==0.60.0
+numpy==1.26.4
+scipy==1.13.1
+matplotlib==3.9.2
+scikit-learn==1.5.2
+pandas==2.2.2
 accelerate==1.1.1
 pyarrow==18.1.0
-tqdm==4.67.1
 transformers==4.46.3
 sentencepiece==0.2.0
-datasets==3.1.0
-torchrun_jsc==0.0.10
+datasets==3.6.0
+fsspec==2025.2.0.*
+torch==2.5.1
+torchrun_jsc>=0.0.15
 ```
 
 - Run on the terminal: `sc_venv_template/setup.sh`

@@ -5,7 +5,7 @@
 #SBATCH --nodes=1
 #SBATCH --job-name=cats-parallel
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=128
+#SBATCH --cpus-per-task=64
 #SBATCH --output=output-parallel.%j
 #SBATCH --error=error-parallel.%j
 #SBATCH --time=00:10:00

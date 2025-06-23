@@ -40,7 +40,7 @@ date: March 25th, 2025
     
 ---
 
-Let's have a look at the files **```train.py```** and **```run_train.sbatch```** in the repo.
+Let's have a look at the files **```to_distrbuted_training.py```** and **```run_to_distributed_training.sbatch```** in the repo.
 
 ![](images/look.jpg)
 
@@ -52,7 +52,7 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
 - Now run:
 
     ```bash
-    sbatch run_train.sbatch 
+    sbatch run_to_distributed_training.sbatch 
     ```
 
 - Spoiler alert 🚨
@@ -67,7 +67,7 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
 
 - Remember, there is no internet on the compute node.
 - Therefore, you should:
-    - **Comment out** lines 73 **to** 137.
+    - **Comment out** lines 76 **to** 133.
     - Activate your environment:
 
         ```bash
@@ -77,14 +77,14 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
     - Run:
 
         ```bash
-        python train.py
+        python to_distributed_training.py
         ```
 
-    - **Uncomment back** lines 73-137.
+    - **Uncomment back** lines 76-133.
     - Finally, run your job again 🚀:
 
         ```bash
-        sbatch run_train.sbatch
+        sbatch run_to_distributed_training.sbatch
         ```
 
 ---
@@ -139,7 +139,7 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
 
 ## What if
 
-- In file **```run_train.sbatch```**, we increase the number of GPUs at line 3 to 4:
+- At line 3 in file **```run_to_distributed_training.sbatch```**, we increase the number of GPUs to 4:
 
     ```bash
     #SBATCH --gres=gpu:4
@@ -148,7 +148,7 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
 - And run our job again
 
     ```bash
-    sbatch run_train.sbatch
+    sbatch run_to_distributed_training.sbatch
     ```
 
 --- 
@@ -337,19 +337,19 @@ If you're scaling DDP to use multiple nodes, the underlying principle remains th
 - We need to setup a communication among the GPUs. 
 - For that we would need the file **```distributed_utils.py```**.
 - **TODOs**💻📝:
-    1. Import **```distributed_utils```** file at line 12:
+    1. Import **```distributed_utils```** file at line 11:
         
         ```python 
         # This file contains utility_functions for distributed training.
         from distributed_utils import *
         ```
-    2. Then **remove** lines 66 and 67:
+    2. Then **remove** lines 65 and 66:
 
         ```python
         ## TODO 2-3: Remove this line and replace it with a call to the utility function setup().
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         ```
-    3. and **add** at line 66 a call to the method **```setup()```** defined in **```distributed_utils.py```**: 
+    3. and **add** at line 65 a call to the method **```setup()```** defined in **```distributed_utils.py```**: 
 
         ```python
         # Initialize a communication group and return the right identifiers.
@@ -387,7 +387,7 @@ def setup():
 
 - **TODO 4**💻📝:
 
-    - At line 77, instantiate a **DistributedSampler** object for each set to ensure that each process gets a different subset of the data.
+    - At line 76, instantiate a **DistributedSampler** object for each set to ensure that each process gets a different subset of the data.
     
         ```python
         # DistributedSampler object for each set to ensure that each process gets a different subset of the data.
@@ -404,7 +404,7 @@ def setup():
 
 - **TODO 5**💻📝:
 
-    - At line 86, **REMOVE** **```shuffle=True```** in the DataLoader of train_loader and **REPLACE** it by **```sampler=train_sampler```**
+    - At line 85, **REMOVE** **```shuffle=True```** in the DataLoader of train_loader and **REPLACE** it by **```sampler=train_sampler```**
         
         ```python 
         train_loader = DataLoader(train_dataset, 
@@ -420,7 +420,7 @@ def setup():
 
 - **TODO 6**💻📝:
 
-    -  At line 91, pass **val_sampler** to the sampler argument of the val_dataLoader
+    -  At line 90, pass **val_sampler** to the sampler argument of the val_dataLoader
 
         ```python
         val_loader = DataLoader(val_dataset,
@@ -431,7 +431,7 @@ def setup():
 
 - **TODO 7**💻📝:
 
-    - At line 95, pass **test_sampler** to the sampler argument of the test_dataLoader
+    - At line 94, pass **test_sampler** to the sampler argument of the test_dataLoader
 
         ```python
         test_loader = DataLoader(test_dataset,
@@ -446,7 +446,7 @@ def setup():
 
 - **TODO 8**💻📝:
 
-    - At line 104, wrap the model in a **DistributedDataParallel** (DDP) module to parallelize the training across multiple GPUs.
+    - At line 103, wrap the model in a **DistributedDataParallel** (DDP) module to parallelize the training across multiple GPUs.
     
         ```python 
         # Wrap the model in DistributedDataParallel module 
@@ -462,7 +462,7 @@ def setup():
 
 - **TODO 9**💻📝:
 
-    - At line 120, **set** the current epoch for the dataset sampler to ensure proper data shuffling in each epoch
+    - At line 117, **set** the current epoch for the dataset sampler to ensure proper data shuffling in each epoch
 
         ```python
         # Pass the current epoch to the sampler to ensure proper data shuffling in each epoch
@@ -475,7 +475,7 @@ def setup():
 
 - **TODO 10**💻📝:
 
-    - At **lines 38 and 59**, Obtain the global average loss across the GPUs.
+    - At **lines 37 and 58**, Obtain the global average loss across the GPUs.
 
         ```python
         # Return the global average loss.
@@ -490,19 +490,14 @@ def setup():
 
     - **Replace** all the ```print``` methods by **```print0```** method defined in **```distributed_utils.py```** to allow only rank 0 to print in the output file.
     
-    - At **line 126** 
+    - At **line 123** 
 
         ```python
         # We use the utility function print0 to print messages only from rank 0.
         print0(f'[{epoch+1}/{args.epochs}] Train loss: {train_loss:.5f}, validation loss: {val_loss:.5f}')
         ```
-    - At **line 138**
 
-        ```python
-        # We use the utility function print0 to print messages only from rank 0.
-        print0('Finished training after', end_time - start_time, 'seconds.')
-        ```
-    - At **line 142**
+    - At **line 135**
     
         ```python
         # We use the utility function print0 to print messages only from rank 0.
@@ -534,7 +529,7 @@ def print0(*args, **kwargs):
 
 - **TODO 12**💻📝:
 
-    - At **lines 133 and 146**, replace torch.save method with the utility function save0 to allow only the process with rank 0 to save the model.
+    - At **lines 130 and 139**, replace torch.save method with the utility function save0 to allow only the process with rank 0 to save the model.
  
         ```python 
         # We allow only rank=0 to save the model
@@ -574,7 +569,7 @@ def save0(*args, **kwargs):
 
 - **TODO 13**💻📝:
 
-    - At **line 149**, destroy every process group and backend by calling destroy_process_group() 
+    - At **line 142**, destroy every process group and backend by calling destroy_process_group() 
 
         ```python 
         # Destroy the process group to clean up resources
@@ -582,6 +577,8 @@ def save0(*args, **kwargs):
         ```
 
 ---
+
+## Destroy Process Group
 
 The method **destroy_process_group** is defined in **```distributed_utils.py```**
 
@@ -596,14 +593,14 @@ def destroy_process_group():
 
 ## We are almost there
 
-- That's it for the **train.py** file. 
-- But before launching our job, we need to add some lines to **run_train.sbatch** file 
+- That's it for the **to_distributed_training.py** file. 
+- But before launching our job, we need to add some lines to **run_to_distributed_training.sbatch** file 
 
 ---
 
 ## Setup communication
 
-In **```run_train.sbatch```** file:
+In **```run_to_distributed_training.sbatch```** file:
 
 - **TODOs 14**💻📝: 
     - At line 3, increase the number of GPUs to 4 if it is not already done.
@@ -623,7 +620,7 @@ In **```run_train.sbatch```** file:
 
 ## Setup communication
 
-Stay in **```run_train.sbatch```** file:
+Stay in **```run_to_distributed_training.sbatch```** file:
 
 - **TODO 15**💻📝: we need to setup **MASTER_ADDR** and **MASTER_PORT** to allow communication over the system.
 
@@ -643,7 +640,7 @@ Stay in **```run_train.sbatch```** file:
 
 ## Setup communication
 
-We are not done yet with **```run_train.sbatch```** file:
+We are not done yet with **```run_to_distributed_training.sbatch```** file:
 
 - **TODO 16**💻📝: 
     
@@ -687,7 +684,7 @@ We are not done yet with **```run_train.sbatch```** file:
 - You can finally run:
 
     ```bash
-    sbatch run_train.sbatch
+    sbatch run_to_distributed_training.sbatch
     ```
 
 ---
@@ -716,7 +713,7 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ## Multi-node training
 
-- **TODO 17**💻📝: in **```run_train.sbatch```** at line 2, you can increase the number of nodes to 2:
+- **TODO 17**💻📝: in **```run_to_distributed_training.sbatch```** at line 2, you can increase the number of nodes to 2:
 
     ```bash
     #SBATCH --nodes=2
@@ -727,7 +724,7 @@ We are not done yet with **```run_train.sbatch```** file:
 - Run again:
 
     ```bash
-    sbatch run_train.sbatch
+    sbatch run_to_distributed_training.sbatch
     ```
 
 --- 
@@ -986,7 +983,7 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ## Wrap the model AGAIN
 
-- **TODO 17**💻📝: **Delete** lines 103–108 that wrap the model in DistributedDataParallel, and instead wrap the model using torch.distributed.fsdp.
+- **TODO 17**💻📝: **Delete** lines 102–107 that wrap the model in DistributedDataParallel, and instead wrap the model using torch.distributed.fsdp.
 
     ```python
     # Unlike DDP, we should apply fully_shard to both submodules and the root model.
@@ -1010,14 +1007,14 @@ We are not done yet with **```run_train.sbatch```** file:
 ## Save Model state
 
 - **TODO 18**💻📝: 
-    - **Remove** lines 140 to 142 and **replace** them with:
+    - **Remove** lines 137 to 139 and **replace** them with:
         
         ```python
         # Save sharded model and optimizer
         save_sharded_model(model, optimizer, 'model_best')
         ```
 
-    - **Remove** lines 152 to 154 and **replace** them with:
+    - **Remove** lines 145 to 147 and **replace** them with:
         
         ```python    
         # Save sharded model and optimizer

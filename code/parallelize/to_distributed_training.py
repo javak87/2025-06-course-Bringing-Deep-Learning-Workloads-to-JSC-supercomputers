@@ -55,7 +55,7 @@ def test_model(model, dataloader, vocab, loss_func, device):
             loss = loss_func(output.view(-1, len(vocab)), tgt.t().reshape(-1))
             total_loss += loss
 
-    result = loss / len(dataloader)
+    result = total_loss / len(dataloader)
     ## TODO 10: Obtain the global average loss.
 
 

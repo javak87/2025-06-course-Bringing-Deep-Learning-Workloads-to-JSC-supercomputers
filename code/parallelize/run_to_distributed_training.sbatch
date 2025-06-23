@@ -5,7 +5,7 @@
 #SBATCH --cpus-per-task=128
 #SBATCH --account=training2529
 #SBATCH --partition=dc-gpu
-#SBATCH --time=24:00:00
+#SBATCH --time=03:00:00
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
 

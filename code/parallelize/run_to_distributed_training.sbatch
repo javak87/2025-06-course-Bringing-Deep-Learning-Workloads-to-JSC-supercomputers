@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --nodes=1
+#SBATCH --nodes=1 ## TODO 17: Increase the number of nodes (e.g., 2) to run the training on multiple nodes.
 #SBATCH --gres=gpu:1 ## TODO 14: Set the number of GPUs to use for training.
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=128

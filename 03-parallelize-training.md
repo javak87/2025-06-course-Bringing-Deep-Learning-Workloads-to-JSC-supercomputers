@@ -2,7 +2,7 @@
 author: Alexandre Strube // Sabrina Benassou 
 title: Bringing Deep Learning Workloads to JSC supercomputers
 subtitle: Parallelize Training
-date: June 25th, 2025
+date: March 19th, 2025
 ---
 
 ## Before Starting
@@ -10,23 +10,23 @@ date: June 25th, 2025
 - Move to the correct folder
     
     ```bash
-    cd 2025-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/parallelize/
+    cd 2025-03-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/parallelize/
     ```
 
 ---
 
 ## What this code does 
 
-- It trains a [transformer](https://arxiv.org/pdf/1706.03762) model on the [xsum](https://paperswithcode.com/dataset/xsum) dataset to summarize documents.
+- It trains a [Transformer](https://arxiv.org/pdf/1706.03762) language model on [WikiText-2](https://huggingface.co/datasets/mindchain/wikitext2) dataset to predict the next word in a sequence. 
 - **Transformers** is a deep learning model architecture that uses self-attention to process sequences in parallel.
-- **XSum** is a dataset for abstractive text summarization, containing news articles and their summaries.
+- **WikiText-2** is a word-level language modeling dataset consisting of over 2 million tokens extracted from high-quality Wikipedia articles. 
 
 ---
 
 ## What this code does 
 
 - Again, this is not a deep learning course.
-- If you are not familiar with the model and the dataset, just imagine it as a black box: you provide it with text, and it returns a summary.
+- If you are not familiar with the model and the dataset, just imagine it as a black box: you provide it with text, and it generates another text.
 
     ![](images/black_box.svg)
 
@@ -36,9 +36,8 @@ date: June 25th, 2025
 
 - You already downloaded the libraries yesterday that we will use today:
     - **PyTorch:** A deep learning framework for building and training models.
-    - **Hugging Face:** A platform and library for natural language processing (NLP) models and datasets.
-    - **Transformers:** A library by Hugging Face for state-of-the-art NLP models.
-
+    - **datasets** A library from Hugging Face used to access, load, process, and share large datasets.
+    
 ---
 
 Let's have a look at the files **```train.py```** and **```run_train.sbatch```** in the repo.
@@ -68,7 +67,7 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
 
 - Remember, there is no internet on the compute node.
 - Therefore, you should:
-    - **Comment out** lines 90 **to** 140.
+    - **Comment out** lines 73 **to** 137.
     - Activate your environment:
 
         ```bash
@@ -81,7 +80,7 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
         python train.py
         ```
 
-    - **Uncomment back** lines 90-140.
+    - **Uncomment back** lines 73-137.
     - Finally, run your job again 🚀:
 
         ```bash
@@ -132,7 +131,7 @@ Let's have a look at the files **```train.py```** and **```run_train.sbatch```**
 
 - It is a waste of resources.
 
-- The training takes time (13m according to llview).
+- The training takes time (1h32m according to llview).
 
 - Then, can we run our model on multiple GPUs ?
 
@@ -338,18 +337,19 @@ If you're scaling DDP to use multiple nodes, the underlying principle remains th
 - We need to setup a communication among the GPUs. 
 - For that we would need the file **```distributed_utils.py```**.
 - **TODOs**💻📝:
-    1. Import **```distributed_utils```** file at line 13:
+    1. Import **```distributed_utils```** file at line 12:
         
         ```python 
         # This file contains utility_functions for distributed training.
         from distributed_utils import *
         ```
-    2. Then **remove** lines 77 and 78:
+    2. Then **remove** lines 66 and 67:
 
         ```python
+        ## TODO 2-3: Remove this line and replace it with a call to the utility function setup().
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         ```
-    3. and **add** at line 77 a call to the method **```setup()```** defined in **```distributed_utils.py```**: 
+    3. and **add** at line 66 a call to the method **```setup()```** defined in **```distributed_utils.py```**: 
 
         ```python
         # Initialize a communication group and return the right identifiers.
@@ -383,27 +383,11 @@ def setup():
 
 ---
 
-## Model
+## DistributedSampler 
 
 - **TODO 4**💻📝:
 
-    - At line 83, wrap the model in a **DistributedDataParallel** (DDP) module to parallelize the training across multiple GPUs.
-    
-        ```python 
-        # Wrap the model in DistributedDataParallel module 
-        model = torch.nn.parallel.DistributedDataParallel(
-            model,
-            device_ids=[local_rank],
-        )
-        ```
-
----
-
-## DistributedSampler 
-
-- **TODO 5**💻📝:
-
-    - At line 94, instantiate a **DistributedSampler** object for each set to ensure that each process gets a different subset of the data.
+    - At line 77, instantiate a **DistributedSampler** object for each set to ensure that each process gets a different subset of the data.
     
         ```python
         # DistributedSampler object for each set to ensure that each process gets a different subset of the data.
@@ -418,9 +402,9 @@ def setup():
 
 ## DataLoader
 
-- **TODO 6**💻📝:
+- **TODO 5**💻📝:
 
-    - At line 103, **REMOVE** **```shuffle=True```** in the DataLoader of train_loader and **REPLACE** it by **```sampler=train_sampler```**
+    - At line 86, **REMOVE** **```shuffle=True```** in the DataLoader of train_loader and **REPLACE** it by **```sampler=train_sampler```**
         
         ```python 
         train_loader = DataLoader(train_dataset, 
@@ -434,9 +418,9 @@ def setup():
 
 ## DataLoader
 
-- **TODO 7**💻📝:
+- **TODO 6**💻📝:
 
-    -  At line 108, pass **val_sampler** to the sampler argument of the val_dataLoader
+    -  At line 91, pass **val_sampler** to the sampler argument of the val_dataLoader
 
         ```python
         val_loader = DataLoader(val_dataset,
@@ -445,9 +429,9 @@ def setup():
                                 pin_memory=True)
         ```
 
-- **TODO 8**💻📝:
+- **TODO 7**💻📝:
 
-    - At line 112, pass **test_sampler** to the sampler argument of the test_dataLoader
+    - At line 95, pass **test_sampler** to the sampler argument of the test_dataLoader
 
         ```python
         test_loader = DataLoader(test_dataset,
@@ -458,11 +442,27 @@ def setup():
 
 --- 
 
+## Model
+
+- **TODO 8**💻📝:
+
+    - At line 104, wrap the model in a **DistributedDataParallel** (DDP) module to parallelize the training across multiple GPUs.
+    
+        ```python 
+        # Wrap the model in DistributedDataParallel module 
+        model = torch.nn.parallel.DistributedDataParallel(
+            model,
+            device_ids=[local_rank],
+        )
+        ```
+
+---
+
 ## Sampler 
 
 - **TODO 9**💻📝:
 
-    - At line 125, **set** the current epoch for the dataset sampler to ensure proper data shuffling in each epoch
+    - At line 120, **set** the current epoch for the dataset sampler to ensure proper data shuffling in each epoch
 
         ```python
         # Pass the current epoch to the sampler to ensure proper data shuffling in each epoch
@@ -475,7 +475,7 @@ def setup():
 
 - **TODO 10**💻📝:
 
-    - At **lines 49 and 72**, Obtain the global average loss across the GPUs.
+    - At **lines 38 and 59**, Obtain the global average loss across the GPUs.
 
         ```python
         # Return the global average loss.
@@ -490,19 +490,19 @@ def setup():
 
     - **Replace** all the ```print``` methods by **```print0```** method defined in **```distributed_utils.py```** to allow only rank 0 to print in the output file.
     
-    - At **line 133** 
+    - At **line 126** 
 
         ```python
         # We use the utility function print0 to print messages only from rank 0.
         print0(f'[{epoch+1}/{args.epochs}] Train loss: {train_loss:.5f}, validation loss: {val_loss:.5f}')
         ```
-    - At **line 144**
+    - At **line 138**
 
         ```python
         # We use the utility function print0 to print messages only from rank 0.
         print0('Finished training after', end_time - start_time, 'seconds.')
         ```
-    - At **line 148**
+    - At **line 142**
     
         ```python
         # We use the utility function print0 to print messages only from rank 0.
@@ -534,15 +534,15 @@ def print0(*args, **kwargs):
 
 - **TODO 12**💻📝:
 
-    - At **lines 138 and 151**, replace torch.save method with the utility function save0 to allow only the process with rank 0 to save the model.
+    - At **lines 133 and 146**, replace torch.save method with the utility function save0 to allow only the process with rank 0 to save the model.
  
         ```python 
         # We allow only rank=0 to save the model
-        save0(model, 'model-best')
+        save0(model, 'model-best.pt')
         ```
         ```python 
         # We allow only rank=0 to save the model
-        save0(model, 'model-final')
+        save0(model, 'model-final.pt')
         ```
 
 ---
@@ -570,6 +570,30 @@ def save0(*args, **kwargs):
 
 --- 
 
+## Destroy Process Group
+
+- **TODO 13**💻📝:
+
+    - At **line 149**, destroy every process group and backend by calling destroy_process_group() 
+
+        ```python 
+        # Destroy the process group to clean up resources
+        destroy_process_group()
+        ```
+
+---
+
+The method **destroy_process_group** is defined in **```distributed_utils.py```**
+
+```python
+def destroy_process_group():
+    """Destroy the process group."""
+    if torch.distributed.is_initialized():
+        torch.distributed.destroy_process_group()
+```
+
+---
+
 ## We are almost there
 
 - That's it for the **train.py** file. 
@@ -581,7 +605,7 @@ def save0(*args, **kwargs):
 
 In **```run_train.sbatch```** file:
 
-- **TODOs 13**💻📝: 
+- **TODOs 14**💻📝: 
     - At line 3, increase the number of GPUs to 4 if it is not already done.
 
         ```bash
@@ -591,6 +615,7 @@ In **```run_train.sbatch```** file:
     - At line 22, pass the correct number of devices.
 
         ```bash
+        # Set up four visible GPUs that the job can use 
         export CUDA_VISIBLE_DEVICES=0,1,2,3
         ```
 
@@ -600,9 +625,9 @@ In **```run_train.sbatch```** file:
 
 Stay in **```run_train.sbatch```** file:
 
-- **TODO 14**💻📝: we need to setup **MASTER_ADDR** and **MASTER_PORT** to allow communication over the system.
+- **TODO 15**💻📝: we need to setup **MASTER_ADDR** and **MASTER_PORT** to allow communication over the system.
 
-    - At line 24, add the following:
+    - At line 25, add the following:
 
         ```bash
         # Extracts the first hostname from the list of allocated nodes to use as the master address.
@@ -620,9 +645,15 @@ Stay in **```run_train.sbatch```** file:
 
 We are not done yet with **```run_train.sbatch```** file:
 
-- **TODO 15**💻📝: 
+- **TODO 16**💻📝: 
     
-    - At line 35, we change the lauching script to use **torchrun_jsc** and pass the following argument: 
+    - We **remove** the lauching script at line 36
+    
+        ```bash
+        srun --cpu_bind=none python to_distributed_training.py 
+        ```
+    
+    - We use **torchrun_jsc** instead and pass the following argument: 
 
         ```bash
         # Launch a distributed training job across multiple nodes and GPUs
@@ -633,7 +664,7 @@ We are not done yet with **```run_train.sbatch```** file:
             --rdzv_id $RANDOM \
             --rdzv_endpoint=$MASTER_ADDR:$MASTER_PORT \
             --rdzv_conf=is_host=\$(if ((SLURM_NODEID)); then echo 0; else echo 1; fi) \
-            train.py "
+            to_distributed_training.py "
         ```
 
 ---
@@ -687,7 +718,7 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ## Multi-node training
 
-- In **```run_train.sbatch```** at line 2, you can increase the number of nodes to 2:
+- **TODO 17**💻📝: in **```run_train.sbatch```** at line 2, you can increase the number of nodes to 2:
 
     ```bash
     #SBATCH --nodes=2
@@ -719,7 +750,7 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ## Before we go further...
 
-- Data parallel is usually good enough 👌 
+- Distributed Data parallel is usually good enough 👌 
 - However, if your model is too big to fit into a single GPU
 - Welllll ... there other distributed techniques ...
 
@@ -727,7 +758,9 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ## Fully Sharded Data Parallel (FSDP)
 
-![](images/fsdp/fsdp-0.svg){height=375pt}
+
+![](images/fsdp/fsdp-0.svg){height=300pt} ![](images/fsdp_.png){height=50pt} 
+
 
 ---
 
@@ -757,8 +790,7 @@ We are not done yet with **```run_train.sbatch```** file:
 ![](images/fsdp/fsdp-4.svg){height=425pt}
 
 
----
-
+<!-- 
 ## FSDP
 
 ![](images/fsdp/fsdp-5.svg){height=425pt}
@@ -905,6 +937,8 @@ We are not done yet with **```run_train.sbatch```** file:
 
 
 ---
+ -->
+---
 
 ## FSDP
 
@@ -913,6 +947,15 @@ We are not done yet with **```run_train.sbatch```** file:
 
 
 ---
+
+## FSDP workflow
+
+
+![](images/fsdp/fsdp_workflow.svg)
+
+
+
+<!-- 
 
 ## FSDP
 
@@ -933,6 +976,149 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ![](images/fsdp/fsdp-28.svg){height=425pt}
 
+--- -->
+
+---
+
+## Let's convert our DDP training Code to FSDP
+
+---
+
+## Wrap the model AGAIN
+
+- **TODO 17**💻📝: **Delete** lines 103–108 that wrap the model in DistributedDataParallel, and instead wrap the model using torch.distributed.fsdp.
+
+    ```python
+    # Unlike DDP, we should apply fully_shard to both submodules and the root model.
+    # Here, we apply fully_shard to each TransformerEncoder and TransformerDecoder block,
+    # and then to the root model.
+    fsdp_kwargs = {}
+    for module in model.modules():
+        if isinstance(module, (
+                torch.nn.TransformerEncoder, 
+                torch.nn.TransformerDecoder,)
+            ):
+            # Each TransformerEncoder and TransformerDecoder block is treated as a separate FSDP unit.
+            torch.distributed.fsdp.fully_shard(module, **fsdp_kwargs)
+
+    # Identifies all parameters not already wrapped and groups them into a shardable unit.
+    torch.distributed.fsdp.fully_shard(model, **fsdp_kwargs)
+    ```
+
+---
+
+## Save Model state
+
+- **TODO 18**💻📝: 
+    - **Remove** lines 140 to 142 and **replace** them with:
+        
+        ```python
+        # Save sharded model and optimizer
+        save_sharded_model(model, optimizer, 'model_best')
+        ```
+
+    - **Remove** lines 152 to 154 and **replace** them with:
+        
+        ```python    
+        # Save sharded model and optimizer
+        save_sharded_model(model, optimizer, 'model_final')
+        ```
+
+---
+
+
+## How the model is saved
+
+- We can either save the full model state, as we did with DDP, or save the sharded model state. We can also choose to save the optimizer state.
+
+- The relevant methods can be found in the **distributed_utils.py** file.
+
+- In both cases, we use **DCP** to save the model.
+
+---
+
+## What is DCP
+
+- Distributed Checkpoint (DCP) support loading and saving models from multiple ranks in parallel. It supports load-time resharding, which means a model can be saved using one cluster configuration (e.g., number of GPUs or nodes) and later loaded using a different configuration, without requiring the checkpoint to be rewritten.
+
+- DCP is different than torch.save and torch.load in a few significant ways:
+
+    1. It produces multiple files per checkpoint, with at least one per rank.
+    2. It operates in place, meaning that the model should allocate its data first and DCP uses that storage instead.
+
+---
+
+## Save full model state
+
+- We use **get_model_state_dict** method with **full_state_dict=True** and **cpu_offload=True** to all-gathers tensors and offload them to CPU. No ShardedTensor will be in the returned state_dict. 
+
+    ```python
+    def save_full_model(model, optimizer=None, *args, **kwargs):
+        """Stream all model parameters to rank 0 on the CPU, then pass all
+        other given arguments to `torch.save` to save the model, but only on
+        the root process.
+        """
+        state_dict_options = dist_state_dict.StateDictOptions(
+            full_state_dict=True,
+            cpu_offload=True,
+        )
+        cpu_state_dict = dist_state_dict.get_model_state_dict(
+            model,
+            options=state_dict_options,
+        )
+        cpu_state = {'model': cpu_state_dict}
+        if optimizer is not None:
+            optim_state_dict = dist_state_dict.get_optimizer_state_dict(
+                model,
+                optimizer,
+                options=state_dict_options,
+            )
+            cpu_state['optimizer'] = optim_state_dict
+        save0(cpu_state, *args, **kwargs)
+    ```
+
+---
+
+## Save sharded model 
+- We use the **get_model_state_dict** again, but with **full_state_dict=False** and **cpu_offload=False**. 
+
+    ``` python
+    def save_sharded_model(model, optimizer=None, save_dir='checkpoints'):
+        """Obtain sharded model parameters from the GPU, then save the model
+        as a distributed checkpoint to the given directory. Saving a
+        distributed checkpoint means that the checkpoint will be split into
+        individual files, one for each process.
+        """
+        state_dict_options = dist_state_dict.StateDictOptions(
+            cpu_offload=False,
+        )
+        model_state_dict = dist_state_dict.get_model_state_dict(
+            model,
+            options=state_dict_options,
+        )
+        cp_state_dict = {'model': model_state_dict}
+        if optimizer is not None:
+            optim_state_dict = dist_state_dict.get_optimizer_state_dict(
+                model,
+                optimizer,
+                options=state_dict_options,
+            )
+            cp_state_dict['optimizer'] = optim_state_dict
+        dcp.save(
+            cp_state_dict,
+            storage_writer=dcp.FileSystemWriter(save_dir, overwrite=True),
+        )
+    ```
+
+<!-- ---
+
+## sharding_strategy
+
+- **FULL_SHARD**: Parameters, gradients, and optimizer states are sharded. Set **reshard_after_forward=True**
+- **SHARD_GRAD_OP**: Similar to PyTorch’s DistributedDataParallel API. Set **reshard_after_forward=False**
+- **HYBRID_SHARD**: Apply FULL_SHARD within a node, and replicate parameters across nodes. Set **reshard_after_forward=True** with a 2D device mesh
+- **_HYBRID_SHARD_ZERO2**: Apply SHARD_GRAD_OP within a node, and replicate parameters across nodes. This is like HYBRID_SHARD, except this may provide even higher throughput since the unsharded parameters are not freed after the forward pass, saving the all-gathers in the pre-backward. Set **reshard_after_forward=False** with a 2D device mesh -->
+
 ---
 
 ## FSDP
@@ -941,6 +1127,10 @@ We are not done yet with **```run_train.sbatch```** file:
 - Its memory efficiency is high because model parameters, gradients and optimizers are sharded.
 - However, it requires a high-bandwidth system because it involves frequent communication between GPUs.
 - If you have bandwidth-limited clusters, FSDP may not be ideal, and you would prefer pipelining technique.
+
+---
+
+## That's it for FSDP, now let's move to another parallelization technique.
 
 ---
 
@@ -1168,8 +1358,7 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ## Day 2 RECAP 
 
-- You know where to store your code and your data. 🗂️
-- How to create HDF5 and PyArrow files. 📄
+- You know where to store your code and your data. 🗂️📄
 - You know what distributed training is. 🧑‍💻
 - You can submit training jobs on a single GPU, multiple GPUs, or across multiple nodes. 🎮💻
 - You are familiar with DDP and aware of other distributed training techniques like FSDP, TP, PP, and 3D parallelism. ⚙️💡

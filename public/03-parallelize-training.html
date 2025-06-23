@@ -920,9 +920,7 @@ data-src="images/llview_gpu_4.png" /></p></li>
 <h2>llview</h2>
 <ul>
 <li class="fragment"><p>And that our job took less time to finish
-training (4m vs 13m with one GPU)</p></li>
-<li class="fragment"><p>And even the test loss function is lower (0.538
-vs 0.636 with one GPU).</p></li>
+training (25m vs 1h32m with one GPU)</p></li>
 <li class="fragment"><p>But what about using more nodes ?</p></li>
 </ul>
 </section>
@@ -953,6 +951,7 @@ href="https://go.fzj.de/llview-jureca">llview</a> again.</p></li>
 GPUs.</p></li>
 <li class="fragment"><p><img
 data-src="images/llview_gpu_8.png" /></p></li>
+<li class="fragment"><p>And the training took less time (14m)</p></li>
 </ul>
 </section>
 <section id="amazing" class="slide level2">
@@ -1314,6 +1313,22 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a h
 <span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>        storage_writer<span class="op">=</span>dcp.FileSystemWriter(save_dir, overwrite<span class="op">=</span><span class="va">True</span>),</span>
 <span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div></li>
 </ul>
+</section>
+<section id="run-your-training" class="slide level2">
+<h2>Run your training</h2>
+<ul>
+<li class="fragment"><p>You can run the same sbatch file without any
+modification.</p>
+<div class="sourceCode" id="cb41"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> run_to_fsdp_training.sbatch</span></code></pre></div></li>
+</ul>
+</section>
+<section id="llview-7" class="slide level2">
+<h2>llview</h2>
+<ul>
+<li class="fragment">Let’s have a look at llview again:</li>
+</ul>
+<p><img data-src="images/llview_fsdp_gpu_8.png" /></p>
 <!-- ---
 
 ## sharding_strategy
@@ -1326,13 +1341,17 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a h
 <section id="fsdp-5" class="slide level2">
 <h2>FSDP</h2>
 <ul>
-<li class="fragment">FSDP is a primitive method in PyTorch.</li>
-<li class="fragment">Its memory efficiency is high because model
-parameters, gradients and optimizers are sharded.</li>
-<li class="fragment">However, it requires a high-bandwidth system
-because it involves frequent communication between GPUs.</li>
-<li class="fragment">If you have bandwidth-limited clusters, FSDP may
-not be ideal, and you would prefer pipelining technique.</li>
+<li class="fragment">FSDP is a built-in primitive in PyTorch for
+distributed training.</li>
+<li class="fragment">It is highly memory efficient because it shards
+model parameters, gradients, and optimizer states across GPUs.</li>
+<li class="fragment">This allows training of very large models (often
+&gt;1B parameters) that wouldn’t fit in memory otherwise.</li>
+<li class="fragment">However, FSDP relies on frequent communication
+between GPUs, so it requires a high-bandwidth interconnect (e.g.,
+InfiniBand).</li>
+<li class="fragment">On bandwidth-limited clusters, FSDP may become a
+bottleneck, and pipeline parallelism might be preferable.</li>
 </ul>
 </section>
 <section

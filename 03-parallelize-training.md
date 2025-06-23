@@ -704,9 +704,7 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ## llview
 
-- And that our job took less time to finish training (4m vs 13m with one GPU)
-
-- And even the test loss function is lower (0.538 vs 0.636 with one GPU). 
+- And that our job took less time to finish training (25m vs 1h32m with one GPU)
 
 - But what about using more nodes ?
 
@@ -741,6 +739,8 @@ We are not done yet with **```run_train.sbatch```** file:
 - You can see that now, we are using 2 nodes and 8 GPUs.
 
 - ![](images/llview_gpu_8.png)
+
+- And the training took less time (14m)
 
 ---
 
@@ -1110,6 +1110,25 @@ We are not done yet with **```run_train.sbatch```** file:
         )
     ```
 
+---
+
+## Run your training
+
+- You can run the same sbatch file without any modification.
+
+    ```bash
+    sbatch run_to_fsdp_training.sbatch
+    ```
+
+---
+
+## llview
+
+- Let's have a look at llview again:
+
+![](images/llview_fsdp_gpu_8.png)
+
+
 <!-- ---
 
 ## sharding_strategy
@@ -1123,10 +1142,11 @@ We are not done yet with **```run_train.sbatch```** file:
 
 ## FSDP
 
-- FSDP is a primitive method in PyTorch.
-- Its memory efficiency is high because model parameters, gradients and optimizers are sharded.
-- However, it requires a high-bandwidth system because it involves frequent communication between GPUs.
-- If you have bandwidth-limited clusters, FSDP may not be ideal, and you would prefer pipelining technique.
+- FSDP is a built-in primitive in PyTorch for distributed training.
+- It is highly memory efficient because it shards model parameters, gradients, and optimizer states across GPUs.
+- This allows training of very large models (often >1B parameters) that wouldn’t fit in memory otherwise.
+- However, FSDP relies on frequent communication between GPUs, so it requires a high-bandwidth interconnect (e.g., InfiniBand).
+- On bandwidth-limited clusters, FSDP may become a bottleneck, and pipeline parallelism might be preferable.
 
 ---
 

@@ -1,6 +1,5 @@
 import os
 import argparse
-import time
 
 import torch
 import torch.nn as nn
@@ -113,8 +112,6 @@ def main(args):
     
     best_val_loss = float("inf")
 
-    start_time = time.perf_counter()
-
     # Train the model
     for epoch in range(args.epochs):
         # Pass the current epoch to the sampler to ensure proper data shuffling in each epoch
@@ -125,7 +122,7 @@ def main(args):
 
         # We use the utility function print0 to print messages only from rank 0.
         print0(f'[{epoch+1}/{args.epochs}] Train loss: {train_loss:.5f}, validation loss: {val_loss:.5f}')
-        
+
         if val_loss < best_val_loss:
             best_val_loss = val_loss
 
@@ -133,15 +130,11 @@ def main(args):
             # We allow only rank=0 to save the model
             save0(model, 'model-best.pt')
 
-
-    end_time = time.perf_counter()
-    # We use the utility function print0 to print messages only from rank 0.
-    print0('Finished training after', end_time - start_time, 'seconds.')
-        
+    
     test_loss = test_model(model, test_loader, vocab, loss_func, device)
     # We use the utility function print0 to print messages only from rank 0.
     print0('Final test loss:', test_loss.item())
-        
+
     ## TODO 18: Replace save0 method by either save_full_model or save_sharded_model to save the full model state or the sharded model state respectively.
     # We allow only rank=0 to save the model
     save0(model, 'model-final.pt')

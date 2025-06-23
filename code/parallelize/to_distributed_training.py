@@ -1,6 +1,5 @@
 import os
 import argparse
-import time
 
 import torch
 import torch.nn as nn
@@ -98,13 +97,12 @@ def main(args):
     ## TODO 17: Remove the line that wraps the model in a DistributedDataParallel (DDP) module and wrap the model in torch.distributed.fsdp module instead.
     ## TODO 8: Wraps the model in a DistributedDataParallel (DDP) module to parallelize the training across multiple GPUs.
     
+    
     # Set up the loss function and optimizer
     loss_func = nn.CrossEntropyLoss()
     optimizer = optim.AdamW(model.parameters(), lr=args.lr)
     
     best_val_loss = float("inf")
-
-    start_time = time.perf_counter()
 
     # Train the model
     for epoch in range(args.epochs):
@@ -124,10 +122,6 @@ def main(args):
             ## TODO 12: Replace torch.save method with the utility function save0 to save the model.
             torch.save(model, 'model-best.pt') 
 
-
-    end_time = time.perf_counter()
-    ## TODO 11: Replace print by print0 to print messages once.
-    print('Finished training after', end_time - start_time, 'seconds.') 
     
     test_loss = test_model(model, test_loader, vocab, loss_func, device)
     ## TODO 11: Replace print by print0 to print messages once.

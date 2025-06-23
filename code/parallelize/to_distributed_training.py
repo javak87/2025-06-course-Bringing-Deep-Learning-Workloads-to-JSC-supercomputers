@@ -9,8 +9,8 @@ from torch.utils.data import DataLoader
 
 from dataset import LanguageModelingDataset, build_vocab
 from model import TransformerLM
-# This file contains utility_functions for distributed training.
-from distributed_utils import *
+## TODO 1: Import distributed_utils to use the utility methods available in it.
+
 
 def train_model(model, train_loader, vocab, optimizer, loss_func, device):
     """
@@ -35,8 +35,8 @@ def train_model(model, train_loader, vocab, optimizer, loss_func, device):
         total_loss += loss
 
     result = total_loss / len(train_loader)
-    # Return the global average loss.
-    torch.distributed.all_reduce(result, torch.distributed.ReduceOp.AVG)
+    ## TODO 10: Obtain the global average loss.
+
 
     return result
 
@@ -55,16 +55,16 @@ def test_model(model, dataloader, vocab, loss_func, device):
             loss = loss_func(output.view(-1, len(vocab)), tgt.t().reshape(-1))
             total_loss += loss
 
-    result = total_loss / len(dataloader)
-    # Return the global average loss.
-    torch.distributed.all_reduce(result, torch.distributed.ReduceOp.AVG)
+    result = loss / len(dataloader)
+    ## TODO 10: Obtain the global average loss.
+
 
     return result
 
 def main(args):
 
-    # Initialize a communication group and return the right identifiers.
-    local_rank, rank, device = setup()
+    ## TODO 2-3: Remove this line and replace it with a call to the utility function setup().
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     # Build vocab from training data
     vocab, stoi, itos = build_vocab('train')
@@ -74,25 +74,20 @@ def main(args):
     val_dataset = LanguageModelingDataset('validation', seq_len=32, stoi=stoi, vocab=vocab)
     test_dataset = LanguageModelingDataset('test', seq_len=32, stoi=stoi, vocab=vocab)
 
-    # DistributedSampler object for each set to ensure that each process gets a different subset of the data.
-    train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset, 
-                                                                    shuffle=True, 
-                                                                    seed=args.seed)
-    val_sampler = torch.utils.data.distributed.DistributedSampler(val_dataset)
-    test_sampler = torch.utils.data.distributed.DistributedSampler(test_dataset)
+    ## TODO 4: Create a DistributedSampler object for each set. ** shuffle=True only for training set
 
     train_loader = DataLoader(train_dataset, 
                             batch_size=args.batch_size, 
-                            sampler=train_sampler, # pass the sampler argument to the DataLoader
+                            shuffle=True, ## TODO 5: Remove this line and replace it the sampler argument 
                             num_workers=int(os.getenv('SLURM_CPUS_PER_TASK')),
                             pin_memory=True)
     val_loader = DataLoader(val_dataset,
                             batch_size=args.batch_size,
-                            sampler=val_sampler, # pass the sampler argument to the DataLoader
+                            ## TODO 6: Don't forget to pass val_sampler to the sampler argument of the DataLoader.
                             pin_memory=True)
     test_loader = DataLoader(test_dataset,
                             batch_size=args.batch_size,
-                            sampler=test_sampler, # pass the sampler argument to the DataLoader
+                            ## TODO 7: Don't forget to pass test_sampler to the sampler argument of the DataLoader.
                             pin_memory=True)             
 
 
@@ -101,12 +96,8 @@ def main(args):
     model = model.to(device)
     
     ## TODO 17: Remove the line that wraps the model in a DistributedDataParallel (DDP) module and wrap the model in torch.distributed.fsdp module instead.
-    # Wrap the model in DistributedDataParallel module 
-    model = torch.nn.parallel.DistributedDataParallel(
-        model,
-        device_ids=[local_rank],
-    )
-
+    ## TODO 8: Wraps the model in a DistributedDataParallel (DDP) module to parallelize the training across multiple GPUs.
+    
     # Set up the loss function and optimizer
     loss_func = nn.CrossEntropyLoss()
     optimizer = optim.AdamW(model.parameters(), lr=args.lr)
@@ -117,37 +108,37 @@ def main(args):
 
     # Train the model
     for epoch in range(args.epochs):
-        # Pass the current epoch to the sampler to ensure proper data shuffling in each epoch
-        train_sampler.set_epoch(epoch)
+        ## TODO 9: Sets the current epoch for the dataset sampler to ensure proper data shuffling in each epoch
+
 
         train_loss = train_model(model, train_loader, vocab, optimizer, loss_func, device)
         val_loss = test_model(model, val_loader, vocab, loss_func, device)
 
-        # We use the utility function print0 to print messages only from rank 0.
-        print0(f'[{epoch+1}/{args.epochs}] Train loss: {train_loss:.5f}, validation loss: {val_loss:.5f}')
-        
+        ## TODO 11: Replace print by print0 to print messages once.
+        print(f'[{epoch+1}/{args.epochs}] Train loss: {train_loss:.5f}, Validation loss: {val_loss:.5f}') 
+
         if val_loss < best_val_loss:
             best_val_loss = val_loss
 
             ## TODO 18: Replace save0 method by either save_full_model or save_sharded_model to save the full model state or the sharded model state respectively.
-            # We allow only rank=0 to save the model
-            save0(model, 'model-best.pt')
+            ## TODO 12: Replace torch.save method with the utility function save0 to save the model.
+            torch.save(model, 'model-best.pt') 
 
 
     end_time = time.perf_counter()
-    # We use the utility function print0 to print messages only from rank 0.
-    print0('Finished training after', end_time - start_time, 'seconds.')
-        
+    ## TODO 11: Replace print by print0 to print messages once.
+    print('Finished training after', end_time - start_time, 'seconds.') 
+    
     test_loss = test_model(model, test_loader, vocab, loss_func, device)
-    # We use the utility function print0 to print messages only from rank 0.
-    print0('Final test loss:', test_loss.item())
-        
-    ## TODO 18: Replace save0 method by either save_full_model or save_sharded_model to save the full model state or the sharded model state respectively.
-    # We allow only rank=0 to save the model
-    save0(model, 'model-final.pt')
+    ## TODO 11: Replace print by print0 to print messages once.
+    print('Final test loss:', test_loss.item()) 
 
-    # Destroy the process group to clean up resources
-    destroy_process_group()
+    ## TODO 18: Replace save0 method by either save_full_model or save_sharded_model to save the full model state or the sharded model state respectively.
+    ## TODO 12: Replace torch.save method with the utility function save0 to save the model.
+    torch.save(model, 'model-final.pt')
+
+    ## TODO 13: Call the utility function destroy_process_group() to clean up the distributed environment.
+
 
 
 if __name__ == '__main__':

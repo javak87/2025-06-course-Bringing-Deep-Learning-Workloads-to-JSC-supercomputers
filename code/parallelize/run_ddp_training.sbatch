@@ -1,15 +1,15 @@
 #!/bin/bash
 #SBATCH --nodes=2
-#SBATCH --gres=gpu:4  
+#SBATCH --gres=gpu:4 ## TODO 14: Set the number of GPUs to use for training.
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=128
 #SBATCH --account=training2529
 #SBATCH --partition=dc-gpu
-#SBATCH --time=02:00:00
+#SBATCH --time=03:00:00
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
 
-#SBATCH --reservation=training2529_day2
+##SBATCH --reservation=training2529_day2 # For today only
 
 # Export the necessary environment variables for huggingface offline mode
 export HF_DATASETS_OFFLINE=1
@@ -30,7 +30,7 @@ export MASTER_ADDR="$(nslookup "$MASTER_ADDR" | grep -oP '(?<=Address: ).*')"
 export MASTER_PORT=7010
 
 # We activate our environemnt
-source $HOME/course/sc_venv_template/activate.sh
+source /p/scratch/training2529/benassou1/sc_venv_template/activate.sh
 
 # Launch a distributed training job across multiple nodes and GPUs
 srun --cpu_bind=none bash -c "torchrun_jsc \
@@ -41,6 +41,3 @@ srun --cpu_bind=none bash -c "torchrun_jsc \
     --rdzv_endpoint=$MASTER_ADDR:$MASTER_PORT \
     --rdzv_conf=is_host=\$(if ((SLURM_NODEID)); then echo 0; else echo 1; fi) \
     ddp_training.py "
-
-
-

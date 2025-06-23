@@ -1,52 +1,36 @@
-import re
-from torch.utils.data import Dataset
+import torch
+from torch.utils.data import Dataset, DataLoader
 from datasets import load_dataset
 
-class Xsum(Dataset):
-    def __init__(self, tokenizer, type_path, num_samples, input_length, output_length):
-        self.dataset = load_dataset("EdinburghNLP/xsum", split=type_path)
-        if num_samples:
-            self.dataset = self.dataset.select(list(range(0, num_samples)))
-        self.input_length = input_length
-        self.tokenizer = tokenizer
-        self.output_length = output_length
+# Function to build vocab from training split
+def build_vocab(split='train'):
+    dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split=split)
+    # dataset = dataset.select(range(1000))
+    tokens = ' '.join(dataset['text']).lower().split()
+    vocab = sorted(set(tokens))
+    stoi = {w: i for i, w in enumerate(vocab)}
+    itos = {i: w for w, i in stoi.items()}
+    return vocab, stoi, itos
+
+# Dataset for language modeling
+class LanguageModelingDataset(Dataset):
+    def __init__(self, split, seq_len=32, stoi=None, vocab=None):
+        dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split=split)
+        # dataset = dataset.select(range(1000))
+        tokens = ' '.join(dataset['text']).lower().split()
+
+        if stoi is None or vocab is None:
+            raise ValueError("Must pass shared stoi and vocab from training split.")
+
+        self.vocab = vocab
+        self.stoi = stoi
+        self.data = torch.tensor([self.stoi[t] for t in tokens if t in self.stoi], dtype=torch.long)
+        self.seq_len = seq_len
 
     def __len__(self):
-        return self.dataset.shape[0]
+        return len(self.data) - self.seq_len
 
-    def clean_text(self, text):
-        text = text.replace('Example of text:', '')
-        text = text.replace('Example of Summary:', '')
-        text = text.replace('\n','')
-        text = text.replace('``', '')
-        text = text.replace('"', '')
-
-        return text
-
-
-    def convert_to_features(self, example_batch):
-        # Tokenize contexts and questions (as pairs of inputs)
-
-        input_ = self.clean_text(example_batch['document'])
-        target_ = self.clean_text(example_batch['summary'])
-
-        source = self.tokenizer.batch_encode_plus([input_], max_length=self.input_length,
-                                                     padding='max_length', truncation=True, return_tensors="pt")
-
-        targets = self.tokenizer.batch_encode_plus([target_], max_length=self.output_length,
-                                                     padding='max_length', truncation=True, return_tensors="pt")
-
-
-        return source, targets
-
-    def __getitem__(self, index):
-        source, targets = self.convert_to_features(self.dataset[index])
-
-        source_ids = source["input_ids"].squeeze()
-        target_ids = targets["input_ids"].squeeze()
-
-        src_mask    = source["attention_mask"].squeeze()
-        target_mask = targets["attention_mask"].squeeze()
-
-        return {"source_ids": source_ids, "source_mask": src_mask, "target_ids": target_ids, "target_mask": target_mask}
-
+    def __getitem__(self, idx):
+        x = self.data[idx:idx + self.seq_len]
+        y = self.data[idx + 1:idx + 1 + self.seq_len]
+        return x, y

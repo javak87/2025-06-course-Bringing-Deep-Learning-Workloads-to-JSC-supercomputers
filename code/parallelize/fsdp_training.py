@@ -100,12 +100,20 @@ def main(args):
     model = TransformerLM(vocab_size=len(vocab), d_model=128, nhead=4, num_layers=2)
     model = model.to(device)
     
-    ## TODO 17: Remove the line that wraps the model in a DistributedDataParallel (DDP) module and wrap the model in torch.distributed.fsdp module instead.
-    # Wrap the model in DistributedDataParallel module 
-    model = torch.nn.parallel.DistributedDataParallel(
-        model,
-        device_ids=[local_rank],
-    )
+    # Unlike DDP, we should apply fully_shard to both submodules and the root model.
+    # Here, we apply fully_shard to each TransformerEncoder and TransformerDecoder block,
+    # and then to the root model.
+    fsdp_kwargs = {}
+    for module in model.modules():
+        if isinstance(module, (
+                torch.nn.TransformerEncoder, 
+                torch.nn.TransformerDecoder,)
+            ):
+            # Each TransformerEncoder and TransformerDecoder block is treated as a separate FSDP unit.
+            torch.distributed.fsdp.fully_shard(module, **fsdp_kwargs)
+
+    # Identifies all parameters not already wrapped and groups them into a shardable unit.
+    torch.distributed.fsdp.fully_shard(model, **fsdp_kwargs)
 
     # Set up the loss function and optimizer
     loss_func = nn.CrossEntropyLoss()
@@ -129,9 +137,8 @@ def main(args):
         if val_loss < best_val_loss:
             best_val_loss = val_loss
 
-            ## TODO 18: Replace save0 method by either save_full_model or save_sharded_model to save the full model state or the sharded model state respectively.
-            # We allow only rank=0 to save the model
-            save0(model, 'model-best.pt')
+            # Save sharded model and optimizer
+            save_sharded_model(model, optimizer, 'model_best')
 
 
     end_time = time.perf_counter()
@@ -142,9 +149,8 @@ def main(args):
     # We use the utility function print0 to print messages only from rank 0.
     print0('Final test loss:', test_loss.item())
         
-    ## TODO 18: Replace save0 method by either save_full_model or save_sharded_model to save the full model state or the sharded model state respectively.
-    # We allow only rank=0 to save the model
-    save0(model, 'model-final.pt')
+    # Save sharded model and optimizer
+    save_sharded_model(model, optimizer, 'model_final')
 
     # Destroy the process group to clean up resources
     destroy_process_group()

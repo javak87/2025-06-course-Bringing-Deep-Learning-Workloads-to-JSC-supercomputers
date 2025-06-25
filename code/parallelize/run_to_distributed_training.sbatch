@@ -13,9 +13,6 @@
 
 # Export the necessary environment variables for huggingface offline mode
 export HF_DATASETS_OFFLINE=1
-export HF_EVALUATE_OFFLINE=1
-export HF_HUB_OFFLINE=1
-export TRANSFORMERS_OFFLINE=1
 
 # Get number of cpu per task
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"
@@ -28,7 +25,7 @@ export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"
 # 3. Setup MASTER_ADDR and MASTER_PORT
 
 # We activate our environemnt
-source /p/scratch/training2529/benassou1/sc_venv_template/activate.sh
+source $HOME/course/sc_venv_template/activate.sh
 
 ## TODO 16: Replace this line with the distributed training launch script that uses torchrun_jsc and pass the following arguments:
 # --nnodes=$SLURM_NNODES that specifies the total number of nodes to use

@@ -33,13 +33,13 @@ date: June 25th, 2025
 
 ## Where do I keep my files?
 
-- Always store your code in the project folder (**`$PROJECT_projectname`** ). In our case 
+- Always store your code in the project1 folder (**`$PROJECT_projectname`** ). In our case 
 
     ```bash
-    /p/project/training2529/$USER
+    /p/project1/training2529/$USER
     ```
 
-- Store data in the scratch directory for faster I/O access (**`$SCRATCH_projectname`**). Files in scratch are deleted after 90 days of inactivity.
+- Store data in the scratch directory for faster I/O access (**`$SCRATCH_projectname`**). ⚠️**Files in scratch are deleted after 90 days of inactivity.**
     
     ```bash
     /p/scratch/training2529/$USER
@@ -93,13 +93,6 @@ date: June 25th, 2025
 
     ```
     cd 2025-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/dataloading/
-    ```
-
-- The examples are in 
-
-    ```bash 
-        imagenet_loaders.py # to create the H5 and pyarrow files  
-        save_imagenet_files.py # to read the H5 and pyarrow files
     ```
 
 - We used the ImageNet dataset for the examples.
@@ -203,16 +196,21 @@ imagenet_val.pkl
 
 ## Run examples
 
-- You can run the examples by launching 
+- The examples are in: 
+
+    ```bash 
+        imagenet_loaders.py # to create the H5 and pyarrow files  
+        save_imagenet_files.py # to read the H5 and pyarrow files
+    ```
+
+- To create the h5 or pyarrow files, you can run the examples by launching 
 
     ```bash 
         sbatch run_save_file.sh
     ```
     
-- to create the h5 or pyarrow files, or by running
+- To read those files, you can run:
 
     ```bash 
         run_loader.sh
     ```
-
-- to read those files

@@ -67,7 +67,7 @@ Let's have a look at the files **```to_distrbuted_training.py```** and **```run_
 
 - Remember, there is no internet on the compute node.
 - Therefore, you should:
-    - **Comment out** lines 76 **to** 133.
+    - **Comment out** lines 76 **to** 135.
     - Activate your environment:
 
         ```bash
@@ -80,7 +80,7 @@ Let's have a look at the files **```to_distrbuted_training.py```** and **```run_
         python to_distributed_training.py
         ```
 
-    - **Uncomment back** lines 76-133.
+    - **Uncomment back** lines 76-135.
     - Finally, run your job again 🚀:
 
         ```bash
@@ -609,7 +609,7 @@ In **```run_to_distributed_training.sbatch```** file:
         #SBATCH --gres=gpu:4
         ```
 
-    - At line 22, pass the correct number of devices.
+    - At line 19, pass the correct number of devices.
 
         ```bash
         # Set up four visible GPUs that the job can use 
@@ -624,7 +624,7 @@ Stay in **```run_to_distributed_training.sbatch```** file:
 
 - **TODO 15**💻📝: we need to setup **MASTER_ADDR** and **MASTER_PORT** to allow communication over the system.
 
-    - At line 25, add the following:
+    - At line 22, add the following:
 
         ```bash
         # Extracts the first hostname from the list of allocated nodes to use as the master address.
@@ -644,7 +644,7 @@ We are not done yet with **```run_to_distributed_training.sbatch```** file:
 
 - **TODO 16**💻📝: 
     
-    - We **remove** the lauching script at line 36
+    - We **remove** the lauching script at line 41:
     
         ```bash
         srun --cpu_bind=none python to_distributed_training.py 
@@ -749,7 +749,7 @@ We are not done yet with **```run_to_distributed_training.sbatch```** file:
 
 - Distributed Data parallel is usually good enough 👌 
 - However, if your model is too big to fit into a single GPU
-- Welllll ... there other distributed techniques ...
+- Welllll ... there are other distributed techniques ...
 
 ---
 
@@ -939,9 +939,15 @@ We are not done yet with **```run_to_distributed_training.sbatch```** file:
 
 ## FSDP
 
-![](images/fsdp/fsdp-25.svg){height=425pt}
+![](images/fsdp/fsdp-25s.svg){height=425pt}
 
 
+
+---
+
+## FSDP
+
+![](images/fsdp/fsdp-28s.svg){height=425pt}
 
 ---
 
@@ -1123,7 +1129,7 @@ We are not done yet with **```run_to_distributed_training.sbatch```** file:
 
 - Let's have a look at llview again:
 
-![](images/llview_fsdp_gpu_8.png)
+- ![](images/llview_fsdp_gpu_8.png)
 
 
 <!-- ---

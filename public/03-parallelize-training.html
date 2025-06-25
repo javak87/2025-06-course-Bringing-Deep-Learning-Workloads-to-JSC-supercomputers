@@ -306,7 +306,7 @@ node.</li>
 <li class="fragment">Therefore, you should:
 <ul>
 <li class="fragment"><p><strong>Comment out</strong> lines 76
-<strong>to</strong> 133.</p></li>
+<strong>to</strong> 135.</p></li>
 <li class="fragment"><p>Activate your environment:</p>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> <span class="va">$HOME</span>/course/sc_venv_template/activate.sh</span></code></pre></div></li>
@@ -314,7 +314,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> to_distributed_training.py</span></code></pre></div></li>
 <li class="fragment"><p><strong>Uncomment back</strong> lines
-76-133.</p></li>
+76-135.</p></li>
 <li class="fragment"><p>Finally, run your job again 🚀:</p>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> run_to_distributed_training.sbatch</span></code></pre></div></li>
@@ -815,7 +815,7 @@ file:</p>
 it is not already done.</p>
 <div class="sourceCode" id="cb27"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --gres=gpu:4</span></span></code></pre></div></li>
-<li class="fragment"><p>At line 22, pass the correct number of
+<li class="fragment"><p>At line 19, pass the correct number of
 devices.</p>
 <div class="sourceCode" id="cb28"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up four visible GPUs that the job can use </span></span>
@@ -833,7 +833,7 @@ file:</p>
 <strong>MASTER_ADDR</strong> and <strong>MASTER_PORT</strong> to allow
 communication over the system.</p>
 <ul>
-<li class="fragment"><p>At line 25, add the following:</p>
+<li class="fragment"><p>At line 22, add the following:</p>
 <div class="sourceCode" id="cb29"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracts the first hostname from the list of allocated nodes to use as the master address.</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="va">MASTER_ADDR</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$(</span><span class="ex">scontrol</span> show hostnames <span class="st">&quot;</span><span class="va">$SLURM_JOB_NODELIST</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1<span class="va">)</span><span class="st">&quot;</span></span>
@@ -854,7 +854,7 @@ file:</p>
 <li class="fragment"><p><strong>TODO 16</strong>💻📝:</p>
 <ul>
 <li class="fragment"><p>We <strong>remove</strong> the lauching script
-at line 36</p>
+at line 41:</p>
 <div class="sourceCode" id="cb30"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--cpu_bind</span><span class="op">=</span>none python to_distributed_training.py </span></code></pre></div></li>
 <li class="fragment"><p>We use <strong>torchrun_jsc</strong> instead and
@@ -966,7 +966,8 @@ data-src="images/llview_gpu_8.png" /></p></li>
 👌</li>
 <li class="fragment">However, if your model is too big to fit into a
 single GPU</li>
-<li class="fragment">Welllll … there other distributed techniques …</li>
+<li class="fragment">Welllll … there are other distributed techniques
+…</li>
 </ul>
 </section>
 <section id="fully-sharded-data-parallel-fsdp" class="slide level2">
@@ -1144,7 +1145,12 @@ style="height:5.90278in" /></p>
 </section>
 <section id="fsdp-4" class="slide level2">
 <h2>FSDP</h2>
-<p><img data-src="images/fsdp/fsdp-25.svg"
+<p><img data-src="images/fsdp/fsdp-25s.svg"
+style="height:5.90278in" /></p>
+</section>
+<section id="fsdp-5" class="slide level2">
+<h2>FSDP</h2>
+<p><img data-src="images/fsdp/fsdp-28s.svg"
 style="height:5.90278in" /></p>
 </section>
 <section id="fsdp-workflow" class="slide level2">
@@ -1328,9 +1334,10 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb40-1"><a href=
 <section id="llview-7" class="slide level2">
 <h2>llview</h2>
 <ul>
-<li class="fragment">Let’s have a look at llview again:</li>
+<li class="fragment"><p>Let’s have a look at llview again:</p></li>
+<li class="fragment"><p><img
+data-src="images/llview_fsdp_gpu_8.png" /></p></li>
 </ul>
-<p><img data-src="images/llview_fsdp_gpu_8.png" /></p>
 <!-- ---
 
 ## sharding_strategy
@@ -1340,7 +1347,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb40-1"><a href=
 - **HYBRID_SHARD**: Apply FULL_SHARD within a node, and replicate parameters across nodes. Set **reshard_after_forward=True** with a 2D device mesh
 - **_HYBRID_SHARD_ZERO2**: Apply SHARD_GRAD_OP within a node, and replicate parameters across nodes. This is like HYBRID_SHARD, except this may provide even higher throughput since the unsharded parameters are not freed after the forward pass, saving the all-gathers in the pre-backward. Set **reshard_after_forward=False** with a 2D device mesh -->
 </section>
-<section id="fsdp-5" class="slide level2">
+<section id="fsdp-6" class="slide level2">
 <h2>FSDP</h2>
 <ul>
 <li class="fragment">FSDP is a built-in primitive in PyTorch for

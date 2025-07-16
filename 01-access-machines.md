@@ -1,7 +1,7 @@
 ---
 author: Alexandre Strube // Sabrina Benassou
 title: Accessing the machines, intro
-# subtitle: A primer in supercomputers`
+#subtitle: A primer in supercomputers
 date: June 24th, 2025
 ---
 ## Communication:
@@ -426,9 +426,7 @@ Did everyone get their **own** ip address?
 - Terminal: `code ~/.ssh/id_ed25519-JSC.pub`
 - Something like this will open:
 
-- ```bash
-ssh-ed25519 AAAAC3NzaC1lZDE1NTA4AAAAIHaoOJF3gqXd7CV6wncoob0DL2OJNfvjgnHLKEniHV6F strube@demonstration.fz-juelich.de
-```
+- `ssh-ed25519 AAAAC3NzaC1lZDE1NTA4AAAAIHaoOJF3gqXd7CV6wncoob0DL2OJNfvjgnHLKEniHV6F strube@demonstration.fz-juelich.de`
 
 - Paste this line at the same `key.txt` which you just opened
 
@@ -439,9 +437,7 @@ ssh-ed25519 AAAAC3NzaC1lZDE1NTA4AAAAIHaoOJF3gqXd7CV6wncoob0DL2OJNfvjgnHLKEniHV6F
 #### Example: `93.199.0.0/16`
 
 - Put them together and copy again:
-- ```bash
-from="93.199.0.0/16,10.0.0.0/8" ssh-ed25519 AAAAC3NzaC1lZDE1NTA4AAAAIHaoOJF3gqXd7CV6wncoob0DL2OJNfvjgnHLKEniHV6F strube@demonstration.fz-juelich.de
-```
+- `from="93.199.0.0/16,10.0.0.0/8" ssh-ed25519 AAAAC3NzaC1lZDE1NTA4AAAAIHaoOJF3gqXd7CV6wncoob0DL2OJNfvjgnHLKEniHV6F strube@demonstration.fz-juelich.de`
 
 ---
 
@@ -678,9 +674,9 @@ The following modules match your search criteria: "toml"
 
 ## VSCode
 
-- From the VSCode's terminal, navigate to your "course" folder and to the name you created earlier.
+From the VSCode's terminal, navigate to your "course" folder and to the name you created earlier.
 
-- ```bash
+```bash
 cd $HOME/course/
 pwd
 ```
@@ -892,7 +888,7 @@ torchrun_jsc>=0.0.15
 
 ### Example: Activating the virtual environment
 
-- ```bash
+```bash
 source sc_venv_template/activate.sh
 ```
 
@@ -922,12 +918,14 @@ Python 3.11.3 (main, Jun 25 2023, 13:17:30) [GCC 12.3.0]
 
 ### Let's train a 🐈 classifier!
 
-- This is a minimal demo, to show some quirks of the supercomputer
-- ```bash
+This is a minimal demo, to show some quirks of the supercomputer
+```
 code cats.py
 ```
 
-- ```python 
+---
+
+```python 
 from fastai.vision.all import *
 from fastai.callback.tensorboard import *
 #
@@ -995,13 +993,18 @@ sbatch fastai.sbatch
 
 ### Probably not much happening...
 
-- ```bash
+```bash
 $ cat output.7948496 
 The activation script must be sourced, otherwise the virtual environment will not work.
 Setting vars
 Downloading dataset...
 ```
-- ```bash
+
+---
+
+### But it might fail
+
+```bash
 $ cat err.7948496 
 The following modules were not unloaded:
   (Use "module --force purge" to unload all):
@@ -1011,16 +1014,19 @@ The following modules were not unloaded:
 
 ---
 
-## 💥
+### 💥
 
 ---
 
-## What happened?
+### What happened?
 
-- It might be that it's not enough time for the job to give up
-- Check the `error.${JOBID}` file
-- If you run it longer, you will get the actual error:
-- ```python
+It might be that it's not enough time for the job to give up
+
+Check the `error.${JOBID}` file
+
+If you run it longer, you will get the actual error:
+
+```python
 Traceback (most recent call last):
   File "/p/project/training2529/strube1/cats.py", line 5, in <module>
     path = untar_data(URLs.PETS)/'images'
@@ -1039,13 +1045,13 @@ srun: error: jwb0160: task 0: Exited with exit code 1
 
 ### What is it doing?
 
-- This downloads the dataset:
-- ```python
+This downloads the dataset:
+```python
 path = untar_data(URLs.PETS)/'images'
 ```
 
-- And this one downloads the pre-trained weights:
-- ```python
+And this one downloads the pre-trained weights:
+```python
 learn = vision_learner(dls, resnet34, metrics=accuracy)
 ```
 
@@ -1075,12 +1081,12 @@ learn = vision_learner(dls, resnet34, metrics=accuracy)
 
 ## On the login node:
 
-- Comment out the line which does AI training:
-- ```python
+Comment out the line which does AI training:
+```python
 # learn.fit_one_cycle(6, cbs=cbs)
 ```
-- Call our code on the login node!
-- ```bash
+Call our code on the login node!
+```bash
 source sc_venv_template/activate.sh # So that we have fast.ai library
 python cats.py
 ```
@@ -1102,12 +1108,12 @@ Downloading dataset...
 
 ## Run it again on the compute nodes!
 
-- Un-comment back the line that does training:
-- ```python
+Un-comment back the line that does training:
+```python
 learn.fit_one_cycle(6, cbs=cbs)
 ```
-- Submit the job!
-- ```bash
+Submit the job!
+```bash
 sbatch fastai.sbatch
 ```
 
@@ -1124,8 +1130,8 @@ watch squeue --me
 
 ## Check output files
 
-- You can see them within VSCode
-- ```bash
+You can see them within VSCode
+```bash
 The activation script must be sourced, otherwise the virtual environment will not work.
 Setting vars
 Downloading dataset...
@@ -1149,10 +1155,10 @@ epoch     train_loss  valid_loss  error_rate  time
 
 ### Tools for results analysis
 
-- We already ran the code and have results
-- To analyze them, there's a neat tool called Tensorboard
-- And we already have the code for it on our example!
-- ```python
+We already ran the code and have results
+To analyze them, there's a neat tool called Tensorboard
+And we already have the code for it on our example!
+```python
 cbs=[SaveModelCallback(), TensorBoardCallback('runs', trace_model=True)]
 ```
 
@@ -1160,8 +1166,8 @@ cbs=[SaveModelCallback(), TensorBoardCallback('runs', trace_model=True)]
 
 ## Example: Tensorboard
 
-- The command 
-- ```bash
+The command 
+```bash
 tensorboard --logdir=runs  --port=9999 serve
 ```
 - Opens a connection on port 9999... *OF THE SUPERCOMPUTER*.
@@ -1186,8 +1192,8 @@ tensorboard --logdir=runs  --port=9999 serve
 
 ## Port forwarding demo:
 
-- On VSCode's terminal:
-- ```bash
+On VSCode's terminal:
+```bash
 cd $HOME/course/
 source sc_venv_template/activate.sh
 tensorboard --logdir=runs  --port=12345 serve
@@ -1281,9 +1287,9 @@ As of now, I expect you managed to:
 
 ## Blablador: VScode + Continue.dev
 
-- Inside config.json, add at the `"models"` section:
+Inside config.json, add at the `"models"` section:
 
-- ```json
+```json
     {
       "model": "AUTODETECT",
       "title": "Blablador",
@@ -1369,7 +1375,7 @@ bash-4.4$ tensorboard --logdir=runs  --port=9999 serve
 
 On your machine:
 
-- ```bash
+```bash
 ssh -L :3334:localhost:9999 jrc002i.jureca
 ```
 

@@ -9,13 +9,14 @@
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
 
+<<<<<<< HEAD
 ##SBATCH --reservation=training2529_day2 # For today only
+=======
+#SBATCH --reservation=training2529 # For today only
+>>>>>>> b32ad3d7f50eec10c0873b7931eb268487e14b1a
 
 # Export the necessary environment variables for huggingface offline mode
 export HF_DATASETS_OFFLINE=1
-export HF_EVALUATE_OFFLINE=1
-export HF_HUB_OFFLINE=1
-export TRANSFORMERS_OFFLINE=1
 
 # Get number of cpu per task
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"
@@ -30,8 +31,12 @@ export MASTER_ADDR="$(nslookup "$MASTER_ADDR" | grep -oP '(?<=Address: ).*')"
 export MASTER_PORT=7010
 
 # We activate our environemnt
+<<<<<<< HEAD
 source /p/scratch/training2529/benassou1/sc_venv_template/activate.sh
 # source /p/scratch/training2529/benassou1/2025-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/parallelize/sc_venv_template/activate.sh
+=======
+source $HOME/course/sc_venv_template/activate.sh
+>>>>>>> b32ad3d7f50eec10c0873b7931eb268487e14b1a
 
 # Launch a distributed training job across multiple nodes and GPUs
 srun --cpu_bind=none bash -c "torchrun_jsc \

@@ -5,7 +5,6 @@ from datasets import load_dataset
 # Function to build vocab from training split
 def build_vocab(split='train'):
     dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split=split)
-    # dataset = dataset.select(range(1000))
     tokens = ' '.join(dataset['text']).lower().split()
     vocab = sorted(set(tokens))
     stoi = {w: i for i, w in enumerate(vocab)}
@@ -16,7 +15,6 @@ def build_vocab(split='train'):
 class LanguageModelingDataset(Dataset):
     def __init__(self, split, seq_len=256, stoi=None, vocab=None):
         dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split=split)
-        # dataset = dataset.select(range(1000))
         tokens = ' '.join(dataset['text']).lower().split()
 
         if stoi is None or vocab is None:

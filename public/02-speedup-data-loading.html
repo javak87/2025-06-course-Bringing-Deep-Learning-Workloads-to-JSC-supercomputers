@@ -277,13 +277,14 @@ alt="JSC Supercomputer Stragegy" /></li>
 <section id="where-do-i-keep-my-files" class="slide level2">
 <h2>Where do I keep my files?</h2>
 <ul>
-<li class="fragment"><p>Always store your code in the project folder
+<li class="fragment"><p>Always store your code in the project1 folder
 (<strong><code>$PROJECT_projectname</code></strong> ). In our case</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/p/project/training2529/</span><span class="va">$USER</span></span></code></pre></div></li>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/p/project1/training2529/</span><span class="va">$USER</span></span></code></pre></div></li>
 <li class="fragment"><p>Store data in the scratch directory for faster
-I/O access (<strong><code>$SCRATCH_projectname</code></strong>). Files
-in scratch are deleted after 90 days of inactivity.</p>
+I/O access (<strong><code>$SCRATCH_projectname</code></strong>).
+⚠️<strong>Files in scratch are deleted after 90 days of
+inactivity.</strong></p>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/p/scratch/training2529/</span><span class="va">$USER</span></span></code></pre></div></li>
 <li class="fragment"><p>Store the data in <a
@@ -346,10 +347,6 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/HelmholtzAI-FZJ/2025-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers.git</span></code></pre></div></li>
 <li class="fragment"><p>Move to the correct folder:</p>
 <pre><code>cd 2025-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/dataloading/</code></pre></li>
-<li class="fragment"><p>The examples are in</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">imagenet_loaders.py</span> <span class="co"># to create the H5 and pyarrow files  </span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">save_imagenet_files.py</span> <span class="co"># to read the H5 and pyarrow files</span></span></code></pre></div></li>
 <li class="fragment"><p>We used the ImageNet dataset for the
 examples.</p></li>
 </ul>
@@ -370,49 +367,49 @@ images for training, and 50,000 images for the validation set.</li>
 </section>
 <section id="the-imagenet-dataset-1" class="slide level2">
 <h2>The ImageNet dataset</h2>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ILSVRC</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span><span class="ex">--</span> Data/</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">`</span><span class="ex">--</span> CLS-LOC</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span><span class="ex">--</span> test</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span><span class="ex">--</span> train</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01440764</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01440764_10026.JPEG</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01440764_10027.JPEG</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01440764_10029.JPEG</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01695060</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01695060_10009.JPEG</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01695060_10022.JPEG</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01695060_10028.JPEG</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> ...</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span><span class="ex">...</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span><span class="ex">--</span> val</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>            <span class="kw">|</span><span class="ex">--</span> ILSVRC2012_val_00000001.JPEG  </span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>            <span class="kw">|</span><span class="ex">--</span> ILSVRC2012_val_00016668.JPEG  </span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            <span class="kw">|</span><span class="ex">--</span> ILSVRC2012_val_00033335.JPEG      </span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            <span class="kw">|</span><span class="ex">--</span> ...</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ILSVRC</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span><span class="ex">--</span> Data/</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">`</span><span class="ex">--</span> CLS-LOC</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span><span class="ex">--</span> test</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span><span class="ex">--</span> train</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01440764</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01440764_10026.JPEG</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01440764_10027.JPEG</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01440764_10029.JPEG</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01695060</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01695060_10009.JPEG</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01695060_10022.JPEG</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> n01695060_10028.JPEG</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span>   <span class="kw">|</span><span class="ex">--</span> ...</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span>   <span class="kw">|</span><span class="ex">...</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span><span class="ex">--</span> val</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>            <span class="kw">|</span><span class="ex">--</span> ILSVRC2012_val_00000001.JPEG  </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>            <span class="kw">|</span><span class="ex">--</span> ILSVRC2012_val_00016668.JPEG  </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>            <span class="kw">|</span><span class="ex">--</span> ILSVRC2012_val_00033335.JPEG      </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>            <span class="kw">|</span><span class="ex">--</span> ...</span></code></pre></div>
 </section>
 <section id="the-imagenet-dataset-2" class="slide level2">
 <h2>The ImageNet dataset</h2>
 <p>imagenet_train.pkl</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/train/n03146219/n03146219_8050.JPEG&#39;</span><span class="ex">:</span> 524,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/train/n03146219/n03146219_12728.JPEG&#39;</span><span class="ex">:</span> 524,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/train/n03146219/n03146219_9736.JPEG&#39;</span><span class="ex">:</span> 524,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">...</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/train/n03146219/n03146219_7460.JPEG&#39;</span><span class="ex">:</span> 524,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">...</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a> <span class="kw">}</span></span></code></pre></div>
+<p>imagenet_val.pkl</p>
 <div class="sourceCode" id="cb8"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/train/n03146219/n03146219_8050.JPEG&#39;</span><span class="ex">:</span> 524,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/train/n03146219/n03146219_12728.JPEG&#39;</span><span class="ex">:</span> 524,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/train/n03146219/n03146219_9736.JPEG&#39;</span><span class="ex">:</span> 524,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/val/ILSVRC2012_val_00008838.JPEG&#39;</span><span class="ex">:</span> 785,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/val/ILSVRC2012_val_00008555.JPEG&#39;</span><span class="ex">:</span> 129,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/val/ILSVRC2012_val_00028410.JPEG&#39;</span><span class="ex">:</span> 968,</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">...</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/train/n03146219/n03146219_7460.JPEG&#39;</span><span class="ex">:</span> 524,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">...</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a> <span class="kw">}</span></span></code></pre></div>
-<p>imagenet_val.pkl</p>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/val/ILSVRC2012_val_00008838.JPEG&#39;</span><span class="ex">:</span> 785,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/val/ILSVRC2012_val_00008555.JPEG&#39;</span><span class="ex">:</span> 129,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/val/ILSVRC2012_val_00028410.JPEG&#39;</span><span class="ex">:</span> 968,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">...</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/val/ILSVRC2012_val_00016007.JPEG&#39;</span><span class="ex">:</span> 709,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a> <span class="kw">}</span></span></code></pre></div>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;ILSVRC/Data/CLS-LOC/val/ILSVRC2012_val_00016007.JPEG&#39;</span><span class="ex">:</span> 709,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a> <span class="kw">}</span></span></code></pre></div>
 </section>
 <section id="hdf5" class="slide level2">
 <h2>HDF5</h2>
@@ -445,14 +442,17 @@ batches</p></li>
 <section id="run-examples" class="slide level2">
 <h2>Run examples</h2>
 <ul>
-<li class="fragment"><p>You can run the examples by launching</p>
+<li class="fragment"><p>The examples are in:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">imagenet_loaders.py</span> <span class="co"># to create the H5 and pyarrow files  </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">save_imagenet_files.py</span> <span class="co"># to read the H5 and pyarrow files</span></span></code></pre></div></li>
+<li class="fragment"><p>To create the h5 or pyarrow files, you can run
+the examples by launching</p>
 <div class="sourceCode" id="cb10"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sbatch</span> run_save_file.sh</span></code></pre></div></li>
-<li class="fragment"><p>to create the h5 or pyarrow files, or by
-running</p>
+<li class="fragment"><p>To read those files, you can run:</p>
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">run_loader.sh</span></span></code></pre></div></li>
-<li class="fragment"><p>to read those files</p></li>
 </ul>
 </section>
     </div>

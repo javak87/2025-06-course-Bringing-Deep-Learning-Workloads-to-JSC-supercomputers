@@ -1,0 +1,276 @@
+import math
+import copy
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.nn import ModuleList
+from torch import Tensor
+
+import warnings
+from typing import Optional
+
+import torch.jit  # this is needed to avoid a circular import
+from dataclasses import dataclass
+from typing import Optional, Tuple
+
+from torch.distributed.tensor import DTensor
+from distributed_utils import *
+
+@dataclass
+class ModelArgs:
+    dim: int = 4096
+    n_heads: int = 32
+    vocab_size: int = -1  
+    num_encoder_layers: int = 2
+    max_seq_length: int = 2048
+    dropout: float = 0.1
+    
+def is_dtensor(tensor):
+    return isinstance(tensor, DTensor)
+
+
+class MultiheadAttention(nn.Module):
+
+    def __init__(
+        self,
+        embed_dim: int,
+        num_heads: int,
+        dropout: float = 0.0,
+        bias: bool = True,
+        add_bias_kv: bool = False,
+        add_zero_attn: bool = False,
+        kdim: Optional[int] = None,
+        vdim: Optional[int] = None,
+    ) -> None:
+        super().__init__()
+
+        self.embed_dim = embed_dim
+        self.num_heads = num_heads
+        self.kdim = kdim if kdim is not None else embed_dim
+        self.vdim = vdim if vdim is not None else embed_dim
+        self.dropout = dropout
+        self.add_bias_kv = add_bias_kv
+        self.add_zero_attn = add_zero_attn
+        
+        self.linear_Q = nn.Linear(self.embed_dim, self.embed_dim, bias=bias)
+        self.linear_K = nn.Linear(self.kdim, self.embed_dim, bias=bias)
+        self.linear_V = nn.Linear(self.vdim, self.embed_dim, bias=bias)
+        self.out_proj = nn.Linear(self.embed_dim, self.embed_dim, bias=bias)  
+
+
+    def forward(
+        self,
+        query: Tensor,
+        key: Tensor,
+        value: Tensor,
+        key_padding_mask: Optional[Tensor] = None,
+        need_weights: bool = True,
+        attn_mask: Optional[Tensor] = None,
+        average_attn_weights: bool = True,
+        is_causal: bool = False,
+    ) :
+
+        # print("query shape:", query.shape)
+        tgt_len, bsz, embed_dim_to_check = query.size()
+        assert self.embed_dim == embed_dim_to_check
+        assert key.size(0) == value.size(0) and key.size(1) == value.size(1)
+
+        head_dim = self.embed_dim // self.num_heads
+        assert head_dim * self.num_heads == self.embed_dim, (
+            "embed_dim must be divisible by num_heads"
+        )
+        scaling = float(head_dim) ** -0.5
+        # print(f"query shape: {query.shape}, key shape: {key.shape}, value shape: {value.shape}, head_dim: {head_dim}, num_heads: {self.num_heads}")
+    
+        # print(f"query dtype: {query.dtype}, key dtype: {key.dtype}, value dtype: {value.dtype}")
+        q = self.linear_Q(query)
+        k = self.linear_K(key)
+        v = self.linear_V(value)
+
+        if attn_mask is not None:
+            if attn_mask.dtype == torch.uint8:
+                warnings.warn(
+                    "Byte tensor for `attn_mask` in `nn.MultiheadAttention` is deprecated. "
+                    "Use bool tensor instead.",
+                    stacklevel=3,
+                )
+                attn_mask = attn_mask.to(torch.bool)
+            assert attn_mask.is_floating_point() or attn_mask.dtype == torch.bool, (
+                f"Only float and bool types are supported for attn_mask, not {attn_mask.dtype}"
+            )
+
+            if attn_mask.dim() == 2:
+                attn_mask = attn_mask.unsqueeze(0)
+                if list(attn_mask.size()) != [1, query.size(0), key.size(0)]:
+                    raise RuntimeError("The size of the 2D attn_mask is not correct.")
+            elif attn_mask.dim() == 3:
+                if list(attn_mask.size()) != [
+                    bsz * self.num_heads,
+                    query.size(0),
+                    key.size(0),
+                ]:
+                    raise RuntimeError("The size of the 3D attn_mask is not correct.")
+            else:
+                raise RuntimeError(
+                    f"attn_mask's dimension {attn_mask.dim()} is not supported"
+                )
+        if key_padding_mask is not None and key_padding_mask.dtype == torch.uint8:
+            warnings.warn(
+                "Byte tensor for `key_padding_mask` in `nn.MultiheadAttention` is deprecated. "
+                "Use bool tensor instead.",
+                stacklevel=3,
+            )
+            key_padding_mask = key_padding_mask.to(torch.bool)
+        
+        q = q.contiguous().view(tgt_len, bsz * self.num_heads, head_dim).transpose(0, 1)
+        if k is not None:
+            k = k.contiguous().view(-1, bsz * self.num_heads, head_dim).transpose(0, 1)
+        if v is not None:
+            v = v.contiguous().view(-1, bsz * self.num_heads, head_dim).transpose(0, 1)
+
+        src_len = k.size(1)
+
+        if key_padding_mask is not None:
+            assert key_padding_mask.size(0) == bsz
+            assert key_padding_mask.size(1) == src_len
+
+        attn_output_weights = torch.bmm(q, k.transpose(1, 2))
+        assert list(attn_output_weights.size()) == [
+            bsz * self.num_heads,
+            tgt_len,
+            src_len,
+        ]
+
+        if attn_mask is not None:
+            if attn_mask.dtype == torch.bool:
+                attn_output_weights.masked_fill_(attn_mask, float("-inf"))
+            else:
+                attn_output_weights += attn_mask
+
+        if key_padding_mask is not None:
+            attn_output_weights = attn_output_weights.view(
+                bsz, self.num_heads, tgt_len, src_len
+            )
+            attn_output_weights = attn_output_weights.masked_fill(
+                key_padding_mask.unsqueeze(1).unsqueeze(2),
+                float("-inf"),
+            )
+            attn_output_weights = attn_output_weights.view(
+                bsz * self.num_heads, tgt_len, src_len
+            )
+
+        attn_output_weights = F.softmax(attn_output_weights, dim=-1)
+        attn_output_weights = F.dropout(
+            attn_output_weights, p=self.dropout, training=self.training
+        )
+
+        attn_output = torch.bmm(attn_output_weights, v)
+        assert list(attn_output.size()) == [bsz * self.num_heads, tgt_len, head_dim]
+
+        attn_output = (
+            attn_output.transpose(0, 1)
+            .contiguous()
+            .view(tgt_len, bsz, self.embed_dim)
+        )
+
+    
+        attn_output = self.out_proj(attn_output)  # type: ignore[has-type]
+
+        return attn_output.type_as(query), None
+
+
+# Positional Encoding
+class PositionalEncoding(nn.Module):
+    def __init__(self, d_model, max_len=5000):
+        super().__init__()
+        pe = torch.zeros(max_len, d_model)
+        position = torch.arange(0, max_len).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2) * (-math.log(10000.0) / d_model))
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        self.register_buffer('pe', pe.unsqueeze(1))  # Add batch dimension
+        
+
+    def forward(self, x):
+        return x + self.pe[:x.size(0)]
+
+# ---- helper to build one encoder layer ----
+class TransformerEncoderLayer(nn.Module):
+    def __init__(self, model_args, dropout=0.1):
+        super().__init__()
+        self.self_attn = MultiheadAttention(num_heads=model_args.n_heads, dropout=dropout, embed_dim=model_args.dim)
+        self.linear1 = nn.Linear(model_args.dim, model_args.dim * 16)
+        self.dropout = nn.Dropout(dropout)
+        self.linear2 = nn.Linear(model_args.dim * 16, model_args.dim)
+        self.norm1 = nn.LayerNorm(model_args.dim)
+        self.norm2 = nn.LayerNorm(model_args.dim)
+        self.dropout1 = nn.Dropout(dropout)
+        self.dropout2 = nn.Dropout(dropout)
+
+    def forward(self, src, device=None):
+
+        src = self.norm1(
+            src
+            + self.dropout1(self.self_attn(src, src, src)[0])
+        )
+        print0(f"Input shape 3: {src.to_local()[0,:4, :4]}")
+        print0(f"Input shape 3: {src.shape}")
+       
+        src = self.norm2(
+            src
+            + self.dropout2(self.linear2(self.dropout(F.relu(self.linear1(src)))))
+        )
+        print0(f"Input shape 4: {src.to_local()[0,:4, :4]}")
+        print0(f"Input shape 4: {src.shape}")
+
+        return src
+
+
+def _get_clones(module, N):
+    # FIXME: copy.deepcopy() is not defined on nn.module
+    return ModuleList([copy.deepcopy(module) for i in range(N)])
+
+# ---- full TransformerLM with  layers ----
+class TransformerLM(nn.Module):
+    def __init__(self, model_args):
+        super().__init__()
+        self.embed = nn.Embedding(model_args.vocab_size, model_args.dim)
+        self.pos_encoder = PositionalEncoding(model_args.dim)
+
+        self.layers = _get_clones(TransformerEncoderLayer(model_args), model_args.num_encoder_layers)
+        self.norm = nn.LayerNorm(model_args.dim)
+
+        self.fc = nn.Linear(model_args.dim, model_args.vocab_size)
+
+        self._reset_parameters()
+
+    def _reset_parameters(self):
+        for p in self.parameters():
+            if p.dim() > 1:
+                nn.init.xavier_uniform_(p)
+
+
+    def forward(self, x):
+
+        x = x.t()  # (seq_len, batch)
+        print0(f"Input shape 0 : {x[0,:4]}")
+        print0(f"Input shape 0 : {x.shape}")
+        x = self.embed(x)
+        # print0(f"Input shape 1: {x.shape}")
+        print0(f"Input shape 1: {x.to_local()[0,:4, :4]}")
+        print0(f"Input shape 1: {x.shape}")
+        x = self.pos_encoder(x)
+        print0(f"Input shape 2: {x.to_local()[0,:4, :4]}")
+        print0(f"Input shape 2: {x.shape}")
+
+        for layer in self.layers:
+            x = layer(x)
+        x = self.norm(x)
+        print0(f"Input shape 5: {x.to_local()[0,:4, :4]}")
+        print0(f"Input shape 5: {x.shape}")
+        x = self.fc(x)
+        print0(f"Input shape 6: {x[0,:4, :4]}")
+        print0(f"Output shape: {x.shape}")
+        return x
+

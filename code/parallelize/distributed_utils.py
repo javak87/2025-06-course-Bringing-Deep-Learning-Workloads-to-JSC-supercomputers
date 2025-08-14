@@ -13,6 +13,9 @@ def setup():
     # Get the identifier of each process within a node
     local_rank = int(os.getenv('LOCAL_RANK'))
 
+    # Get the total number of processes in the distributed system
+    world_size = int(os.getenv('WORLD_SIZE'))
+
     # Get the global identifier of each process within the distributed system
     rank = int(os.environ['RANK'])
 
@@ -25,7 +28,7 @@ def setup():
     # Different random seed for each process.
     torch.random.manual_seed(1000 + torch.distributed.get_rank())
 
-    return local_rank, rank, device
+    return local_rank, rank, device, world_size
 
 def destroy_process_group():
     """Destroy the process group."""

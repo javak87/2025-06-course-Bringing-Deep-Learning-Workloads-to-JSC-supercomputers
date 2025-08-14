@@ -9,13 +9,12 @@
 #SBATCH --output=%j.out
 #SBATCH --error=%j.err
 
-##SBATCH --reservation=training2529_day2 # For today only
-
 # Export the necessary environment variables for huggingface offline mode
 export HF_DATASETS_OFFLINE=1
 export HF_EVALUATE_OFFLINE=1
 export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
+export TORCH_DTENSOR_ALLOW_IMPLICIT_REPLICATION=1
 
 # Get number of cpu per task
 export SRUN_CPUS_PER_TASK="$SLURM_CPUS_PER_TASK"
@@ -31,7 +30,6 @@ export MASTER_PORT=7010
 
 # We activate our environemnt
 source /p/scratch/training2529/benassou1/sc_venv_template/activate.sh
-# source /p/scratch/training2529/benassou1/2025-06-course-Bringing-Deep-Learning-Workloads-to-JSC-supercomputers/code/parallelize/sc_venv_template/activate.sh
 
 # Launch a distributed training job across multiple nodes and GPUs
 srun --cpu_bind=none bash -c "torchrun_jsc \
@@ -41,4 +39,4 @@ srun --cpu_bind=none bash -c "torchrun_jsc \
     --rdzv_id $RANDOM \
     --rdzv_endpoint=$MASTER_ADDR:$MASTER_PORT \
     --rdzv_conf=is_host=\$(if ((SLURM_NODEID)); then echo 0; else echo 1; fi) \
-    ddp_training.py "
+    tp_training.py "

@@ -14,7 +14,7 @@ def build_vocab(split='train'):
 
 # Dataset for language modeling
 class LanguageModelingDataset(Dataset):
-    def __init__(self, split, seq_len=32, stoi=None, vocab=None):
+    def __init__(self, split, seq_len=256, stoi=None, vocab=None):
         dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split=split)
         # dataset = dataset.select(range(1000))
         tokens = ' '.join(dataset['text']).lower().split()
